@@ -1,0 +1,772 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Last Message - Journey Through History</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-orange: #ff7043;
+            --dark-orange: #e64a19;
+            --light-orange: #ffab91;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #1f1f1f;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent-glow: rgba(255, 112, 67, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        /* ── BACKGROUND ── */
+        .gradient-bg {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; z-index: -1;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a0a00 100%);
+        }
+        .gradient-bg::before {
+            content: '';
+            position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.8);
+            border-bottom: 1px solid rgba(255,112,67,0.1);
+            z-index: 1000; padding: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+        nav.scrolled { padding: 1rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .nav-container {
+            max-width: 1400px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-orange), var(--light-orange));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            letter-spacing: -1px;
+        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none;
+            font-weight: 500; transition: all 0.3s ease; position: relative;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0;
+            width: 0; height: 2px; background: var(--primary-orange);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--primary-orange); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            justify-content: center; text-align: center;
+            padding: 8rem 2rem 4rem; position: relative;
+        }
+        .hero-content { max-width: 900px; animation: fadeInUp 1s ease; }
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem); font-weight: 900;
+            margin-bottom: 1.5rem; line-height: 1.1;
+            background: linear-gradient(135deg, var(--primary-orange), var(--light-orange));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            letter-spacing: -2px;
+        }
+        .hero p { font-size: 1.4rem; color: var(--text-secondary); margin-bottom: 3rem; line-height: 1.8; }
+        .cta-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+
+        /* ── BUTTONS ── */
+        .btn {
+            padding: 1.2rem 3rem; border-radius: 50px; font-weight: 600;
+            text-decoration: none; transition: all 0.3s ease; border: none; cursor: pointer;
+            font-size: 1.1rem; position: relative; overflow: hidden;
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.5rem; text-align: center;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-orange), var(--dark-orange));
+            color: white; box-shadow: 0 10px 30px var(--accent-glow);
+        }
+        .btn-primary::before {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn-primary:hover::before { left: 100%; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px var(--accent-glow); }
+        .btn-secondary {
+            background: transparent; color: var(--primary-orange);
+            border: 2px solid var(--primary-orange);
+        }
+        .btn-secondary:hover { background: var(--primary-orange); color: white; transform: translateY(-3px); }
+        .btn-journey {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a); color: white;
+            border: 2px solid var(--primary-orange);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            font-size: 1.3rem; padding: 1.5rem 4rem;
+        }
+        .btn-journey:hover {
+            background: linear-gradient(135deg, var(--primary-orange), var(--dark-orange));
+            transform: translateY(-5px) scale(1.05); box-shadow: 0 20px 50px var(--accent-glow);
+        }
+
+        /* ── SECTIONS ── */
+        section {
+            padding: 6rem 2rem; max-width: 1400px; margin: 0 auto;
+        }
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800;
+            margin-bottom: 1rem; text-align: center;
+            background: linear-gradient(135deg, var(--primary-orange), var(--light-orange));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .section-subtitle {
+            text-align: center; color: var(--text-secondary); font-size: 1.2rem;
+            margin-bottom: 4rem; max-width: 700px; margin-left: auto; margin-right: auto;
+        }
+
+        /* ── STORY ── */
+        .story-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .story-card {
+            background: var(--bg-card); border-radius: 20px; padding: 2.5rem;
+            border: 1px solid rgba(255,112,67,0.1); transition: all 0.4s ease;
+            position: relative; overflow: hidden;
+        }
+        .story-card::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, var(--accent-glow), transparent);
+            opacity: 0; transition: opacity 0.4s ease;
+        }
+        .story-card:hover { transform: translateY(-10px); border-color: var(--primary-orange); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .story-card:hover::before { opacity: 1; }
+        .story-card-content { position: relative; z-index: 1; }
+        .story-icon { width: 70px; height: 70px; margin-bottom: 1.5rem; display: block; fill: var(--primary-orange); }
+        .story-card h3 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--primary-orange); }
+        .story-card p { color: var(--text-secondary); line-height: 1.8; }
+
+        /* ── FAQ ── */
+        .faq-container { max-width: 900px; margin: 0 auto; }
+        .faq-item {
+            background: var(--bg-card); border-radius: 15px; margin-bottom: 1.5rem;
+            border: 1px solid rgba(255,112,67,0.1); overflow: hidden; transition: all 0.3s ease;
+        }
+        .faq-item:hover { border-color: var(--primary-orange); }
+        .faq-question {
+            padding: 2rem; cursor: pointer; display: flex;
+            justify-content: space-between; align-items: center;
+            font-weight: 600; font-size: 1.2rem; transition: all 0.3s ease;
+        }
+        .faq-question:hover { color: var(--primary-orange); }
+        .faq-toggle { font-size: 1.5rem; transition: transform 0.3s ease; }
+        .faq-item.active .faq-toggle { transform: rotate(180deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 2rem; }
+        .faq-item.active .faq-answer { max-height: 500px; padding: 0 2rem 2rem; }
+        .faq-answer p { color: var(--text-secondary); line-height: 1.8; }
+
+        /* ── COMMUNITY ── */
+        .community-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .community-card {
+            background: var(--bg-card); border-radius: 20px; padding: 3rem 2rem;
+            text-align: center; border: 1px solid rgba(255,112,67,0.1);
+            transition: all 0.4s ease; position: relative; overflow: hidden;
+        }
+        .community-card::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, var(--accent-glow), transparent);
+            opacity: 0; transition: opacity 0.4s ease;
+        }
+        .community-card:hover { transform: translateY(-10px) scale(1.02); border-color: var(--primary-orange); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .community-card:hover::before { opacity: 1; }
+        .community-content { position: relative; z-index: 1; }
+        .community-icon { width: 80px; height: 80px; margin: 0 auto 1.5rem; display: block; filter: drop-shadow(0 0 15px rgba(255,112,67,0.35)); }
+        .community-card h3 { font-size: 1.8rem; margin-bottom: 1rem; }
+        .community-card p { color: var(--text-secondary); margin-bottom: 2rem; }
+
+        /* ══════════════════════════════════════════
+           TEAM SECTION — 2026 ULTRA-MODERN STYLE xd
+        ══════════════════════════════════════════ */
+        #team {
+            padding: 7rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #team::before {
+            content: '';
+            display: block;
+            width: 180px;
+            height: 3px;
+            margin: 0 auto 5rem;
+            background: linear-gradient(90deg, transparent, var(--primary-orange), transparent);
+            border-radius: 99px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            position: relative;
+            border-radius: 24px;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(255,112,67,0.6), rgba(255,112,67,0.05), rgba(255,112,67,0.6));
+            background-size: 300% 300%;
+            animation: borderShift 4s ease infinite;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        @keyframes borderShift {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .team-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 30px 60px rgba(255,112,67,0.25), 0 0 40px rgba(255,112,67,0.1);
+        }
+
+        .team-card-inner {
+            background: #141414;
+            border-radius: 22px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card-inner::before {
+            content: '';
+            position: absolute;
+            top: -40px; left: 50%;
+            transform: translateX(-50%);
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(255,112,67,0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .team-card-inner::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 60%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+            transition: left 0.6s ease;
+            pointer-events: none;
+        }
+
+        .team-card:hover .team-card-inner::after { left: 150%; }
+
+        .team-avatar-wrap {
+            position: relative;
+            width: 96px; height: 96px;
+            margin: 0 auto 1.4rem;
+        }
+
+        .team-avatar {
+            width: 96px; height: 96px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-orange), var(--dark-orange));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; font-weight: 800; color: white;
+            position: relative; z-index: 1;
+            box-shadow: 0 0 0 3px rgba(255,112,67,0.2);
+        }
+
+        .team-avatar-wrap::before {
+            content: '';
+            position: absolute; inset: -6px;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary-orange) 0deg, transparent 120deg, var(--light-orange) 240deg, transparent 360deg);
+            animation: spinRing 3s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes spinRing {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        .team-card h3 {
+            font-size: 1.25rem; font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            position: relative; z-index: 1;
+        }
+
+        .team-role {
+            display: inline-block;
+            background: rgba(255,112,67,0.12);
+            color: var(--primary-orange);
+            font-size: 0.82rem; font-weight: 600;
+            padding: 0.3rem 1rem; border-radius: 30px;
+            border: 1px solid rgba(255,112,67,0.35);
+            margin-bottom: 1rem; letter-spacing: 0.4px;
+            position: relative; z-index: 1;
+        }
+
+        .team-card p {
+            color: var(--text-secondary);
+            font-size: 0.93rem; line-height: 1.7;
+            position: relative; z-index: 1;
+        }
+
+        .team-number {
+            position: absolute;
+            top: 1rem; right: 1.2rem;
+            font-size: 3.5rem; font-weight: 900;
+            color: rgba(255,112,67,0.06);
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--bg-secondary);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,112,67,0.1);
+        }
+        .footer-content { max-width: 1400px; margin: 0 auto; }
+        .footer-links {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--primary-orange); }
+        .copyright { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.7rem; }
+        .developer-credit { font-size: 0.95rem; color: var(--primary-orange); font-weight: 700; letter-spacing: 0.5px; text-shadow: 0 0 10px rgba(255,112,67,0.25); }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in { opacity: 0; transition: opacity 0.7s ease, transform 0.7s ease; transform: translateY(20px); }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── SCROLL INDICATOR ── */
+        .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); animation: bounce 2s infinite; transition: opacity 0.3s; }
+        .scroll-indicator span { display: block; width: 30px; height: 50px; border: 2px solid var(--primary-orange); border-radius: 25px; position: relative; }
+        .scroll-indicator span::before {
+            content: ''; position: absolute; top: 10px; left: 50%;
+            transform: translateX(-50%); width: 6px; height: 10px;
+            background: var(--primary-orange); border-radius: 3px;
+            animation: scrollDot 2s infinite;
+        }
+        @keyframes bounce {
+            0%,20%,50%,80%,100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+        @keyframes scrollDot {
+            0%   { opacity: 0; top: 10px; }
+            50%  { opacity: 1; }
+            100% { opacity: 0; top: 30px; }
+        }
+
+        /* ── RESPONSIVE ── */
+
+        /* Laptops (1024px) */
+        @media (max-width: 1024px) {
+            .nav-container { padding: 0 1.5rem; }
+            .hero p { font-size: 1.2rem; }
+            .story-grid { grid-template-columns: repeat(2, 1fr); }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Tablets (768px) */
+        @media (max-width: 768px) {
+            .nav-links { gap: 1.2rem; flex-wrap: wrap; justify-content: center; font-size: 0.95rem; }
+            .nav-container { flex-direction: column; gap: 0.8rem; }
+            nav { padding: 1rem 0; }
+            .hero { padding: 9rem 1.5rem 3rem; }
+            .hero h1 { font-size: clamp(2.5rem, 7vw, 4rem); letter-spacing: -1px; }
+            .hero p { font-size: 1.1rem; }
+            section, #team { padding: 4rem 1.5rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .btn { width: 100%; max-width: 360px; justify-content: center; }
+            .story-grid { grid-template-columns: 1fr; }
+            .community-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+            .community-card, .story-card { padding: 2rem 1.5rem; }
+            .faq-question { padding: 1.5rem; font-size: 1.05rem; }
+            .faq-answer { padding: 0 1.5rem; }
+            .faq-item.active .faq-answer { padding: 0 1.5rem 1.5rem; }
+            .footer-links { gap: 1.2rem; }
+        }
+
+        /* Large phones (480px) */
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.2rem; letter-spacing: -0.5px; }
+            .hero p { font-size: 1rem; }
+            .section-title { font-size: 1.9rem; }
+            .section-subtitle { font-size: 1rem; }
+            .community-icon { width: 65px; height: 65px; }
+            .team-grid { grid-template-columns: 1fr; }
+            .team-avatar { width: 80px; height: 80px; font-size: 1.6rem; }
+            .team-avatar-wrap { width: 80px; height: 80px; }
+            .btn-journey { font-size: 1.1rem; padding: 1.2rem 2.5rem; }
+            .logo { font-size: 1.5rem; }
+            .nav-links { gap: 0.8rem; font-size: 0.88rem; }
+            .footer-links { gap: 1rem; font-size: 0.88rem; }
+        }
+
+        /* Small phones (360px) */
+        @media (max-width: 360px) {
+            .hero h1 { font-size: 1.9rem; }
+            .section-title { font-size: 1.6rem; }
+            .nav-links { gap: 0.6rem; font-size: 0.82rem; }
+        }
+
+        /* Touch devices */
+        @media (hover: none) {
+            .story-card:hover,
+            .community-card:hover,
+            .team-card:hover { transform: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg"></div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">The Last Message</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#story">Story</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#team">Team</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>The Last Message</h1>
+            <p>Journey through history and experience the profound story of Prophet Muhammad (peace be upon him). Immerse yourself in an epic narrative that changed the world forever.</p>
+            <div class="cta-buttons">
+                <a href="#story" class="btn btn-journey">Start Your Journey</a>
+                <a href="#community" class="btn btn-secondary">Join Our Community</a>
+            </div>
+        </div>
+        <div class="scroll-indicator"><span></span></div>
+    </section>
+
+    <!-- STORY -->
+    <section id="story">
+        <h2 class="section-title">The Journey</h2>
+        <p class="section-subtitle">Experience an authentic and respectful retelling of one of history's most impactful stories</p>
+        <div class="story-grid">
+            <div class="story-card fade-in">
+                <div class="story-card-content">
+                    <svg class="story-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32 2L6 18v18c0 16 10 24 26 26 16-2 26-10 26-26V18L32 2zm0 8l20 12v14c0 12-8 18-20 20-12-2-20-8-20-20V22l20-12z"/>
+                        <circle cx="32" cy="32" r="8"/>
+                    </svg>
+                    <h3>Ancient Mecca</h3>
+                    <p>Begin your journey in 7th century Arabia, witnessing the birth of a message that would transform humanity. Experience the historical authenticity and cultural richness of the time.</p>
+                </div>
+            </div>
+            <div class="story-card fade-in">
+                <div class="story-card-content">
+                    <svg class="story-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="14" y="8" width="36" height="48" rx="2" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <line x1="20" y1="18" x2="44" y2="18" stroke="currentColor" stroke-width="2"/>
+                        <line x1="20" y1="26" x2="44" y2="26" stroke="currentColor" stroke-width="2"/>
+                        <line x1="20" y1="34" x2="38" y2="34" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Divine Revelation</h3>
+                    <p>Follow the profound moments of revelation and the challenges faced in spreading the message of peace, justice, and monotheism to a world in need of guidance.</p>
+                </div>
+            </div>
+            <div class="story-card fade-in">
+                <div class="story-card-content">
+                    <svg class="story-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32 8L28 20H16l10 8-4 12 10-8 10 8-4-12 10-8H38z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <circle cx="32" cy="42" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                    <h3>Trials & Triumphs</h3>
+                    <p>Navigate through the hardships, persecutions, and ultimate victories that shaped the course of history and established principles of compassion and unity.</p>
+                </div>
+            </div>
+            <div class="story-card fade-in">
+                <div class="story-card-content">
+                    <svg class="story-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32 4L36 16L48 16L38 24L42 36L32 28L22 36L26 24L16 16L28 16Z" fill="currentColor"/>
+                        <circle cx="32" cy="48" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                    <h3>Legacy of Peace</h3>
+                    <p>Understand the lasting impact of teachings that emphasize mercy, knowledge, and social justice. Discover how these principles continue to inspire millions today.</p>
+                </div>
+            </div>
+            <div class="story-card fade-in">
+                <div class="story-card-content">
+                    <svg class="story-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="8" y="12" width="48" height="36" rx="4" stroke="currentColor" stroke-width="3" fill="none"/>
+                        <circle cx="28" cy="30" r="6" fill="currentColor"/>
+                        <circle cx="44" cy="30" r="6" fill="currentColor"/>
+                        <path d="M20 52h24" stroke="currentColor" stroke-width="3"/>
+                    </svg>
+                    <h3>Interactive Experience</h3>
+                    <p>Engage with an immersive gameplay experience that combines education with entertainment, featuring stunning visuals and authentic historical details.</p>
+                </div>
+            </div>
+            <div class="story-card fade-in">
+                <div class="story-card-content">
+                    <svg class="story-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="20" r="12" stroke="currentColor" stroke-width="3" fill="none"/>
+                        <path d="M32 8V14M32 26V32M20 20H14M50 20H44M23 13L19 9M45 13L49 9M23 27L19 31M45 27L49 31" stroke="currentColor" stroke-width="2"/>
+                        <rect x="20" y="38" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                    <h3>Life Lessons</h3>
+                    <p>Learn timeless wisdom about patience, perseverance, leadership, and compassion that remain relevant in our modern world.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Everything you need to know about The Last Message</p>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question"><span>What is The Last Message about?</span><span class="faq-toggle">▼</span></div>
+                <div class="faq-answer"><p>The Last Message is an interactive experience Game that tells the story of Prophet Muhammad (peace be upon him) with historical accuracy and deep respect. It combines education with engaging gameplay to create an immersive journey through one of history's most significant narratives.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><span>Is this game historically accurate?</span><span class="faq-toggle">▼</span></div>
+                <div class="faq-answer"><p>Yes, we've consulted with Islamic scholars and historians to ensure authenticity and respectful representation of events. Every detail has been carefully researched and verified to provide an accurate portrayal of the historical narrative.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><span>What platforms will it be available on?</span><span class="faq-toggle">▼</span></div>
+                <div class="faq-answer"><p>The Last Message will be available on PC. We're also working on a mobile version to make the experience accessible to as many people as possible.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><span>How can I support the development?</span><span class="faq-toggle">▼</span></div>
+                <div class="faq-answer"><p>Join our community on Discord, subscribe to our YouTube channel for updates, and spread the word! Your support and feedback help us create the best experience possible.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><span>When will the game be released?</span><span class="faq-toggle">▼</span></div>
+                <div class="faq-answer"><p>We're currently in active development and will announce the release date soon. Follow us on our social channels and join our Discord for the latest updates and exclusive previews.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section id="community">
+        <h2 class="section-title">Join Our Community</h2>
+        <p class="section-subtitle">Connect with fellow enthusiasts and stay updated on our journey</p>
+        <div class="community-grid">
+            <div class="community-card fade-in">
+                <div class="community-content">
+                    <svg class="community-icon" viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#ff7043" d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15zM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69z"/>
+                    </svg>
+                    <h3>Discord</h3>
+                    <p>Join thousands of community members discussing the game, sharing insights, and connecting with the development team.</p>
+                    <a href="https://discord.gg/J5Bp77Zwpu" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Join Discord</a>
+                </div>
+            </div>
+            <div class="community-card fade-in">
+                <div class="community-content">
+                    <svg class="community-icon" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#ff7043" d="M549.655 124.083c-6.281-23.65-24.814-42.183-48.464-48.464C458.764 64 288 64 288 64S117.236 64 74.809 75.619c-23.65 6.281-42.183 24.814-48.464 48.464C16 166.51 16 256 16 256s0 89.49 10.345 131.917c6.281 23.65 24.814 42.183 48.464 48.464C117.236 448 288 448 288 448s170.764 0 213.191-11.619c23.65-6.281 42.183-24.814 48.464-48.464C560 345.49 560 256 560 256s0-89.49-10.345-131.917zM232 334.059V177.941L361 256 232 334.059z"/>
+                    </svg>
+                    <h3>YouTube</h3>
+                    <p>Watch development updates, gameplay previews, behind-the-scenes content, and educational videos about the story.</p>
+                    <a href="https://youtube.com/@thelastmessageofficial?si=FLIZfyOntpuDK5oW" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Subscribe Now</a>
+                </div>
+            </div>
+            <div class="community-card fade-in">
+                <div class="community-content">
+                    <svg class="community-icon" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#ff7043" d="M448,209.9a210.1,210.1,0,0,1-122.8-39.2v178.7A133.3,133.3,0,1,1,192,216.1v67.1a66.7,66.7,0,1,0,66.7,66.7V0h66.5a143.4,143.4,0,0,0,1.9,22.6A143.9,143.9,0,0,0,448,129.8Z"/>
+                    </svg>
+                    <h3>TikTok</h3>
+                    <p>Follow short clips, updates, highlights, and engaging content from The Last Message journey.</p>
+                    <a href="https://www.tiktok.com/@thelastmessageofficial" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Follow TikTok</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team">
+        <h2 class="section-title">Who Works at the Game?</h2>
+        <p class="section-subtitle">The passionate team crafting every detail of The Last Message</p>
+
+        <div class="team-grid">
+            <div class="team-card fade-in">
+                <div class="team-card-inner">
+                    <span class="team-number">01</span>
+                    <div class="team-avatar-wrap">
+                        <div class="team-avatar">HD</div>
+                    </div>
+                    <h3>Hedy</h3>
+                    <span class="team-role">Lead Developer</span>
+                    <p>Leads the development and vision of The Last Message, bringing the story to life through code and design.</p>
+                </div>
+            </div>
+
+            <div class="team-card fade-in">
+                <div class="team-card-inner">
+                    <span class="team-number">02</span>
+                    <div class="team-avatar-wrap">
+                        <div class="team-avatar">?</div>
+                    </div>
+                    <h3>Team Member</h3>
+                    <span class="team-role">Role Here</span>
+                    <p>Description of what this team member contributes to the project.</p>
+                </div>
+            </div>
+
+            <div class="team-card fade-in">
+                <div class="team-card-inner">
+                    <span class="team-number">03</span>
+                    <div class="team-avatar-wrap">
+                        <div class="team-avatar">?</div>
+                    </div>
+                    <h3>Team Member</h3>
+                    <span class="team-role">Role Here</span>
+                    <p>Description of what this team member contributes to the project.</p>
+                </div>
+            </div>
+
+            <div class="team-card fade-in">
+                <div class="team-card-inner">
+                    <span class="team-number">04</span>
+                    <div class="team-avatar-wrap">
+                        <div class="team-avatar">?</div>
+                    </div>
+                    <h3>Team Member</h3>
+                    <span class="team-role">Role Here</span>
+                    <p>Description of what this team member contributes to the project.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#story">Story</a>
+                <a href="#faq">FAQ</a>
+                <a href="#community">Community</a>
+                <a href="#team">Team</a>
+            </div>
+            <p class="copyright">2026 The Last Message. All rights reserved. Made with respect and dedication.</p>
+            <p class="developer-credit">Developed by Alen.Akhi</p>
+        </div>
+    </footer>
+
+    <script>
+        // Nav scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
+        });
+
+        // Intersection observer for fade-in
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Hero fade on scroll
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero-content');
+            if (hero) hero.style.opacity = Math.max(0, 1 - window.pageYOffset / 600);
+
+            const si = document.querySelector('.scroll-indicator');
+            if (si) si.style.opacity = window.scrollY > 100 ? '0' : '1';
+        });
+
+        // Mouse particle effect
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth <= 768) return;
+            const p = document.createElement('div');
+            p.style.cssText = `position:fixed;width:4px;height:4px;border-radius:50%;background:rgba(255,112,67,0.3);left:px;top:px;pointer-events:none;z-index:9999;transition:all 0.5s ease;`;
+            document.body.appendChild(p);
+            setTimeout(() => { p.style.opacity = '0'; p.style.transform = 'scale(3)'; }, 10);
+            setTimeout(() => p.remove(), 500);
+        });
+
+        // Page load fade in
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
