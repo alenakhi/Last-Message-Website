@@ -1,5 +1,4 @@
-
-
+<!-- /*Codded with heart btw <3*/ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,6 +87,7 @@
             justify-content: center; text-align: center;
             padding: 8rem 2rem 4rem; position: relative;
         }
+        
         .hero-content { max-width: 900px; animation: fadeInUp 1s ease; }
         .hero h1 {
             font-size: clamp(3rem, 8vw, 6rem); font-weight: 900;
@@ -194,18 +194,23 @@
             background: var(--bg-card); border-radius: 20px; padding: 3rem 2rem;
             text-align: center; border: 1px solid rgba(255,112,67,0.1);
             transition: all 0.4s ease; position: relative; overflow: hidden;
+            display: flex; flex-direction: column;
         }
         .community-card::before {
             content: ''; position: absolute; inset: 0;
             background: linear-gradient(135deg, var(--accent-glow), transparent);
             opacity: 0; transition: opacity 0.4s ease;
+            pointer-events: none;
         }
         .community-card:hover { transform: translateY(-10px) scale(1.02); border-color: var(--primary-orange); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
         .community-card:hover::before { opacity: 1; }
-        .community-content { position: relative; z-index: 1; }
+        .community-content {
+            position: relative; z-index: 1;
+            display: flex; flex-direction: column; align-items: center; flex: 1;
+        }
         .community-icon { width: 80px; height: 80px; margin: 0 auto 1.5rem; display: block; filter: drop-shadow(0 0 15px rgba(255,112,67,0.35)); }
         .community-card h3 { font-size: 1.8rem; margin-bottom: 1rem; }
-        .community-card p { color: var(--text-secondary); margin-bottom: 2rem; }
+        .community-card p { color: var(--text-secondary); margin-bottom: 2rem; flex: 1; }
 
         /* ══════════════════════════════════════════
            TEAM SECTION — 2026 ULTRA-MODERN STYLE xd
@@ -400,9 +405,161 @@
             100% { opacity: 0; top: 30px; }
         }
 
-        /* ── RESPONSIVE ── */
+        /* ════════════════════════════
+           ── ADDED: HERO LOGO ──
+        ════════════════════════════ */
+        .hero-logo-wrap {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInUp 0.8s ease both;
+        }
+        .hero-logo-img {
+            width: clamp(120px, 22vw, 220px);
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 30px rgba(255,112,67,0.5)) drop-shadow(0 0 60px rgba(255,112,67,0.2));
+            border-radius: 20px;
+            transition: filter 0.4s ease, transform 0.4s ease;
+        }
+        .hero-logo-img:hover {
+            filter: drop-shadow(0 0 50px rgba(255,112,67,0.8)) drop-shadow(0 0 100px rgba(255,112,67,0.35));
+            transform: scale(1.05);
+        }
 
-        /* Laptops (1024px) */
+        /* ════════════════════════════
+           ── ADDED: NAV LOGO ──
+        ════════════════════════════ */
+        .nav-logo-img {
+            height: 38px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-right: 0.6rem;
+            filter: drop-shadow(0 0 8px rgba(255,112,67,0.4));
+            vertical-align: middle;
+            transition: filter 0.3s ease;
+        }
+        .nav-logo-img:hover {
+            filter: drop-shadow(0 0 14px rgba(255,112,67,0.75));
+        }
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ════════════════════════════
+           ── ADDED: TRAILER SECTION ──
+        ════════════════════════════ */
+        #trailer {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .trailer-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(255,112,67,0.08);
+            border: 1px solid rgba(255,112,67,0.3);
+            border-radius: 50px;
+            padding: 0.5rem 1.4rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary-orange);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease both;
+        }
+        .trailer-label::before {
+            content: '';
+            display: inline-block;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--primary-orange);
+            box-shadow: 0 0 8px var(--primary-orange);
+            animation: pulseDot 1.5s ease infinite;
+        }
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: 0.4; transform: scale(0.6); }
+        }
+
+        .trailer-title {
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 30%, var(--light-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .trailer-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .trailer-frame-wrap {
+            position: relative;
+            border-radius: 24px;
+            padding: 3px;
+            background: linear-gradient(135deg, rgba(255,112,67,0.7), rgba(255,112,67,0.05) 50%, rgba(255,112,67,0.7));
+            background-size: 300% 300%;
+            animation: borderShift 5s ease infinite;
+            box-shadow:
+                0 0 0 1px rgba(255,112,67,0.08),
+                0 40px 80px rgba(0,0,0,0.7),
+                0 0 80px rgba(255,112,67,0.15);
+        }
+
+        .trailer-frame-inner {
+            border-radius: 22px;
+            overflow: hidden;
+            background: #000;
+            position: relative;
+            aspect-ratio: 16/9;
+        }
+
+        .trailer-frame-inner iframe {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0; left: 0;
+            border: none;
+            display: block;
+        }
+
+        .trailer-corner {
+            position: absolute;
+            width: 22px; height: 22px;
+            border-color: var(--primary-orange);
+            border-style: solid;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .trailer-corner.tl { top: -2px; left: -2px;  border-width: 3px 0 0 3px; border-radius: 4px 0 0 0; }
+        .trailer-corner.tr { top: -2px; right: -2px; border-width: 3px 3px 0 0; border-radius: 0 4px 0 0; }
+        .trailer-corner.bl { bottom: -2px; left: -2px;  border-width: 0 0 3px 3px; border-radius: 0 0 0 4px; }
+        .trailer-corner.br { bottom: -2px; right: -2px; border-width: 0 3px 3px 0; border-radius: 0 0 4px 0; }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,112,67,0.18), transparent);
+            margin: 0 auto;
+            max-width: 900px;
+        }
+
+        /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
             .nav-container { padding: 0 1.5rem; }
             .hero p { font-size: 1.2rem; }
@@ -410,7 +567,6 @@
             .team-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* Tablets (768px) */
         @media (max-width: 768px) {
             .nav-links { gap: 1.2rem; flex-wrap: wrap; justify-content: center; font-size: 0.95rem; }
             .nav-container { flex-direction: column; gap: 0.8rem; }
@@ -418,7 +574,7 @@
             .hero { padding: 9rem 1.5rem 3rem; }
             .hero h1 { font-size: clamp(2.5rem, 7vw, 4rem); letter-spacing: -1px; }
             .hero p { font-size: 1.1rem; }
-            section, #team { padding: 4rem 1.5rem; }
+            section, #team, #trailer { padding: 4rem 1.5rem; }
             .cta-buttons { flex-direction: column; align-items: center; }
             .btn { width: 100%; max-width: 360px; justify-content: center; }
             .story-grid { grid-template-columns: 1fr; }
@@ -429,9 +585,10 @@
             .faq-answer { padding: 0 1.5rem; }
             .faq-item.active .faq-answer { padding: 0 1.5rem 1.5rem; }
             .footer-links { gap: 1.2rem; }
+            .nav-logo-img { height: 30px; }
+            .trailer-title { letter-spacing: -1px; }
         }
 
-        /* Large phones (480px) */
         @media (max-width: 480px) {
             .hero h1 { font-size: 2.2rem; letter-spacing: -0.5px; }
             .hero p { font-size: 1rem; }
@@ -445,16 +602,25 @@
             .logo { font-size: 1.5rem; }
             .nav-links { gap: 0.8rem; font-size: 0.88rem; }
             .footer-links { gap: 1rem; font-size: 0.88rem; }
+            .hero-logo-img {
+                display: block;
+                margin: 0 auto 0rem;
+                width: 300px;
+                height: auto;
+                object-fit: contain;
+                border-radius: 20px;
+                transition: transform 0.4s ease, filter 0.4s ease;
+            }
+            .nav-logo-img { height: 26px; }
+            .trailer-title { font-size: 2.4rem; }
         }
 
-        /* Small phones (360px) */
         @media (max-width: 360px) {
             .hero h1 { font-size: 1.9rem; }
             .section-title { font-size: 1.6rem; }
             .nav-links { gap: 0.6rem; font-size: 0.82rem; }
         }
 
-        /* Touch devices */
         @media (hover: none) {
             .story-card:hover,
             .community-card:hover,
@@ -467,9 +633,18 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <div class="logo">The Last Message</div>
+            <div class="logo-wrap">
+                <img
+                    src="https://i.imgur.com/bs8skllh.jpg"
+                    alt="The Last Message Logo"
+                    class="nav-logo-img"
+                    onerror="this.style.display='none'"
+                >
+                <div class="logo">The Last Message</div>
+            </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
+                <li><a href="#trailer">Trailer</a></li>
                 <li><a href="#story">Story</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#community">Community</a></li>
@@ -481,6 +656,14 @@
     <!-- HERO -->
     <section id="home" class="hero">
         <div class="hero-content">
+            <div class="hero-logo-wrap">
+                <img
+                    src="https://i.imgur.com/bs8skllh.jpg"
+                    alt="The Last Message"
+                    class="hero-logo-img"
+                    onerror="this.style.display='none'"
+                >
+            </div>
             <h1>The Last Message</h1>
             <p>Journey through history and experience the profound story of Prophet Muhammad (peace be upon him). Immerse yourself in an epic narrative that changed the world forever.</p>
             <div class="cta-buttons">
@@ -490,6 +673,29 @@
         </div>
         <div class="scroll-indicator"><span></span></div>
     </section>
+
+    <!-- TRAILER SECTION -->
+    <div class="section-divider"></div>
+    <section id="trailer">
+        <div class="trailer-label">Official</div>
+        <h2 class="trailer-title">TRAILER</h2>
+        <p class="trailer-subtitle">Watch the official trailer for The Last Message</p>
+        <div class="trailer-frame-wrap fade-in">
+            <span class="trailer-corner tl"></span>
+            <span class="trailer-corner tr"></span>
+            <span class="trailer-corner bl"></span>
+            <span class="trailer-corner br"></span>
+            <div class="trailer-frame-inner">
+                <iframe
+                    src="https://www.youtube.com/embed/tGsjfKyIgok?si=GgVg0CoXW_It6Zuv"
+                    title="The Last Message — Official Trailer"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+    <div class="section-divider"></div>
 
     <!-- STORY -->
     <section id="story">
@@ -627,6 +833,26 @@
                     <a href="https://www.tiktok.com/@thelastmessageofficial" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Follow TikTok</a>
                 </div>
             </div>
+            <div class="community-card fade-in">
+                <div class="community-content">
+                    <img
+                        src="https://static.vecteezy.com/system/resources/previews/065/386/612/non_2x/patreon-white-icon-logo-app-transparent-background-premium-social-media-design-for-digital-download-free-png.png"
+                        alt="Patreon Logo"
+                        class="community-icon"
+                        style="width:100px; height:100px; object-fit:contain; filter: brightness(0) saturate(100%) invert(52%) sepia(89%) saturate(534%) hue-rotate(332deg) brightness(103%) contrast(97%);"
+                    />
+                    <h3>Patreon</h3>
+                    <p>Support the development of The Last Message and get exclusive behind‑the‑scenes access, early previews, and special rewards.</p>
+                    <a
+                        href="https://www.patreon.com/TheLastMessage?utm_campaign=creatorshare_creator"
+                        class="btn btn-primary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Support on Patreon
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -640,7 +866,7 @@
                 <div class="team-card-inner">
                     <span class="team-number">01</span>
                     <div class="team-avatar-wrap">
-                        <div class="team-avatar">HD</div>
+                        <div class="team-avatar">H</div>
                     </div>
                     <h3>Hedy</h3>
                     <span class="team-role">Lead Developer</span>
@@ -690,6 +916,7 @@
         <div class="footer-content">
             <div class="footer-links">
                 <a href="#home">Home</a>
+                <a href="#trailer">Trailer</a>
                 <a href="#story">Story</a>
                 <a href="#faq">FAQ</a>
                 <a href="#community">Community</a>
