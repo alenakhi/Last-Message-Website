@@ -1,4 +1,6 @@
-<!-- /*Codded with heart btw <3*/ -->
+<!-- coded with heart btw <3 -->
+
+<!-- fixed some things v2 code -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Last Message - Journey Through History</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         :root {
             --primary-orange: #ff7043;
@@ -28,193 +34,447 @@
             line-height: 1.6;
         }
 
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-        /* ── BACKGROUND ── */
+        /* background stuff */
         .gradient-bg {
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%; z-index: -1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
             background: linear-gradient(135deg, var(--bg-dark) 0%, #1a0a00 100%);
         }
+
         .gradient-bg::before {
             content: '';
-            position: absolute; top: -50%; left: -50%;
-            width: 200%; height: 200%;
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
             background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
             animation: rotate 20s linear infinite;
         }
+
         @keyframes rotate {
             from { transform: rotate(0deg); }
-            to   { transform: rotate(360deg); }
+            to { transform: rotate(360deg); }
         }
 
-        /* ── NAV ── */
+        /* navbar */
         nav {
-            position: fixed; top: 0; width: 100%;
+            position: fixed;
+            top: 0;
+            width: 100%;
             backdrop-filter: blur(20px);
-            background: rgba(10,10,10,0.8);
-            border-bottom: 1px solid rgba(255,112,67,0.1);
-            z-index: 1000; padding: 1.5rem 0;
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid rgba(255, 112, 67, 0.1);
+            z-index: 1000;
+            padding: 1.5rem 0;
             transition: all 0.3s ease;
         }
-        nav.scrolled { padding: 1rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .nav-container {
-            max-width: 1400px; margin: 0 auto; padding: 0 2rem;
-            display: flex; justify-content: space-between; align-items: center;
+
+        nav.scrolled {
+            padding: 1rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .logo {
-            font-size: 1.8rem; font-weight: 800;
+            font-size: 1.8rem;
+            font-weight: 800;
             background: linear-gradient(135deg, var(--primary-orange), var(--light-orange));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             letter-spacing: -1px;
         }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-        .nav-links a {
-            color: var(--text-secondary); text-decoration: none;
-            font-weight: 500; transition: all 0.3s ease; position: relative;
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
         }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
         .nav-links a::after {
-            content: ''; position: absolute; bottom: -5px; left: 0;
-            width: 0; height: 2px; background: var(--primary-orange);
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-orange);
             transition: width 0.3s ease;
         }
-        .nav-links a:hover { color: var(--primary-orange); }
-        .nav-links a:hover::after { width: 100%; }
 
-        /* ── HERO ── */
-        .hero {
-            min-height: 100vh; display: flex; align-items: center;
-            justify-content: center; text-align: center;
-            padding: 8rem 2rem 4rem; position: relative;
+        .nav-links a:hover {
+            color: var(--primary-orange);
         }
-        
-        .hero-content { max-width: 900px; animation: fadeInUp 1s ease; }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* hero section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1s ease;
+        }
+
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem); font-weight: 900;
-            margin-bottom: 1.5rem; line-height: 1.1;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
             background: linear-gradient(135deg, var(--primary-orange), var(--light-orange));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             letter-spacing: -2px;
         }
-        .hero p { font-size: 1.4rem; color: var(--text-secondary); margin-bottom: 3rem; line-height: 1.8; }
-        .cta-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
 
-        /* ── BUTTONS ── */
-        .btn {
-            padding: 1.2rem 3rem; border-radius: 50px; font-weight: 600;
-            text-decoration: none; transition: all 0.3s ease; border: none; cursor: pointer;
-            font-size: 1.1rem; position: relative; overflow: hidden;
-            display: inline-flex; align-items: center; justify-content: center;
-            gap: 0.5rem; text-align: center;
+        .hero p {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
         }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* buttons */
+        .btn {
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-align: center;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
         .btn-primary {
             background: linear-gradient(135deg, var(--primary-orange), var(--dark-orange));
-            color: white; box-shadow: 0 10px 30px var(--accent-glow);
+            color: white;
+            box-shadow: 0 10px 30px var(--accent-glow);
         }
+
         .btn-primary::before {
-            content: ''; position: absolute; top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
             transition: left 0.5s ease;
         }
-        .btn-primary:hover::before { left: 100%; }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px var(--accent-glow); }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--accent-glow);
+        }
+
         .btn-secondary {
-            background: transparent; color: var(--primary-orange);
+            background: transparent;
+            color: var(--primary-orange);
             border: 2px solid var(--primary-orange);
         }
-        .btn-secondary:hover { background: var(--primary-orange); color: white; transform: translateY(-3px); }
+
+        .btn-secondary:hover {
+            background: var(--primary-orange);
+            color: white;
+            transform: translateY(-3px);
+        }
+
         .btn-journey {
-            background: linear-gradient(135deg, #1a1a1a, #2a2a2a); color: white;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            color: white;
             border: 2px solid var(--primary-orange);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            font-size: 1.3rem; padding: 1.5rem 4rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            font-size: 1.3rem;
+            padding: 1.5rem 4rem;
         }
+
         .btn-journey:hover {
             background: linear-gradient(135deg, var(--primary-orange), var(--dark-orange));
-            transform: translateY(-5px) scale(1.05); box-shadow: 0 20px 50px var(--accent-glow);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px var(--accent-glow);
         }
 
-        /* ── SECTIONS ── */
+        /* general sections */
         section {
-            padding: 6rem 2rem; max-width: 1400px; margin: 0 auto;
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
+
         .section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800;
-            margin-bottom: 1rem; text-align: center;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-align: center;
             background: linear-gradient(135deg, var(--primary-orange), var(--light-orange));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+
         .section-subtitle {
-            text-align: center; color: var(--text-secondary); font-size: 1.2rem;
-            margin-bottom: 4rem; max-width: 700px; margin-left: auto; margin-right: auto;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* ── STORY ── */
-        .story-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        /* story cards */
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
         .story-card {
-            background: var(--bg-card); border-radius: 20px; padding: 2.5rem;
-            border: 1px solid rgba(255,112,67,0.1); transition: all 0.4s ease;
-            position: relative; overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 112, 67, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
+
         .story-card::before {
-            content: ''; position: absolute; inset: 0;
+            content: '';
+            position: absolute;
+            inset: 0;
             background: linear-gradient(135deg, var(--accent-glow), transparent);
-            opacity: 0; transition: opacity 0.4s ease;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
-        .story-card:hover { transform: translateY(-10px); border-color: var(--primary-orange); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-        .story-card:hover::before { opacity: 1; }
-        .story-card-content { position: relative; z-index: 1; }
-        .story-icon { width: 70px; height: 70px; margin-bottom: 1.5rem; display: block; fill: var(--primary-orange); }
-        .story-card h3 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--primary-orange); }
-        .story-card p { color: var(--text-secondary); line-height: 1.8; }
 
-        /* ── FAQ ── */
-        .faq-container { max-width: 900px; margin: 0 auto; }
+        .story-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-orange);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .story-card:hover::before {
+            opacity: 1;
+        }
+
+        .story-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .story-icon {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 1.5rem;
+            display: block;
+            fill: var(--primary-orange);
+        }
+
+        .story-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-orange);
+        }
+
+        .story-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* faq */
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
         .faq-item {
-            background: var(--bg-card); border-radius: 15px; margin-bottom: 1.5rem;
-            border: 1px solid rgba(255,112,67,0.1); overflow: hidden; transition: all 0.3s ease;
+            background: var(--bg-card);
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 112, 67, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
-        .faq-item:hover { border-color: var(--primary-orange); }
+
+        .faq-item:hover {
+            border-color: var(--primary-orange);
+        }
+
         .faq-question {
-            padding: 2rem; cursor: pointer; display: flex;
-            justify-content: space-between; align-items: center;
-            font-weight: 600; font-size: 1.2rem; transition: all 0.3s ease;
+            padding: 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
         }
-        .faq-question:hover { color: var(--primary-orange); }
-        .faq-toggle { font-size: 1.5rem; transition: transform 0.3s ease; }
-        .faq-item.active .faq-toggle { transform: rotate(180deg); }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 2rem; }
-        .faq-item.active .faq-answer { max-height: 500px; padding: 0 2rem 2rem; }
-        .faq-answer p { color: var(--text-secondary); line-height: 1.8; }
 
-        /* ── COMMUNITY ── */
-        .community-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .faq-question:hover {
+            color: var(--primary-orange);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 2rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 2rem 2rem;
+        }
+
+        .faq-answer p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* community section */
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
         .community-card {
-            background: var(--bg-card); border-radius: 20px; padding: 3rem 2rem;
-            text-align: center; border: 1px solid rgba(255,112,67,0.1);
-            transition: all 0.4s ease; position: relative; overflow: hidden;
-            display: flex; flex-direction: column;
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 112, 67, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
-        .community-card::before {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(135deg, var(--accent-glow), transparent);
-            opacity: 0; transition: opacity 0.4s ease;
-            pointer-events: none;
-        }
-        .community-card:hover { transform: translateY(-10px) scale(1.02); border-color: var(--primary-orange); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        .community-card:hover::before { opacity: 1; }
-        .community-content {
-            position: relative; z-index: 1;
-            display: flex; flex-direction: column; align-items: center; flex: 1;
-        }
-        .community-icon { width: 80px; height: 80px; margin: 0 auto 1.5rem; display: block; filter: drop-shadow(0 0 15px rgba(255,112,67,0.35)); }
-        .community-card h3 { font-size: 1.8rem; margin-bottom: 1rem; }
-        .community-card p { color: var(--text-secondary); margin-bottom: 2rem; flex: 1; }
 
-        /* ══════════════════════════════════════════
-           TEAM SECTION — 2026 ULTRA-MODERN STYLE xd
-        ══════════════════════════════════════════ */
+        .community-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-glow), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .community-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary-orange);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .community-card:hover::before {
+            opacity: 1;
+        }
+
+        .community-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .community-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            display: block;
+            filter: drop-shadow(0 0 15px rgba(255, 112, 67, 0.35));
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .community-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .community-card p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            flex: 1;
+        }
+
+        /* team section */
         #team {
             padding: 7rem 2rem;
             max-width: 1400px;
@@ -243,21 +503,21 @@
             position: relative;
             border-radius: 24px;
             padding: 2px;
-            background: linear-gradient(135deg, rgba(255,112,67,0.6), rgba(255,112,67,0.05), rgba(255,112,67,0.6));
+            background: linear-gradient(135deg, rgba(255, 112, 67, 0.6), rgba(255, 112, 67, 0.05), rgba(255, 112, 67, 0.6));
             background-size: 300% 300%;
             animation: borderShift 4s ease infinite;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
         @keyframes borderShift {
-            0%   { background-position: 0% 50%; }
-            50%  { background-position: 100% 50%; }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
         .team-card:hover {
             transform: translateY(-12px) scale(1.03);
-            box-shadow: 0 30px 60px rgba(255,112,67,0.25), 0 0 40px rgba(255,112,67,0.1);
+            box-shadow: 0 30px 60px rgba(255, 112, 67, 0.25), 0 0 40px rgba(255, 112, 67, 0.1);
         }
 
         .team-card-inner {
@@ -273,44 +533,58 @@
         .team-card-inner::before {
             content: '';
             position: absolute;
-            top: -40px; left: 50%;
+            top: -40px;
+            left: 50%;
             transform: translateX(-50%);
-            width: 200px; height: 200px;
-            background: radial-gradient(circle, rgba(255,112,67,0.12) 0%, transparent 70%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 112, 67, 0.12) 0%, transparent 70%);
             pointer-events: none;
         }
 
         .team-card-inner::after {
             content: '';
             position: absolute;
-            top: 0; left: -100%;
-            width: 60%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
             transition: left 0.6s ease;
             pointer-events: none;
         }
 
-        .team-card:hover .team-card-inner::after { left: 150%; }
+        .team-card:hover .team-card-inner::after {
+            left: 150%;
+        }
 
         .team-avatar-wrap {
             position: relative;
-            width: 96px; height: 96px;
+            width: 96px;
+            height: 96px;
             margin: 0 auto 1.4rem;
         }
 
         .team-avatar {
-            width: 96px; height: 96px;
+            width: 96px;
+            height: 96px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary-orange), var(--dark-orange));
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; font-weight: 800; color: white;
-            position: relative; z-index: 1;
-            box-shadow: 0 0 0 3px rgba(255,112,67,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 0 3px rgba(255, 112, 67, 0.2);
         }
 
         .team-avatar-wrap::before {
             content: '';
-            position: absolute; inset: -6px;
+            position: absolute;
+            inset: -6px;
             border-radius: 50%;
             background: conic-gradient(var(--primary-orange) 0deg, transparent 120deg, var(--light-orange) 240deg, transparent 360deg);
             animation: spinRing 3s linear infinite;
@@ -319,51 +593,66 @@
 
         @keyframes spinRing {
             from { transform: rotate(0deg); }
-            to   { transform: rotate(360deg); }
+            to { transform: rotate(360deg); }
         }
 
         .team-card h3 {
-            font-size: 1.25rem; font-weight: 700;
+            font-size: 1.25rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
             color: var(--text-primary);
-            position: relative; z-index: 1;
+            position: relative;
+            z-index: 1;
         }
 
         .team-role {
             display: inline-block;
-            background: rgba(255,112,67,0.12);
+            background: rgba(255, 112, 67, 0.12);
             color: var(--primary-orange);
-            font-size: 0.82rem; font-weight: 600;
-            padding: 0.3rem 1rem; border-radius: 30px;
-            border: 1px solid rgba(255,112,67,0.35);
-            margin-bottom: 1rem; letter-spacing: 0.4px;
-            position: relative; z-index: 1;
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 112, 67, 0.35);
+            margin-bottom: 1rem;
+            letter-spacing: 0.4px;
+            position: relative;
+            z-index: 1;
         }
 
         .team-card p {
             color: var(--text-secondary);
-            font-size: 0.93rem; line-height: 1.7;
-            position: relative; z-index: 1;
+            font-size: 0.93rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
         }
 
         .team-number {
             position: absolute;
-            top: 1rem; right: 1.2rem;
-            font-size: 3.5rem; font-weight: 900;
-            color: rgba(255,112,67,0.06);
+            top: 1rem;
+            right: 1.2rem;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: rgba(255, 112, 67, 0.06);
             line-height: 1;
             pointer-events: none;
             user-select: none;
         }
 
-        /* ── FOOTER ── */
+        /* footer */
         footer {
             background: var(--bg-secondary);
             padding: 4rem 2rem 2rem;
             text-align: center;
-            border-top: 1px solid rgba(255,112,67,0.1);
+            border-top: 1px solid rgba(255, 112, 67, 0.1);
         }
-        .footer-content { max-width: 1400px; margin: 0 auto; }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
         .footer-links {
             display: flex;
             flex-direction: row;
@@ -372,42 +661,99 @@
             justify-content: center;
             margin-bottom: 2rem;
         }
-        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; }
-        .footer-links a:hover { color: var(--primary-orange); }
-        .copyright { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.7rem; }
-        .developer-credit { font-size: 0.95rem; color: var(--primary-orange); font-weight: 700; letter-spacing: 0.5px; text-shadow: 0 0 10px rgba(255,112,67,0.25); }
 
-        /* ── ANIMATIONS ── */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to   { opacity: 1; transform: translateY(0); }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
-        .fade-in { opacity: 0; transition: opacity 0.7s ease, transform 0.7s ease; transform: translateY(20px); }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* ── SCROLL INDICATOR ── */
-        .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); animation: bounce 2s infinite; transition: opacity 0.3s; }
-        .scroll-indicator span { display: block; width: 30px; height: 50px; border: 2px solid var(--primary-orange); border-radius: 25px; position: relative; }
+        .footer-links a:hover {
+            color: var(--primary-orange);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .developer-credit {
+            font-size: 0.95rem;
+            color: var(--primary-orange);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 10px rgba(255, 112, 67, 0.25);
+        }
+
+        /* animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translateY(20px);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 2px solid var(--primary-orange);
+            border-radius: 25px;
+            position: relative;
+        }
+
         .scroll-indicator span::before {
-            content: ''; position: absolute; top: 10px; left: 50%;
-            transform: translateX(-50%); width: 6px; height: 10px;
-            background: var(--primary-orange); border-radius: 3px;
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 10px;
+            background: var(--primary-orange);
+            border-radius: 3px;
             animation: scrollDot 2s infinite;
         }
+
         @keyframes bounce {
-            0%,20%,50%,80%,100% { transform: translateX(-50%) translateY(0); }
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
             40% { transform: translateX(-50%) translateY(-10px); }
             60% { transform: translateX(-50%) translateY(-5px); }
         }
+
         @keyframes scrollDot {
-            0%   { opacity: 0; top: 10px; }
-            50%  { opacity: 1; }
+            0% { opacity: 0; top: 10px; }
+            50% { opacity: 1; }
             100% { opacity: 0; top: 30px; }
         }
 
-        /* ════════════════════════════
-           ── ADDED: HERO LOGO ──
-        ════════════════════════════ */
+        /* hero logo */
         .hero-logo-wrap {
             margin-bottom: 2rem;
             display: flex;
@@ -415,44 +761,44 @@
             align-items: center;
             animation: fadeInUp 0.8s ease both;
         }
+
         .hero-logo-img {
             width: clamp(120px, 22vw, 220px);
             height: auto;
             object-fit: contain;
-            filter: drop-shadow(0 0 30px rgba(255,112,67,0.5)) drop-shadow(0 0 60px rgba(255,112,67,0.2));
+            filter: drop-shadow(0 0 30px rgba(255, 112, 67, 0.5)) drop-shadow(0 0 60px rgba(255, 112, 67, 0.2));
             border-radius: 20px;
             transition: filter 0.4s ease, transform 0.4s ease;
         }
+
         .hero-logo-img:hover {
-            filter: drop-shadow(0 0 50px rgba(255,112,67,0.8)) drop-shadow(0 0 100px rgba(255,112,67,0.35));
+            filter: drop-shadow(0 0 50px rgba(255, 112, 67, 0.8)) drop-shadow(0 0 100px rgba(255, 112, 67, 0.35));
             transform: scale(1.05);
         }
 
-        /* ════════════════════════════
-           ── ADDED: NAV LOGO ──
-        ════════════════════════════ */
+        /* nav logo */
         .nav-logo-img {
             height: 38px;
             width: auto;
             object-fit: contain;
             border-radius: 8px;
             margin-right: 0.6rem;
-            filter: drop-shadow(0 0 8px rgba(255,112,67,0.4));
+            filter: drop-shadow(0 0 8px rgba(255, 112, 67, 0.4));
             vertical-align: middle;
             transition: filter 0.3s ease;
         }
+
         .nav-logo-img:hover {
-            filter: drop-shadow(0 0 14px rgba(255,112,67,0.75));
+            filter: drop-shadow(0 0 14px rgba(255, 112, 67, 0.75));
         }
+
         .logo-wrap {
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        /* ════════════════════════════
-           ── ADDED: TRAILER SECTION ──
-        ════════════════════════════ */
+        /* trailer section */
         #trailer {
             padding: 6rem 2rem;
             max-width: 1100px;
@@ -464,8 +810,8 @@
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
-            background: rgba(255,112,67,0.08);
-            border: 1px solid rgba(255,112,67,0.3);
+            background: rgba(255, 112, 67, 0.08);
+            border: 1px solid rgba(255, 112, 67, 0.3);
             border-radius: 50px;
             padding: 0.5rem 1.4rem;
             font-size: 0.9rem;
@@ -476,18 +822,21 @@
             margin-bottom: 1.5rem;
             animation: fadeInUp 0.6s ease both;
         }
+
         .trailer-label::before {
             content: '';
             display: inline-block;
-            width: 8px; height: 8px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: var(--primary-orange);
             box-shadow: 0 0 8px var(--primary-orange);
             animation: pulseDot 1.5s ease infinite;
         }
+
         @keyframes pulseDot {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50%       { opacity: 0.4; transform: scale(0.6); }
+            50% { opacity: 0.4; transform: scale(0.6); }
         }
 
         .trailer-title {
@@ -512,13 +861,13 @@
             position: relative;
             border-radius: 24px;
             padding: 3px;
-            background: linear-gradient(135deg, rgba(255,112,67,0.7), rgba(255,112,67,0.05) 50%, rgba(255,112,67,0.7));
+            background: linear-gradient(135deg, rgba(255, 112, 67, 0.7), rgba(255, 112, 67, 0.05) 50%, rgba(255, 112, 67, 0.7));
             background-size: 300% 300%;
             animation: borderShift 5s ease infinite;
             box-shadow:
-                0 0 0 1px rgba(255,112,67,0.08),
-                0 40px 80px rgba(0,0,0,0.7),
-                0 0 80px rgba(255,112,67,0.15);
+                0 0 0 1px rgba(255, 112, 67, 0.08),
+                0 40px 80px rgba(0, 0, 0, 0.7),
+                0 0 80px rgba(255, 112, 67, 0.15);
         }
 
         .trailer-frame-inner {
@@ -533,33 +882,36 @@
             width: 100%;
             height: 100%;
             position: absolute;
-            top: 0; left: 0;
+            top: 0;
+            left: 0;
             border: none;
             display: block;
         }
 
         .trailer-corner {
             position: absolute;
-            width: 22px; height: 22px;
+            width: 22px;
+            height: 22px;
             border-color: var(--primary-orange);
             border-style: solid;
             z-index: 2;
             pointer-events: none;
         }
-        .trailer-corner.tl { top: -2px; left: -2px;  border-width: 3px 0 0 3px; border-radius: 4px 0 0 0; }
+
+        .trailer-corner.tl { top: -2px; left: -2px; border-width: 3px 0 0 3px; border-radius: 4px 0 0 0; }
         .trailer-corner.tr { top: -2px; right: -2px; border-width: 3px 3px 0 0; border-radius: 0 4px 0 0; }
-        .trailer-corner.bl { bottom: -2px; left: -2px;  border-width: 0 0 3px 3px; border-radius: 0 0 0 4px; }
+        .trailer-corner.bl { bottom: -2px; left: -2px; border-width: 0 0 3px 3px; border-radius: 0 0 0 4px; }
         .trailer-corner.br { bottom: -2px; right: -2px; border-width: 0 3px 3px 0; border-radius: 0 0 4px 0; }
 
         .section-divider {
             width: 100%;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,112,67,0.18), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 112, 67, 0.18), transparent);
             margin: 0 auto;
             max-width: 900px;
         }
 
-        /* ── RESPONSIVE ── */
+        /* responsive */
         @media (max-width: 1024px) {
             .nav-container { padding: 0 1.5rem; }
             .hero p { font-size: 1.2rem; }
@@ -624,7 +976,9 @@
         @media (hover: none) {
             .story-card:hover,
             .community-card:hover,
-            .team-card:hover { transform: none; }
+            .team-card:hover {
+                transform: none;
+            }
         }
     </style>
 </head>
@@ -653,7 +1007,7 @@
         </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- hero -->
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-logo-wrap">
@@ -674,8 +1028,9 @@
         <div class="scroll-indicator"><span></span></div>
     </section>
 
-    <!-- TRAILER SECTION -->
     <div class="section-divider"></div>
+
+    <!-- trailer -->
     <section id="trailer">
         <div class="trailer-label">Official</div>
         <h2 class="trailer-title">TRAILER</h2>
@@ -695,9 +1050,10 @@
             </div>
         </div>
     </section>
+
     <div class="section-divider"></div>
 
-    <!-- STORY -->
+    <!-- story -->
     <section id="story">
         <h2 class="section-title">The Journey</h2>
         <p class="section-subtitle">Experience an authentic and respectful retelling of one of history's most impactful stories</p>
@@ -770,35 +1126,60 @@
         </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- faq -->
     <section id="faq">
         <h2 class="section-title">Frequently Asked Questions</h2>
         <p class="section-subtitle">Everything you need to know about The Last Message</p>
         <div class="faq-container">
             <div class="faq-item">
-                <div class="faq-question"><span>What is The Last Message about?</span><span class="faq-toggle">▼</span></div>
-                <div class="faq-answer"><p>The Last Message is an interactive experience Game that tells the story of Prophet Muhammad (peace be upon him) with historical accuracy and deep respect. It combines education with engaging gameplay to create an immersive journey through one of history's most significant narratives.</p></div>
+                <div class="faq-question">
+                    <span>What is The Last Message about?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>The Last Message is an interactive experience Game that tells the story of Prophet Muhammad (peace be upon him) with historical accuracy and deep respect. It combines education with engaging gameplay to create an immersive journey through one of history's most significant narratives.</p>
+                </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question"><span>Is this game historically accurate?</span><span class="faq-toggle">▼</span></div>
-                <div class="faq-answer"><p>Yes, we've consulted with Islamic scholars and historians to ensure authenticity and respectful representation of events. Every detail has been carefully researched and verified to provide an accurate portrayal of the historical narrative.</p></div>
+                <div class="faq-question">
+                    <span>Is this game historically accurate?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we've consulted with Islamic scholars and historians to ensure authenticity and respectful representation of events. Every detail has been carefully researched and verified to provide an accurate portrayal of the historical narrative.</p>
+                </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question"><span>What platforms will it be available on?</span><span class="faq-toggle">▼</span></div>
-                <div class="faq-answer"><p>The Last Message will be available on PC. We're also working on a mobile version to make the experience accessible to as many people as possible.</p></div>
+                <div class="faq-question">
+                    <span>What platforms will it be available on?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>The Last Message will be available on PC. We're also working on a mobile version to make the experience accessible to as many people as possible.</p>
+                </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question"><span>How can I support the development?</span><span class="faq-toggle">▼</span></div>
-                <div class="faq-answer"><p>Join our community on Discord, subscribe to our YouTube channel for updates, and spread the word! Your support and feedback help us create the best experience possible.</p></div>
+                <div class="faq-question">
+                    <span>How can I support the development?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Join our community on Discord, subscribe to our YouTube channel for updates, and spread the word! Your support and feedback help us create the best experience possible.</p>
+                </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question"><span>When will the game be released?</span><span class="faq-toggle">▼</span></div>
-                <div class="faq-answer"><p>We're currently in active development and will announce the release date soon. Follow us on our social channels and join our Discord for the latest updates and exclusive previews.</p></div>
+                <div class="faq-question">
+                    <span>When will the game be released?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We're currently in active development and will announce the release date soon. Follow us on our social channels and join our Discord for the latest updates and exclusive previews.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- COMMUNITY -->
+    <!-- community -->
     <section id="community">
         <h2 class="section-title">Join Our Community</h2>
         <p class="section-subtitle">Connect with fellow enthusiasts and stay updated on our journey</p>
@@ -839,7 +1220,9 @@
                         src="https://static.vecteezy.com/system/resources/previews/065/386/612/non_2x/patreon-white-icon-logo-app-transparent-background-premium-social-media-design-for-digital-download-free-png.png"
                         alt="Patreon Logo"
                         class="community-icon"
-                        style="width:100px; height:100px; object-fit:contain; filter: brightness(0) saturate(100%) invert(52%) sepia(89%) saturate(534%) hue-rotate(332deg) brightness(103%) contrast(97%);"
+                        draggable="false"
+                        oncontextmenu="return false;"
+                        style="width:100px; height:100px; object-fit:contain; filter: brightness(0) saturate(100%) invert(52%) sepia(89%) saturate(534%) hue-rotate(332deg) brightness(103%) contrast(97%); pointer-events: none; user-select: none; -webkit-user-select: none; -webkit-user-drag: none;"
                     />
                     <h3>Patreon</h3>
                     <p>Support the development of The Last Message and get exclusive behind‑the‑scenes access, early previews, and special rewards.</p>
@@ -856,7 +1239,7 @@
         </div>
     </section>
 
-    <!-- TEAM -->
+    <!-- team -->
     <section id="team">
         <h2 class="section-title">Who Works at the Game?</h2>
         <p class="section-subtitle">The passionate team crafting every detail of The Last Message</p>
@@ -878,11 +1261,11 @@
                 <div class="team-card-inner">
                     <span class="team-number">02</span>
                     <div class="team-avatar-wrap">
-                        <div class="team-avatar">?</div>
+                        <div class="team-avatar">N</div>
                     </div>
-                    <h3>Team Member</h3>
-                    <span class="team-role">Role Here</span>
-                    <p>Description of what this team member contributes to the project.</p>
+                    <h3>NSYCode</h3>
+                    <span class="team-role">Developer</span>
+                    <p>Helps Hedy with development of the game, contributing code and technical expertise to bring The Last Message to life.</p>
                 </div>
             </div>
 
@@ -890,11 +1273,11 @@
                 <div class="team-card-inner">
                     <span class="team-number">03</span>
                     <div class="team-avatar-wrap">
-                        <div class="team-avatar">?</div>
+                        <div class="team-avatar">Z</div>
                     </div>
-                    <h3>Team Member</h3>
-                    <span class="team-role">Role Here</span>
-                    <p>Description of what this team member contributes to the project.</p>
+                    <h3>Zafar</h3>
+                    <span class="team-role">Contributor Admin</span>
+                    <p>Supports the project as a Contributor Admin, helping manage and grow The Last Message community and project.</p>
                 </div>
             </div>
 
@@ -902,13 +1285,40 @@
                 <div class="team-card-inner">
                     <span class="team-number">04</span>
                     <div class="team-avatar-wrap">
-                        <div class="team-avatar">?</div>
+                        <div class="team-avatar">S</div>
                     </div>
-                    <h3>Team Member</h3>
-                    <span class="team-role">Role Here</span>
-                    <p>Description of what this team member contributes to the project.</p>
+                    <h3>Stranger</h3>
+                    <span class="team-role">Contributor</span>
+                    <p>A valued contributor to The Last Message project, Team Lead & Contributor: Guided the team and supported the project.</p>
                 </div>
             </div>
+
+            <div class="team-card fade-in">
+                <div class="team-card-inner">
+                    <span class="team-number">05</span>
+                    <div class="team-avatar-wrap">
+                        <div class="team-avatar">A</div>
+                    </div>
+                    <h3>Alen.Akhi</h3>
+                    <span class="team-role">Contributor</span>
+                    <p>A new contributor who supports this game by coding this website and will do more in the future.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- more team stuff -->
+        <div class="fade-in" style="text-align:center; margin-top:3.5rem;">
+            <p style="font-size:1.6rem; font-weight:800; color:var(--primary-orange); letter-spacing:-0.5px; margin-bottom:0.6rem;">& Many More...</p>
+            <p style="color:var(--text-secondary); font-size:1.05rem; max-width:560px; margin:0 auto 1.4rem; line-height:1.7;">
+                There are a lot more incredible people working behind the scenes to make this project a reality.
+            </p>
+            <p style="color:var(--text-secondary); font-size:1rem;">
+                Want to be part of the team? Come say hi →
+                <a href="https://discord.gg/J5Bp77Zwpu" target="_blank" rel="noopener noreferrer"
+                   style="color:var(--primary-orange); font-weight:700; text-decoration:none; border-bottom:1px solid rgba(255,112,67,0.4); padding-bottom:1px; transition:border-color 0.3s;"
+                   onmouseover="this.style.borderColor='var(--primary-orange)'"
+                   onmouseout="this.style.borderColor='rgba(255,112,67,0.4)'">Join our Discord Server</a>
+            </p>
         </div>
     </section>
 
@@ -928,13 +1338,13 @@
     </footer>
 
     <script>
-        // Nav scroll effect
+        // scroll effect for nav
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // FAQ accordion
+        // faq open/close
         document.querySelectorAll('.faq-item').forEach(item => {
             item.querySelector('.faq-question').addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
@@ -943,7 +1353,7 @@
             });
         });
 
-        // Intersection observer for fade-in
+        // fade in on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -955,7 +1365,7 @@
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Smooth scroll for anchor links
+        // smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
@@ -967,7 +1377,7 @@
             });
         });
 
-        // Hero fade on scroll
+        // fade hero on scroll
         window.addEventListener('scroll', () => {
             const hero = document.querySelector('.hero-content');
             if (hero) hero.style.opacity = Math.max(0, 1 - window.pageYOffset / 600);
@@ -976,7 +1386,7 @@
             if (si) si.style.opacity = window.scrollY > 100 ? '0' : '1';
         });
 
-        // Mouse particle effect
+        // mouse particle effect
         document.addEventListener('mousemove', (e) => {
             if (window.innerWidth <= 768) return;
             const p = document.createElement('div');
@@ -986,7 +1396,7 @@
             setTimeout(() => p.remove(), 500);
         });
 
-        // Page load fade in
+        // page load fade in
         window.addEventListener('load', () => {
             document.body.style.opacity = '0';
             setTimeout(() => {
