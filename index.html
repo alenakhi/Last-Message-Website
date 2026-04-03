@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -290,6 +289,17 @@
         .btn-mirage:hover::before { transform: translateX(120%); }
         .btn-mirage:hover .bm-sub { color: rgba(201,168,76,0.72); }
 
+        /* Quest button variant — green-gold tint to stand out */
+        .btn-mirage.btn-quest {
+            border-color: rgba(201,168,76,0.9);
+            box-shadow: 0 0 40px rgba(201,168,76,0.15), 0 20px 50px rgba(0,0,0,0.6);
+        }
+        .btn-mirage.btn-quest:hover {
+            background: linear-gradient(135deg, var(--ac-gold), #b8921e);
+            color: #0a0806;
+            box-shadow: 0 0 60px rgba(201,168,76,0.35), 0 30px 60px rgba(0,0,0,0.7);
+        }
+
         section { padding: 4rem 2rem; max-width: 1400px; margin: 0 auto; }
 
         .section-title {
@@ -422,6 +432,7 @@
         .community-card h3 { font-size: 1.7rem; margin-bottom: 1rem; font-family: 'Cinzel', serif; color: var(--ac-gold-light); letter-spacing: 1px; }
         .community-card p { color: var(--text-secondary); margin-bottom: 2rem; flex: 1; }
 
+        /* ── Team Section — Horizontal Cards ── */
         #team { padding: 5rem 2rem; max-width: 1400px; margin: 0 auto; position: relative; }
 
         #team::before {
@@ -432,8 +443,8 @@
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.8rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.4rem;
             margin-top: 3rem;
         }
 
@@ -452,17 +463,19 @@
             100% { background-position: 0% 50%; }
         }
 
-        .team-card:hover { transform: translateY(-12px) scale(1.03); box-shadow: 0 30px 60px rgba(201,168,76,0.2); }
+        .team-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 24px 50px rgba(201,168,76,0.18); }
 
         .team-card-inner {
-            background: #10100a; border-radius: 1px; padding: 2.5rem 2rem;
-            text-align: center; height: 100%; position: relative; overflow: hidden;
+            background: #10100a; border-radius: 1px;
+            padding: 1.6rem 1.8rem;
+            text-align: left; height: 100%; position: relative; overflow: hidden;
+            display: flex; align-items: center; gap: 1.6rem;
         }
 
         .team-card-inner::before {
-            content: ''; position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
-            width: 200px; height: 200px;
-            background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+            content: ''; position: absolute; top: 50%; left: 56px; transform: translateY(-50%);
+            width: 160px; height: 160px;
+            background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -474,19 +487,22 @@
 
         .team-card:hover .team-card-inner::after { left: 150%; }
 
-        .team-avatar-wrap { position: relative; width: 96px; height: 96px; margin: 0 auto 1.4rem; }
+        .team-avatar-wrap {
+            position: relative; width: 80px; height: 80px;
+            flex-shrink: 0;
+        }
 
         .team-avatar {
-            width: 96px; height: 96px; border-radius: 50%;
+            width: 80px; height: 80px; border-radius: 50%;
             background: linear-gradient(135deg, var(--ac-gold), #7a5c1e);
             display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; font-weight: 800; font-family: 'Cinzel', serif;
+            font-size: 1.7rem; font-weight: 800; font-family: 'Cinzel', serif;
             color: white; position: relative; z-index: 1;
             box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
         }
 
         .team-avatar-wrap::before {
-            content: ''; position: absolute; inset: -6px; border-radius: 50%;
+            content: ''; position: absolute; inset: -5px; border-radius: 50%;
             background: conic-gradient(var(--ac-gold) 0deg, transparent 120deg, var(--ac-gold-light) 240deg, transparent 360deg);
             animation: spinRing 3s linear infinite; opacity: 0.7;
         }
@@ -496,22 +512,27 @@
             to   { transform: rotate(360deg); }
         }
 
-        .team-card h3 { font-size: 1.25rem; font-weight: 700; font-family: 'Cinzel', serif; margin-bottom: 0.5rem; color: var(--text-primary); position: relative; z-index: 1; }
+        /* Info wrapper — all text content next to avatar */
+        .team-info {
+            flex: 1; position: relative; z-index: 1; min-width: 0;
+        }
+
+        .team-card h3 { font-size: 1.1rem; font-weight: 700; font-family: 'Cinzel', serif; margin-bottom: 0.35rem; color: var(--text-primary); }
 
         .team-role {
             display: inline-block; background: rgba(201,168,76,0.1);
-            color: var(--ac-gold-light); font-size: 0.76rem; font-weight: 600;
-            padding: 0.3rem 1rem; border-radius: 2px;
+            color: var(--ac-gold-light); font-size: 0.68rem; font-weight: 600;
+            padding: 0.25rem 0.8rem; border-radius: 2px;
             border: 1px solid rgba(201,168,76,0.3);
-            margin-bottom: 1rem; letter-spacing: 2px; text-transform: uppercase;
-            font-family: 'Cinzel', serif; position: relative; z-index: 1;
+            margin-bottom: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase;
+            font-family: 'Cinzel', serif;
         }
 
-        .team-card p { color: var(--text-secondary); font-size: 0.93rem; line-height: 1.7; position: relative; z-index: 1; }
+        .team-card p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.65; }
 
         .team-number {
-            position: absolute; top: 1rem; right: 1.2rem;
-            font-size: 3.5rem; font-weight: 900; font-family: 'Cinzel', serif;
+            position: absolute; bottom: 0.6rem; right: 1rem;
+            font-size: 3rem; font-weight: 900; font-family: 'Cinzel', serif;
             color: rgba(201,168,76,0.055); line-height: 1;
             pointer-events: none; user-select: none;
         }
@@ -520,6 +541,35 @@
         .np-eyebrow { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 5px; text-transform: uppercase; color: rgba(201,168,76,0.52); margin-bottom: 1.2rem; display: block; }
         .np-title { font-family: 'Cinzel', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; color: var(--ac-gold-light); letter-spacing: 4px; margin-bottom: 1rem; line-height: 1.15; }
         .np-desc { color: var(--text-secondary); font-size: 1.05rem; max-width: 560px; margin: 0 auto 3rem; line-height: 1.8; }
+
+        /* Quest creator callout box */
+        .quest-creator-section {
+            padding: 3.5rem 2rem 5rem; max-width: 960px; margin: 0 auto; text-align: center;
+        }
+
+        .quest-feature-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem; margin: 0 auto 3rem; max-width: 780px;
+        }
+
+        .quest-feature-item {
+            background: rgba(201,168,76,0.04);
+            border: 1px solid rgba(201,168,76,0.14);
+            border-radius: 2px; padding: 1.2rem 1rem;
+            font-family: 'Cinzel', serif; font-size: 0.72rem;
+            letter-spacing: 1.5px; color: rgba(201,168,76,0.65);
+            text-transform: uppercase; line-height: 1.5;
+            clip-path: polygon(0 5px,5px 0,calc(100% - 5px) 0,100% 5px,100% calc(100% - 5px),calc(100% - 5px) 100%,5px 100%,0 calc(100% - 5px));
+            transition: all 0.3s;
+        }
+
+        .quest-feature-item:hover {
+            border-color: rgba(201,168,76,0.38);
+            color: var(--ac-gold-light);
+            background: rgba(201,168,76,0.08);
+        }
+
+        .quest-feature-item .qf-icon { font-size: 1.3rem; display: block; margin-bottom: 0.5rem; }
 
         #trailer { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; text-align: center; }
 
@@ -718,24 +768,45 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(201,168,76,0.08);
         }
 
+        /* FIX — Devlog images: same approach as codex-illustration */
         .devlog-img-wrap {
             position: relative; overflow: hidden;
-            aspect-ratio: 16/9; background: #0a0806;
+            border: none;
+            background: #0a0806;
             flex-shrink: 0;
         }
 
         .devlog-img-wrap::after {
             content: '';
             position: absolute; inset: 0;
-            background: linear-gradient(to bottom, transparent 50%, rgba(10,8,6,0.65) 100%);
+            background: linear-gradient(to bottom, transparent 45%, rgba(10,8,6,0.7) 100%);
             pointer-events: none;
         }
 
         .devlog-img-wrap img {
-            width: 100%; height: 100%; object-fit: cover; display: block;
+            width: 100%;
+            display: block;
+            opacity: 0.85;
             transition: transform 0.5s ease, opacity 0.3s ease;
-            opacity: 0.88;
+            /* removed aspect-ratio constraint so image renders at natural height like codex */
+            max-height: 200px;
+            object-fit: cover;
         }
+
+        /* Placeholder shown when image fails to load */
+        .devlog-img-wrap .devlog-img-placeholder {
+            display: none;
+            width: 100%; height: 130px;
+            align-items: center; justify-content: center;
+            flex-direction: column; gap: 0.6rem;
+            background: linear-gradient(135deg, #13110b, #1a1710);
+            color: rgba(201,168,76,0.3);
+            font-family: 'Cinzel', serif; font-size: 0.65rem;
+            letter-spacing: 2px; text-transform: uppercase;
+        }
+
+        .devlog-img-wrap img.img-failed { display: none; }
+        .devlog-img-wrap img.img-failed ~ .devlog-img-placeholder { display: flex; }
 
         .devlog-card:hover .devlog-img-wrap img {
             transform: scale(1.06);
@@ -776,7 +847,6 @@
             line-height: 1.65; margin-bottom: 1.2rem; flex: 1;
         }
 
-        /* FIX — arrow/emoji removed from Patreon open link buttons */
         .devlog-open-link {
             display: flex; align-items: center; justify-content: center; gap: 0.5rem;
             padding: 0.75rem 1rem;
@@ -842,7 +912,7 @@
         .hero-logo-wrap { margin-bottom: 2rem; display: flex; justify-content: center; align-items: center; animation: fadeInUp 0.8s ease both; }
 
         .hero-logo-img {
-            width: clamp(160px, 28vw, 320px); height: auto; object-fit: contain;
+            width: clamp(180px, 26vw, 400px); height: auto; object-fit: contain;
             filter: drop-shadow(0 0 30px rgba(201,168,76,0.4)) drop-shadow(0 0 60px rgba(201,168,76,0.12));
             border-radius: 16px; transition: filter 0.4s, transform 0.4s;
         }
@@ -856,14 +926,34 @@
         .nav-logo-img:hover { filter: drop-shadow(0 0 14px rgba(201,168,76,0.65)); }
         .logo-wrap { display: flex; align-items: center; gap: 0.5rem; }
 
+        /* ── Desktop large (>1200px) — hero more compact ── */
+        @media (min-width: 1200px) {
+            .hero {
+                min-height: 96vh;
+                padding: 5rem 2rem 2.5rem;
+            }
+            .hero-logo-img {
+                width: clamp(280px, 24vw, 420px);
+            }
+            .hero h1 {
+                font-size: clamp(3.2rem, 5.5vw, 5.2rem);
+                margin-bottom: 1.2rem;
+            }
+            .hero p {
+                font-size: 1.25rem;
+                margin-bottom: 2.5rem;
+            }
+        }
+
         /* ── Tablet (1024px) ── */
         @media (max-width: 1024px) {
             .nav-container { padding: 0 1.5rem; }
             .hero p { font-size: 1.2rem; }
             .story-grid { grid-template-columns: repeat(2, 1fr); }
-            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .team-grid { grid-template-columns: 1fr; }
             .community-grid { grid-template-columns: repeat(2, 1fr); }
             .devlog-grid { grid-template-columns: repeat(2, 1fr); }
+            .quest-feature-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         /* ── Mobile (768px) ── */
@@ -918,8 +1008,9 @@
 
             .story-grid { grid-template-columns: 1fr; }
             .community-grid { grid-template-columns: 1fr; }
-            .team-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+            .team-grid { grid-template-columns: 1fr; gap: 1rem; }
             .devlog-grid { grid-template-columns: 1fr; }
+            .quest-feature-grid { grid-template-columns: 1fr; }
 
             .community-card, .story-card { padding: 2rem 1.5rem; }
 
@@ -940,6 +1031,14 @@
             .btn-mirage { padding: 1.4rem 2.5rem; font-size: 0.95rem; }
 
             #team::before { margin-bottom: 3rem; }
+
+            /* Team horizontal cards stay but more compact on mobile */
+            .team-card-inner { padding: 1.3rem 1.4rem; gap: 1.2rem; }
+            .team-avatar-wrap { width: 68px; height: 68px; }
+            .team-avatar { width: 68px; height: 68px; font-size: 1.45rem; }
+            .team-card h3 { font-size: 1rem; }
+            .team-role { font-size: 0.62rem; padding: 0.2rem 0.65rem; }
+            .team-card p { font-size: 0.82rem; }
         }
 
         /* ── Small phones (480px) ── */
@@ -951,9 +1050,13 @@
             .community-icon { width: 65px; height: 65px; }
 
             .team-grid { grid-template-columns: 1fr; }
-
-            .team-avatar { width: 80px; height: 80px; font-size: 1.6rem; }
-            .team-avatar-wrap { width: 80px; height: 80px; }
+            .team-card-inner { padding: 1.1rem 1.2rem; gap: 1rem; }
+            .team-avatar { width: 60px; height: 60px; font-size: 1.25rem; }
+            .team-avatar-wrap { width: 60px; height: 60px; }
+            .team-card h3 { font-size: 0.95rem; }
+            .team-role { font-size: 0.6rem; }
+            .team-card p { font-size: 0.8rem; line-height: 1.55; }
+            .team-number { font-size: 2rem; }
 
             .btn-journey { font-size: 1rem; padding: 1.2rem 2rem; }
             .logo { font-size: 1.4rem; }
@@ -967,6 +1070,7 @@
             .codex-table thead th { font-size: 0.6rem; padding: 0.8rem 0.7rem; }
             .codex-table td { padding: 0.75rem 0.7rem; }
             .devlog-grid { grid-template-columns: 1fr; }
+            .quest-feature-grid { grid-template-columns: 1fr; }
         }
 
         /* ── Tiny phones (360px) ── */
@@ -1034,6 +1138,7 @@
             .story-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
             .community-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
             .devlog-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            .quest-feature-grid { grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
 
             .story-card,
             .community-card { padding: 1.4rem 1.2rem; }
@@ -1046,15 +1151,14 @@
             .community-icon { width: 52px; height: 52px; margin-bottom: 0.8rem; }
             .community-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 
-            .team-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-
-            .team-card-inner { padding: 1.4rem 1rem; }
-            .team-avatar { width: 64px; height: 64px; font-size: 1.3rem; }
-            .team-avatar-wrap { width: 64px; height: 64px; margin-bottom: 0.8rem; }
-            .team-card h3 { font-size: 1rem; }
-            .team-role { font-size: 0.62rem; padding: 0.2rem 0.7rem; margin-bottom: 0.6rem; }
-            .team-card p { font-size: 0.78rem; line-height: 1.55; }
-            .team-number { font-size: 2.5rem; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); gap: 0.9rem; }
+            .team-card-inner { padding: 1.1rem 1rem; gap: 0.9rem; }
+            .team-avatar { width: 52px; height: 52px; font-size: 1.1rem; }
+            .team-avatar-wrap { width: 52px; height: 52px; }
+            .team-card h3 { font-size: 0.88rem; }
+            .team-role { font-size: 0.56rem; padding: 0.15rem 0.5rem; margin-bottom: 0.4rem; }
+            .team-card p { font-size: 0.75rem; line-height: 1.5; }
+            .team-number { font-size: 2rem; }
 
             #team::before { margin-bottom: 2rem; }
             #team { padding: 3rem 1.5rem; }
@@ -1071,6 +1175,8 @@
             .np-title { font-size: clamp(1.5rem, 3.5vw, 2rem); }
             .np-desc { font-size: 0.9rem; margin-bottom: 1.8rem; }
             .btn-mirage { padding: 1rem 2rem; font-size: 0.85rem; }
+
+            .quest-creator-section { padding: 2.5rem 1.5rem 3.5rem; }
 
             .codex-overlay { padding: 1rem; }
             .codex-panel { padding: 1.6rem 1.2rem 2rem; margin: 0.5rem auto; }
@@ -1097,7 +1203,7 @@
             .hero { padding: 7rem 2rem 3rem; min-height: 100svh; }
             .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; }
             .hero p { font-size: 1rem; margin-bottom: 2rem; }
-            .hero-logo-img { width: clamp(120px, 22vw, 220px); }
+            .hero-logo-img { width: clamp(150px, 24vw, 280px); }
 
             .cta-buttons { flex-direction: row; flex-wrap: wrap; justify-content: center; }
             .btn { width: auto; max-width: none; }
@@ -1113,6 +1219,7 @@
             .story-grid { grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
             .community-grid { grid-template-columns: repeat(2, 1fr); gap: 1.4rem; }
             .devlog-grid { grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+            .quest-feature-grid { grid-template-columns: repeat(3, 1fr); }
 
             .story-card { padding: 1.8rem 1.4rem; }
             .story-icon { width: 54px; height: 54px; margin-bottom: 1rem; }
@@ -1122,10 +1229,10 @@
             .community-icon { width: 60px; height: 60px; }
             .community-card h3 { font-size: 1.3rem; }
 
-            .team-grid { grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
-            .team-card-inner { padding: 2rem 1.4rem; }
-            .team-avatar { width: 76px; height: 76px; font-size: 1.6rem; }
-            .team-avatar-wrap { width: 76px; height: 76px; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+            .team-card-inner { padding: 1.4rem 1.5rem; gap: 1.3rem; }
+            .team-avatar { width: 68px; height: 68px; font-size: 1.45rem; }
+            .team-avatar-wrap { width: 68px; height: 68px; }
 
             #team::before { margin-bottom: 3rem; }
 
@@ -1391,9 +1498,11 @@
                 <div class="team-card-inner">
                     <span class="team-number">01</span>
                     <div class="team-avatar-wrap"><div class="team-avatar">H</div></div>
-                    <h3>Hedy</h3>
-                    <span class="team-role">Lead Developer</span>
-                    <p>Leads the development and vision of The Last Message, bringing the story to life through code and design.</p>
+                    <div class="team-info">
+                        <h3>Hedy</h3>
+                        <span class="team-role">Lead Developer</span>
+                        <p>Leads the development and vision of The Last Message, bringing the story to life through code and design.</p>
+                    </div>
                 </div>
             </div>
 
@@ -1402,9 +1511,11 @@
                 <div class="team-card-inner">
                     <span class="team-number">02</span>
                     <div class="team-avatar-wrap"><div class="team-avatar">N</div></div>
-                    <h3>NSYCode</h3>
-                    <span class="team-role">Developer</span>
-                    <p>Helps Hedy with development of the game, contributing code and technical expertise to bring The Last Message to life.</p>
+                    <div class="team-info">
+                        <h3>NSYCode</h3>
+                        <span class="team-role">Developer</span>
+                        <p>Helps Hedy with development of the game, contributing code and technical expertise to bring The Last Message to life.</p>
+                    </div>
                 </div>
             </div>
 
@@ -1413,9 +1524,11 @@
                 <div class="team-card-inner">
                     <span class="team-number">03</span>
                     <div class="team-avatar-wrap"><div class="team-avatar">Z</div></div>
-                    <h3>Zafar</h3>
-                    <span class="team-role">Contributor Admin</span>
-                    <p>Supports the project as a Contributor Admin, helping manage and grow The Last Message community and project.</p>
+                    <div class="team-info">
+                        <h3>Zafar</h3>
+                        <span class="team-role">Contributor Admin</span>
+                        <p>Supports the project as a Contributor Admin, helping manage and grow The Last Message community and project.</p>
+                    </div>
                 </div>
             </div>
 
@@ -1424,9 +1537,11 @@
                 <div class="team-card-inner">
                     <span class="team-number">04</span>
                     <div class="team-avatar-wrap"><div class="team-avatar">Y</div></div>
-                    <h3>yeswayswagg</h3>
-                    <span class="team-role">Moderator</span>
-                    <p>A dedicated and helpful member who serves as both a moderator and contributor. He has played an important role in supporting the community, helping others, and making sure everything ran smoothly.</p>
+                    <div class="team-info">
+                        <h3>yeswayswagg</h3>
+                        <span class="team-role">Moderator</span>
+                        <p>A dedicated and helpful member who serves as both a moderator and contributor. He has played an important role in supporting the community, helping others, and making sure everything ran smoothly.</p>
+                    </div>
                 </div>
             </div>
 
@@ -1434,38 +1549,38 @@
             <div class="team-card fade-in">
                 <div class="team-card-inner">
                     <span class="team-number">05</span>
-                    <div class="team-avatar-wrap">
-                        <div class="team-avatar">A</div>
+                    <div class="team-avatar-wrap"><div class="team-avatar">A</div></div>
+                    <div class="team-info">
+                        <h3>Amjad</h3>
+                        <span class="team-role">3D Artist</span>
+                        <p>Created a large portion of the 3D models used in the game, contributing significantly to its visual world and environment.</p>
                     </div>
-                    <h3>Amjad</h3>
-                    <span class="team-role">3D Artist</span>
-                    <p>Created a large portion of the 3D models used in the game, contributing significantly to its visual world and environment.</p>
                 </div>
             </div>
-            
+
             <!-- 06 — Stranger -->
             <div class="team-card fade-in">
                 <div class="team-card-inner">
                     <span class="team-number">06</span>
-                    <div class="team-avatar-wrap">
-                        <div class="team-avatar">S</div>
+                    <div class="team-avatar-wrap"><div class="team-avatar">S</div></div>
+                    <div class="team-info">
+                        <h3>Stranger</h3>
+                        <span class="team-role">Contributor Team Lead</span>
+                        <p>Guided the team and supported the project, playing a key leadership role in keeping contributors aligned and pushing the project forward.</p>
                     </div>
-                    <h3>Stranger</h3>
-                    <span class="team-role">Contributor Team Lead</span>
-                    <p>Guided the team and supported the project, playing a key leadership role in keeping contributors aligned and pushing the project forward.</p>
                 </div>
             </div>
-            
-            <!-- 07 — Alen.Akhi me lol-->
+
+            <!-- 07 — Alen.Akhi -->
             <div class="team-card fade-in">
                 <div class="team-card-inner">
                     <span class="team-number">07</span>
-                    <div class="team-avatar-wrap">
-                        <div class="team-avatar">A</div>
+                    <div class="team-avatar-wrap"><div class="team-avatar">A</div></div>
+                    <div class="team-info">
+                        <h3>Alen.Akhi</h3>
+                        <span class="team-role">Web Developer</span>
+                        <p>Supports the project by coding this website and contributing to future improvements.</p>
                     </div>
-                    <h3>Alen.Akhi</h3>
-                    <span class="team-role">Web Developer</span>
-                    <p>Supports the project by coding this website and contributing to future improvements.</p>
                 </div>
             </div>
 
@@ -1526,6 +1641,32 @@
         </button>
     </div>
 
+    <div class="section-divider"></div>
+
+    <!-- Quest Creator Section -->
+    <div class="quest-creator-section next-page-section fade-in" style="padding-top:2.5rem; max-width:960px;">
+        <div class="ac-ornate-divider">
+            <span class="aod-line"></span>
+            <span class="aod-diamond">◆</span>
+            <span class="aod-label">Community Contribution</span>
+            <span class="aod-diamond">◆</span>
+            <span class="aod-line right"></span>
+        </div>
+        <span class="np-eyebrow">Shape the Story — Help Build the Game</span>
+        <h3 class="np-title">Quest Creator</h3>
+        <p class="np-desc">
+            Want to leave your mark on The Last Message? Design your own quests and submit them to the team — your creation could become part of the official game experience. Open to everyone in the community.
+        </p>
+
+        <!-- i deleted them it looks way better lol -->
+        
+
+        <a href="https://questcreator.nsycoding.com" class="btn-mirage btn-quest" target="_blank" rel="noopener noreferrer">
+            <span>Create a Quest</span>
+            <span class="bm-sub">Open Quest Creator Tool</span>
+        </a>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -1538,6 +1679,7 @@
                 <a href="#team">Team</a>
                 <a href="#" onclick="openCodex();return false;">Codex</a>
                 <a href="#" onclick="openDevlogs();return false;">Dev Logs</a>
+                <a href="https://questcreator.nsycoding.com" target="_blank" rel="noopener noreferrer">Quest Creator</a>
             </div>
             <p class="copyright">2026 The Last Message. All rights reserved. Made with respect and dedication.</p>
             <p class="developer-credit">Developed by Alen.Akhi</p>
@@ -1710,7 +1852,7 @@
                 Follow the ongoing journey of building <strong style="color:var(--ac-gold-light);">The Last Message</strong>. These developer logs document real milestones, progress updates, and notes straight from the development team — posted on Patreon.
             </p>
 
-            <!-- 3 devlog cards -->
+            <!-- 3 devlog cards — FIX: removed loading="lazy" (images inside hidden overlay never trigger lazy loading) -->
             <div class="devlog-grid">
 
                 <!-- Log 01 -->
@@ -1720,8 +1862,11 @@
                         <img src="https://files.catbox.moe/sek4x7.png"
                              alt="Devlog — Massive Update"
                              referrerpolicy="no-referrer"
-                             loading="lazy"
-                             
+                             onerror="this.classList.add('img-failed');">
+                        <div class="devlog-img-placeholder">
+                            <svg width="32" height="32" viewBox="0 0 64 64" fill="rgba(201,168,76,0.25)"><path d="M32 2L6 18v18c0 16 10 24 26 26 16-2 26-10 26-26V18L32 2z"/></svg>
+                            <span>Log #01</span>
+                        </div>
                     </div>
                     <div class="devlog-card-body">
                         <span class="devlog-card-type">Devlog</span>
@@ -1742,8 +1887,11 @@
                         <img src="https://files.catbox.moe/gyirfh.png"
                              alt="Devlog — Weekly Update"
                              referrerpolicy="no-referrer"
-                             loading="lazy"
-                             onerror="this.closest('.devlog-img-wrap').style.background='#1a1510';this.style.display='none';">
+                             onerror="this.classList.add('img-failed');">
+                        <div class="devlog-img-placeholder">
+                            <svg width="32" height="32" viewBox="0 0 64 64" fill="rgba(201,168,76,0.25)"><path d="M32 2L6 18v18c0 16 10 24 26 26 16-2 26-10 26-26V18L32 2z"/></svg>
+                            <span>Log #02</span>
+                        </div>
                     </div>
                     <div class="devlog-card-body">
                         <span class="devlog-card-type">Weekly Devlog</span>
@@ -1764,8 +1912,11 @@
                         <img src="https://files.catbox.moe/6etgmn.png"
                              alt="Dev Note — Alpha"
                              referrerpolicy="no-referrer"
-                             loading="lazy"
-                             onerror="this.closest('.devlog-img-wrap').style.background='#1a1510';this.style.display='none';">
+                             onerror="this.classList.add('img-failed');">
+                        <div class="devlog-img-placeholder">
+                            <svg width="32" height="32" viewBox="0 0 64 64" fill="rgba(201,168,76,0.25)"><path d="M32 2L6 18v18c0 16 10 24 26 26 16-2 26-10 26-26V18L32 2z"/></svg>
+                            <span>Log #03</span>
+                        </div>
                     </div>
                     <div class="devlog-card-body">
                         <span class="devlog-card-type">Dev Note</span>
@@ -1877,7 +2028,6 @@
 
 
         // subtle gold mouse trail — desktop only, not on touch screens
-        // FIX: corrected left/top values to use actual mouse coordinates
         document.addEventListener('mousemove', (e) => {
             if (window.innerWidth <= 768) return;
 
@@ -1993,6 +2143,12 @@
             overlay.classList.add('open');
             overlay.scrollTop = 0;
             document.body.style.overflow = 'hidden';
+
+            // FIX: trigger devlog images to load now that overlay is visible
+            overlay.querySelectorAll('img[data-src]').forEach(img => {
+                img.src = img.dataset.src;
+                delete img.dataset.src;
+            });
         }
 
         function closeDevlogs() {
