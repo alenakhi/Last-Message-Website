@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Last Message - Journey Through History</title>
 
+    <link rel="preload" as="image" href="https://files.catbox.moe/hzl17x.png">
+    <link rel="preload" as="image" href="https://files.catbox.moe/ewccee.png">
+    <link rel="preload" as="image" href="https://files.catbox.moe/eecnei.png">
+    <link rel="preload" as="image" href="https://files.catbox.moe/01b0ls.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -32,6 +37,7 @@
             color: var(--text-primary);
             overflow-x: hidden;
             line-height: 1.6;
+            opacity: 0;
         }
 
         html { scroll-behavior: smooth; }
@@ -54,7 +60,7 @@
         }
 
         .bg-slide.active {
-            opacity: 0.70;
+            opacity: 0.82;
         }
 
         .bg-night-overlay {
@@ -165,7 +171,7 @@
         .hero {
             min-height: 100vh;
             display: flex; align-items: center; justify-content: center;
-            text-align: center; padding: 8rem 2rem 4rem;
+            text-align: center; padding: 6rem 2rem 3rem;
             position: relative;
         }
 
@@ -283,7 +289,7 @@
         .btn-mirage:hover::before { transform: translateX(120%); }
         .btn-mirage:hover .bm-sub { color: rgba(201,168,76,0.72); }
 
-        section { padding: 6rem 2rem; max-width: 1400px; margin: 0 auto; }
+        section { padding: 4rem 2rem; max-width: 1400px; margin: 0 auto; }
 
         .section-title {
             font-size: clamp(2.5rem, 5vw, 4rem);
@@ -415,11 +421,11 @@
         .community-card h3 { font-size: 1.7rem; margin-bottom: 1rem; font-family: 'Cinzel', serif; color: var(--ac-gold-light); letter-spacing: 1px; }
         .community-card p { color: var(--text-secondary); margin-bottom: 2rem; flex: 1; }
 
-        #team { padding: 7rem 2rem; max-width: 1400px; margin: 0 auto; position: relative; }
+        #team { padding: 5rem 2rem; max-width: 1400px; margin: 0 auto; position: relative; }
 
         #team::before {
             content: ''; display: block; width: 180px; height: 1px;
-            margin: 0 auto 5rem;
+            margin: 0 auto 3.5rem;
             background: linear-gradient(90deg, transparent, var(--ac-gold), transparent);
         }
 
@@ -509,12 +515,12 @@
             pointer-events: none; user-select: none;
         }
 
-        .next-page-section { padding: 5rem 2rem 6rem; max-width: 900px; margin: 0 auto; text-align: center; }
+        .next-page-section { padding: 3.5rem 2rem 4rem; max-width: 900px; margin: 0 auto; text-align: center; }
         .np-eyebrow { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 5px; text-transform: uppercase; color: rgba(201,168,76,0.52); margin-bottom: 1.2rem; display: block; }
         .np-title { font-family: 'Cinzel', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; color: var(--ac-gold-light); letter-spacing: 4px; margin-bottom: 1rem; line-height: 1.15; }
         .np-desc { color: var(--text-secondary); font-size: 1.05rem; max-width: 560px; margin: 0 auto 3rem; line-height: 1.8; }
 
-        #trailer { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; text-align: center; }
+        #trailer { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; text-align: center; }
 
         .trailer-label {
             display: inline-flex; align-items: center; gap: 0.6rem;
@@ -575,6 +581,7 @@
         .copyright { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.7rem; }
         .developer-credit { font-size: 0.95rem; color: var(--ac-gold); font-weight: 700; font-family: 'Cinzel', serif; letter-spacing: 2px; text-shadow: 0 0 12px rgba(201,168,76,0.3); }
 
+        /* ── Shared overlay styles ── */
         .codex-overlay {
             position: fixed; inset: 0; z-index: 9000;
             display: flex; align-items: flex-start; justify-content: center;
@@ -687,6 +694,126 @@
 
         .codex-footnote { padding-top: 2rem; border-top: 1px solid rgba(201,168,76,0.1); font-size: 0.82rem; color: rgba(201,168,76,0.36); line-height: 1.7; font-style: italic; }
 
+        /* ── Developer Logs styles ── */
+        .devlog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.6rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .devlog-card {
+            background: linear-gradient(160deg, #11100a, #191610);
+            border: 1px solid rgba(201,168,76,0.18);
+            border-radius: 2px; overflow: hidden;
+            clip-path: polygon(0 8px,8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px));
+            transition: all 0.35s ease;
+            display: flex; flex-direction: column;
+        }
+
+        .devlog-card:hover {
+            border-color: rgba(201,168,76,0.55);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(201,168,76,0.08);
+        }
+
+        .devlog-img-wrap {
+            position: relative; overflow: hidden;
+            aspect-ratio: 16/9; background: #0a0806;
+            flex-shrink: 0;
+        }
+
+        .devlog-img-wrap::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(10,8,6,0.65) 100%);
+            pointer-events: none;
+        }
+
+        .devlog-img-wrap img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            transition: transform 0.5s ease, opacity 0.3s ease;
+            opacity: 0.88;
+        }
+
+        .devlog-card:hover .devlog-img-wrap img {
+            transform: scale(1.06);
+            opacity: 1;
+        }
+
+        .devlog-num-badge {
+            position: absolute; top: 0.8rem; left: 0.8rem; z-index: 2;
+            background: rgba(10,8,6,0.82); border: 1px solid rgba(201,168,76,0.4);
+            padding: 0.25rem 0.7rem;
+            font-family: 'Cinzel', serif; font-size: 0.6rem;
+            font-weight: 700; letter-spacing: 2px;
+            color: var(--ac-gold); text-transform: uppercase;
+            clip-path: polygon(0 4px,4px 0,calc(100% - 4px) 0,100% 4px,100% calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,0 calc(100% - 4px));
+        }
+
+        .devlog-card-body {
+            padding: 1.2rem 1.4rem 1.4rem;
+            display: flex; flex-direction: column; flex: 1;
+        }
+
+        .devlog-card-type {
+            font-family: 'Cinzel', serif;
+            font-size: 0.58rem; letter-spacing: 3px;
+            color: rgba(201,168,76,0.45); text-transform: uppercase;
+            margin-bottom: 0.45rem; display: block;
+        }
+
+        .devlog-card-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem; font-weight: 700;
+            color: var(--ac-gold-light); letter-spacing: 0.5px;
+            margin-bottom: 0.6rem; line-height: 1.35;
+        }
+
+        .devlog-card-desc {
+            font-size: 0.82rem; color: var(--text-secondary);
+            line-height: 1.65; margin-bottom: 1.2rem; flex: 1;
+        }
+
+        /* FIX — arrow/emoji removed from Patreon open link buttons */
+        .devlog-open-link {
+            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            background: rgba(201,168,76,0.07);
+            border: 1px solid rgba(201,168,76,0.28);
+            color: var(--ac-gold-light);
+            text-decoration: none;
+            font-family: 'Cinzel', serif; font-size: 0.7rem;
+            font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+            transition: all 0.3s ease;
+            clip-path: polygon(0 4px,4px 0,calc(100% - 4px) 0,100% 4px,100% calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,0 calc(100% - 4px));
+            margin-top: auto;
+        }
+
+        .devlog-open-link:hover {
+            background: rgba(201,168,76,0.18);
+            border-color: var(--ac-gold);
+            color: #fff;
+        }
+
+        .devlog-patreon-note {
+            text-align: center; padding: 1.4rem 1.6rem;
+            background: rgba(201,168,76,0.04);
+            border: 1px solid rgba(201,168,76,0.12);
+            font-size: 0.82rem; color: rgba(201,168,76,0.48);
+            font-family: 'Cinzel', serif; letter-spacing: 1px;
+            line-height: 1.7; margin-bottom: 2rem;
+            clip-path: polygon(0 6px,6px 0,calc(100% - 6px) 0,100% 6px,100% calc(100% - 6px),calc(100% - 6px) 100%,6px 100%,0 calc(100% - 6px));
+        }
+
+        .devlog-patreon-note a {
+            color: var(--ac-gold-light); text-decoration: none;
+            border-bottom: 1px solid rgba(201,168,76,0.4);
+            transition: border-color 0.3s, color 0.3s;
+        }
+
+        .devlog-patreon-note a:hover { color: #fff; border-color: var(--ac-gold); }
+
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -714,7 +841,7 @@
         .hero-logo-wrap { margin-bottom: 2rem; display: flex; justify-content: center; align-items: center; animation: fadeInUp 0.8s ease both; }
 
         .hero-logo-img {
-            width: clamp(120px,22vw,220px); height: auto; object-fit: contain;
+            width: clamp(160px, 28vw, 320px); height: auto; object-fit: contain;
             filter: drop-shadow(0 0 30px rgba(201,168,76,0.4)) drop-shadow(0 0 60px rgba(201,168,76,0.12));
             border-radius: 16px; transition: filter 0.4s, transform 0.4s;
         }
@@ -728,16 +855,17 @@
         .nav-logo-img:hover { filter: drop-shadow(0 0 14px rgba(201,168,76,0.65)); }
         .logo-wrap { display: flex; align-items: center; gap: 0.5rem; }
 
-        /* ── Responsive — Tablet (1024px) ───────────────────────────────────── */
+        /* ── Tablet (1024px) ── */
         @media (max-width: 1024px) {
             .nav-container { padding: 0 1.5rem; }
             .hero p { font-size: 1.2rem; }
             .story-grid { grid-template-columns: repeat(2, 1fr); }
             .team-grid { grid-template-columns: repeat(2, 1fr); }
             .community-grid { grid-template-columns: repeat(2, 1fr); }
+            .devlog-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* ── Responsive — Mobile landscape / large phones (768px) ───────────── */
+        /* ── Mobile (768px) ── */
         @media (max-width: 768px) {
 
             .nav-container {
@@ -790,6 +918,7 @@
             .story-grid { grid-template-columns: 1fr; }
             .community-grid { grid-template-columns: 1fr; }
             .team-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+            .devlog-grid { grid-template-columns: 1fr; }
 
             .community-card, .story-card { padding: 2rem 1.5rem; }
 
@@ -812,7 +941,7 @@
             #team::before { margin-bottom: 3rem; }
         }
 
-        /* ── Responsive — Small phones (480px) ─────────────────────────────── */
+        /* ── Small phones (480px) ── */
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.9rem; letter-spacing: 0.5px; }
             .hero p { font-size: 1rem; }
@@ -830,15 +959,16 @@
             .nav-links { gap: 0; }
             .nav-links a { font-size: 0.78rem; }
             .footer-links { gap: 1rem; font-size: 0.72rem; }
-            .hero-logo-img { display: block; margin: 0 auto; width: 350px; }
+            .hero-logo-img { display: block; margin: 0 auto; width: 280px; }
             .nav-logo-img { height: 26px; }
             .trailer-title { font-size: 2rem; letter-spacing: 1px; }
             .codex-table { font-size: 0.78rem; }
             .codex-table thead th { font-size: 0.6rem; padding: 0.8rem 0.7rem; }
             .codex-table td { padding: 0.75rem 0.7rem; }
+            .devlog-grid { grid-template-columns: 1fr; }
         }
 
-        /* ── Responsive — Tiny phones (360px) ──────────────────────────────── */
+        /* ── Tiny phones (360px) ── */
         @media (max-width: 360px) {
             .hero h1 { font-size: 1.7rem; }
             .section-title { font-size: 1.5rem; }
@@ -852,9 +982,7 @@
             .team-card:hover { transform: none; }
         }
 
-        /* ── Landscape orientation — phones & tablets ───────────────────────── */
-
-        /* Phones in landscape (short viewport, touch device) */
+        /* ── Phones in landscape ── */
         @media (max-height: 500px) and (orientation: landscape) {
 
             nav { padding: 0.55rem 0; }
@@ -877,7 +1005,6 @@
             .hero-content { max-width: 700px; }
 
             .hero-logo-wrap { margin-bottom: 0.8rem; }
-            /* ↓ same size as mobile portrait — only this line changed */
             .hero-logo-img { width: clamp(120px, 22vw, 220px); }
 
             .hero h1 { font-size: clamp(1.6rem, 5vw, 2.6rem); margin-bottom: 0.7rem; letter-spacing: 1px; }
@@ -905,6 +1032,7 @@
 
             .story-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
             .community-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+            .devlog-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 
             .story-card,
             .community-card { padding: 1.4rem 1.2rem; }
@@ -959,7 +1087,7 @@
             .developer-credit { font-size: 0.82rem; }
         }
 
-        /* Tablets in landscape (taller than phones but still landscape) */
+        /* ── Tablets in landscape ── */
         @media (min-height: 500px) and (max-height: 820px) and (orientation: landscape) and (max-width: 1180px) {
 
             nav { padding: 0.8rem 0; }
@@ -968,7 +1096,6 @@
             .hero { padding: 7rem 2rem 3rem; min-height: 100svh; }
             .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; }
             .hero p { font-size: 1rem; margin-bottom: 2rem; }
-            /* ↓ same size as mobile portrait — only this line changed */
             .hero-logo-img { width: clamp(120px, 22vw, 220px); }
 
             .cta-buttons { flex-direction: row; flex-wrap: wrap; justify-content: center; }
@@ -984,6 +1111,7 @@
 
             .story-grid { grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
             .community-grid { grid-template-columns: repeat(2, 1fr); gap: 1.4rem; }
+            .devlog-grid { grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
 
             .story-card { padding: 1.8rem 1.4rem; }
             .story-icon { width: 54px; height: 54px; margin-bottom: 1rem; }
@@ -1010,7 +1138,7 @@
 </head>
 <body>
 
-    <!-- Background we say it nightshift w hedy lol :D slideshow images -->
+    <!-- Background slideshow images -->
     <div class="bg-slideshow">
         <div class="bg-slide" style="background-image:url('https://files.catbox.moe/hzl17x.png')"></div>
         <div class="bg-slide" style="background-image:url('https://files.catbox.moe/ewccee.png')"></div>
@@ -1048,6 +1176,7 @@
                 <li><a href="#community" class="nav-link-item">Community</a></li>
                 <li><a href="#team" class="nav-link-item">Team</a></li>
                 <li><a href="#" onclick="openCodex();closeNav();return false;">Codex</a></li>
+                <li><a href="#" onclick="openDevlogs();closeNav();return false;">Dev Logs</a></li>
             </ul>
         </div>
     </nav>
@@ -1143,29 +1272,6 @@
                     </svg>
                     <h3>Legacy of Peace</h3>
                     <p>Understand the lasting impact of teachings that emphasize mercy, knowledge, and social justice. Discover how these principles continue to inspire millions today.</p>
-                </div>
-            </div>
-            <div class="story-card fade-in">
-                <div class="story-card-content">
-                    <svg class="story-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="8" y="12" width="48" height="36" rx="4" stroke="currentColor" stroke-width="3" fill="none"/>
-                        <circle cx="28" cy="30" r="6" fill="currentColor"/>
-                        <circle cx="44" cy="30" r="6" fill="currentColor"/>
-                        <path d="M20 52h24" stroke="currentColor" stroke-width="3"/>
-                    </svg>
-                    <h3>Interactive Experience</h3>
-                    <p>Engage with an immersive gameplay experience that combines education with entertainment, featuring stunning visuals and authentic historical details.</p>
-                </div>
-            </div>
-            <div class="story-card fade-in">
-                <div class="story-card-content">
-                    <svg class="story-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="32" cy="20" r="12" stroke="currentColor" stroke-width="3" fill="none"/>
-                        <path d="M32 8V14M32 26V32M20 20H14M50 20H44M23 13L19 9M45 13L49 9M23 27L19 31M45 27L49 31" stroke="currentColor" stroke-width="2"/>
-                        <rect x="20" y="38" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
-                    </svg>
-                    <h3>Life Lessons</h3>
-                    <p>Learn timeless wisdom about patience, perseverance, leadership, and compassion that remain relevant in our modern world.</p>
                 </div>
             </div>
         </div>
@@ -1323,25 +1429,42 @@
                 </div>
             </div>
 
-            <!-- 05 — Amjad -->
+<!-- 05 — Amjad -->
             <div class="team-card fade-in">
                 <div class="team-card-inner">
                     <span class="team-number">05</span>
-                    <div class="team-avatar-wrap"><div class="team-avatar">A</div></div>
+                    <div class="team-avatar-wrap">
+                        <div class="team-avatar">A</div>
+                    </div>
                     <h3>Amjad</h3>
                     <span class="team-role">3D Artist</span>
                     <p>Created a large portion of the 3D models used in the game, contributing significantly to its visual world and environment.</p>
                 </div>
             </div>
-
-            <!-- 06 — Alen.Akhi me lol -->
+            
+            <!-- 06 — Stranger -->
             <div class="team-card fade-in">
                 <div class="team-card-inner">
                     <span class="team-number">06</span>
-                    <div class="team-avatar-wrap"><div class="team-avatar">A</div></div>
+                    <div class="team-avatar-wrap">
+                        <div class="team-avatar">S</div>
+                    </div>
+                    <h3>Stranger</h3>
+                    <span class="team-role">Contributor Team Lead</span>
+                    <p>Guided the team and supported the project, playing a key leadership role in keeping contributors aligned and pushing the project forward.</p>
+                </div>
+            </div>
+            
+            <!-- 07 — Alen.Akhi me lol-->
+            <div class="team-card fade-in">
+                <div class="team-card-inner">
+                    <span class="team-number">07</span>
+                    <div class="team-avatar-wrap">
+                        <div class="team-avatar">A</div>
+                    </div>
                     <h3>Alen.Akhi</h3>
-                    <span class="team-role">Contributor</span>
-                    <p>A new contributor who supports this game by coding this website and will do more in the future.</p>
+                    <span class="team-role">Web Developer</span>
+                    <p>Supports the project by coding this website and contributing to future improvements.</p>
                 </div>
             </div>
 
@@ -1364,8 +1487,7 @@
 
     <div class="section-divider"></div>
 
-    <!-- Codex gateway section -->
-    <!-- from this line continue tmrw insha'Allah -->
+    <!-- Codex gateway -->
     <div class="next-page-section fade-in">
         <div class="ac-ornate-divider">
             <span class="aod-line"></span>
@@ -1383,6 +1505,26 @@
         </button>
     </div>
 
+    <div class="section-divider"></div>
+
+    <!-- Developer Logs gateway -->
+    <div class="next-page-section fade-in" style="padding-top:2.5rem;">
+        <div class="ac-ornate-divider">
+            <span class="aod-line"></span>
+            <span class="aod-diamond">◆</span>
+            <span class="aod-label">Development Updates</span>
+            <span class="aod-diamond">◆</span>
+            <span class="aod-line right"></span>
+        </div>
+        <span class="np-eyebrow">Behind the Scenes — Progress Reports</span>
+        <h3 class="np-title">Developer Logs</h3>
+        <p class="np-desc">Get an inside look at the making of The Last Message — milestones, weekly updates, and developer notes straight from the team.</p>
+        <button class="btn-mirage" onclick="openDevlogs()">
+            <span>View Logs</span>
+            <span class="bm-sub">Open Developer Logs</span>
+        </button>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -1394,6 +1536,7 @@
                 <a href="#community">Community</a>
                 <a href="#team">Team</a>
                 <a href="#" onclick="openCodex();return false;">Codex</a>
+                <a href="#" onclick="openDevlogs();return false;">Dev Logs</a>
             </div>
             <p class="copyright">2026 The Last Message. All rights reserved. Made with respect and dedication.</p>
             <p class="developer-credit">Developed by Alen.Akhi</p>
@@ -1536,6 +1679,117 @@
         </div>
     </div>
 
+    <!-- Developer Logs overlay -->
+    <div id="devlogsOverlay" class="codex-overlay" role="dialog" aria-modal="true" aria-label="Developer Logs">
+        <div class="codex-panel">
+
+            <button class="codex-close-btn" onclick="closeDevlogs()" aria-label="Close Developer Logs">✕</button>
+
+            <div class="codex-header">
+                <div class="codex-header-ornament">
+                    <span class="cho-line"></span>
+                    <span class="cho-diamond">◆</span>
+                    <span class="cho-diamond">◆</span>
+                    <span class="cho-diamond">◆</span>
+                    <span class="cho-line r"></span>
+                </div>
+                <div class="codex-badge">Behind the Scenes — Progress Reports</div>
+                <h2 class="codex-main-title">DEVELOPER LOGS</h2>
+                <p class="codex-sub-title">Updates from the Team — The Last Message</p>
+                <div class="codex-header-ornament" style="margin-top:1.2rem;">
+                    <span class="cho-line"></span>
+                    <span class="cho-diamond">◆</span>
+                    <span class="cho-diamond">◆</span>
+                    <span class="cho-diamond">◆</span>
+                    <span class="cho-line r"></span>
+                </div>
+            </div>
+
+            <p class="codex-intro-text">
+                Follow the ongoing journey of building <strong style="color:var(--ac-gold-light);">The Last Message</strong>. These developer logs document real milestones, progress updates, and notes straight from the development team — posted on Patreon.
+            </p>
+
+            <!-- 3 devlog cards -->
+            <div class="devlog-grid">
+
+                <!-- Log 01 -->
+                <div class="devlog-card">
+                    <div class="devlog-img-wrap">
+                        <span class="devlog-num-badge">Log #01</span>
+                        <img src="https://files.catbox.moe/sek4x7.png"
+                             alt="Devlog — Massive Update"
+                             loading="lazy"
+                             onerror="this.closest('.devlog-img-wrap').style.background='#1a1510';this.style.display='none';">
+                    </div>
+                    <div class="devlog-card-body">
+                        <span class="devlog-card-type">Devlog</span>
+                        <div class="devlog-card-title">Massive Update</div>
+                        <p class="devlog-card-desc">A significant milestone in The Last Message development — covering major new features, environments, and systems added to the game.</p>
+                        <a href="https://www.patreon.com/posts/devlog-massive-153731274?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                           class="devlog-open-link"
+                           target="_blank" rel="noopener noreferrer">
+                            Click to Open on Patreon
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Log 02 -->
+                <div class="devlog-card">
+                    <div class="devlog-img-wrap">
+                        <span class="devlog-num-badge">Log #02</span>
+                        <img src="https://files.catbox.moe/gyirfh.png"
+                             alt="Devlog — Weekly Update"
+                             loading="lazy"
+                             onerror="this.closest('.devlog-img-wrap').style.background='#1a1510';this.style.display='none';">
+                    </div>
+                    <div class="devlog-card-body">
+                        <span class="devlog-card-type">Weekly Devlog</span>
+                        <div class="devlog-card-title">Weekly Update</div>
+                        <p class="devlog-card-desc">A weekly progress report from the team — tracking what was built, refined, and improved during that week of active development.</p>
+                        <a href="https://www.patreon.com/posts/devlog-weekly-148532621?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                           class="devlog-open-link"
+                           target="_blank" rel="noopener noreferrer">
+                            Click to Open on Patreon
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Log 03 -->
+                <div class="devlog-card">
+                    <div class="devlog-img-wrap">
+                        <span class="devlog-num-badge">Log #03</span>
+                        <img src="https://files.catbox.moe/6etgmn.png"
+                             alt="Dev Note — Alpha"
+                             loading="lazy"
+                             onerror="this.closest('.devlog-img-wrap').style.background='#1a1510';this.style.display='none';">
+                    </div>
+                    <div class="devlog-card-body">
+                        <span class="devlog-card-type">Dev Note</span>
+                        <div class="devlog-card-title">Alpha Dev Note</div>
+                        <p class="devlog-card-desc">An important developer note regarding the Alpha phase — sharing insights on the current state of the game and the road ahead.</p>
+                        <a href="https://www.patreon.com/posts/dev-note-alpha-152999843?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                           class="devlog-open-link"
+                           target="_blank" rel="noopener noreferrer">
+                            Click to Open on Patreon
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="devlog-patreon-note">
+                All developer logs are published on our
+                <a href="https://www.patreon.com/TheLastMessage" target="_blank" rel="noopener noreferrer">Patreon page</a>.
+                Support the project to unlock exclusive early access to updates, behind-the-scenes content, and more.
+            </div>
+
+            <div class="codex-footnote">
+                <p>◆ Logs reflect ongoing development milestones. Content and timelines are subject to change as the project evolves. Follow our community channels for the latest news.</p>
+            </div>
+
+        </div>
+    </div>
+
     <script>
 
         // shrink the navbar a little when you scroll past the top
@@ -1572,7 +1826,7 @@
         });
 
 
-        // FAQ accordion — clicking a question opens it, clicking again closes it
+        // FAQ accordion
         document.querySelectorAll('.faq-item').forEach(item => {
             item.querySelector('.faq-question').addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
@@ -1619,6 +1873,7 @@
 
 
         // subtle gold mouse trail — desktop only, not on touch screens
+        // FIX: corrected left/top values to use actual mouse coordinates
         document.addEventListener('mousemove', (e) => {
             if (window.innerWidth <= 768) return;
 
@@ -1629,8 +1884,8 @@
                 height: 4px;
                 border-radius: 50%;
                 background: rgba(201, 168, 76, 0.35);
-                left: px;
-                top: px;
+                left: ${e.clientX}px;
+                top: ${e.clientY}px;
                 pointer-events: none;
                 z-index: 9999;
                 transition: opacity 0.5s ease, transform 0.5s ease;
@@ -1641,18 +1896,16 @@
         });
 
 
-        // nice fade-in when the whole page finishes loading
+        // body starts at opacity:0 in CSS; fade it in cleanly after load
         window.addEventListener('load', () => {
-            document.body.style.opacity = '0';
             setTimeout(() => {
                 document.body.style.transition = 'opacity 0.5s ease';
                 document.body.style.opacity = '1';
-            }, 100);
+            }, 80);
         });
 
 
         // background slideshow — scroll-driven, no timers
-        // 4 slides mapped across 6 sections, crossfade handled by CSS transition
         (function () {
 
             const slides   = Array.from(document.querySelectorAll('.bg-slide'));
@@ -1729,9 +1982,32 @@
             if (e.target === this) closeCodex();
         });
 
-        // or just hit Esc
+
+        // developer logs overlay open / close
+        function openDevlogs() {
+            const overlay = document.getElementById('devlogsOverlay');
+            overlay.classList.add('open');
+            overlay.scrollTop = 0;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDevlogs() {
+            document.getElementById('devlogsOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // tap the dark backdrop to close devlogs
+        document.getElementById('devlogsOverlay').addEventListener('click', function (e) {
+            if (e.target === this) closeDevlogs();
+        });
+
+
+        // or just esc lol
         document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') closeCodex();
+            if (e.key === 'Escape') {
+                closeCodex();
+                closeDevlogs();
+            }
         });
 
     </script>
