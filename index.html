@@ -1,3 +1,13 @@
+<!--
+==================================================
+  PROJECT: The Last Message — Developer Notes
+  Developer: Alen.Akhi
+  DATE: 2026-04-04 last updated 5:00
+  DESCRIPTION:
+    I checked entire code of 2k+ lines and i changed and fixed everything i could now its up to you (note)
+==================================================
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,21 +24,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         :root {
-            --primary-orange: #c9a84c;
-            --dark-orange: #a8862a;
-            --light-orange: #e8c97e;
-            --bg-dark: #0a0806;
-            --bg-secondary: #1a1a1a;
-            --bg-card: #1f1c17;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
-            --accent-glow: rgba(201, 168, 76, 0.3);
-            --ac-gold: #c9a84c;
-            --ac-gold-light: #e8c97e;
-            --ac-gold-dim: rgba(201, 168, 76, 0.35);
+            --primary-orange:  #c9a84c;
+            --dark-orange:     #a8862a;
+            --light-orange:    #e8c97e;
+            --bg-dark:         #0a0806;
+            --bg-secondary:    #1a1a1a;
+            --bg-card:         #1f1c17;
+            --text-primary:    #ffffff;
+            --text-secondary:  #b0b0b0;
+            --accent-glow:     rgba(201, 168, 76, 0.3);
+            --ac-gold:         #c9a84c;
+            --ac-gold-light:   #e8c97e;
+            --ac-gold-dim:     rgba(201, 168, 76, 0.35);
         }
 
         body {
@@ -42,6 +56,7 @@
 
         html { scroll-behavior: smooth; }
 
+        /* ── Background Slideshow ── */
         .bg-slideshow {
             position: fixed;
             inset: 0;
@@ -59,32 +74,39 @@
             will-change: opacity;
         }
 
-        .bg-slide.active {
-            opacity: 0.82;
-        }
+        .bg-slide.active { opacity: 0.82; }
 
         .bg-night-overlay {
-            position: fixed; inset: 0; z-index: -2;
+            position: fixed;
+            inset: 0;
+            z-index: -2;
             background:
                 linear-gradient(to bottom,
-                    rgba(10,8,6,0.82) 0%,
-                    rgba(10,8,6,0.48) 40%,
-                    rgba(10,8,6,0.55) 70%,
-                    rgba(10,8,6,0.88) 100%),
+                    rgba(10, 8, 6, 0.82) 0%,
+                    rgba(10, 8, 6, 0.48) 40%,
+                    rgba(10, 8, 6, 0.55) 70%,
+                    rgba(10, 8, 6, 0.88) 100%),
                 radial-gradient(ellipse at 50% 0%,
-                    rgba(201,168,76,0.04) 0%, transparent 60%);
+                    rgba(201, 168, 76, 0.04) 0%, transparent 60%);
         }
 
         .gradient-bg {
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%; z-index: -1;
-            background: linear-gradient(135deg, rgba(10,8,6,0.55) 0%, rgba(26,10,0,0.45) 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, rgba(10, 8, 6, 0.55) 0%, rgba(26, 10, 0, 0.45) 100%);
         }
 
         .gradient-bg::before {
             content: '';
-            position: absolute; top: -50%; left: -50%;
-            width: 200%; height: 200%;
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
             background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
             animation: rotate 20s linear infinite;
         }
@@ -94,28 +116,36 @@
             to   { transform: rotate(360deg); }
         }
 
+        /* ── Navbar ── */
         nav {
-            position: fixed; top: 0; width: 100%;
+            position: fixed;
+            top: 0;
+            width: 100%;
             backdrop-filter: blur(20px);
-            background: rgba(10,8,6,0.88);
-            border-bottom: 1px solid rgba(201,168,76,0.15);
-            z-index: 1000; padding: 1.5rem 0;
+            background: rgba(10, 8, 6, 0.88);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+            z-index: 1000;
+            padding: 1.5rem 0;
             transition: all 0.3s ease;
         }
 
         nav.scrolled {
             padding: 1rem 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .nav-container {
-            max-width: 1400px; margin: 0 auto;
+            max-width: 1400px;
+            margin: 0 auto;
             padding: 0 2rem;
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
-            font-size: 1.8rem; font-weight: 800;
+            font-size: 1.8rem;
+            font-weight: 800;
             font-family: 'Cinzel', serif;
             background: linear-gradient(135deg, var(--ac-gold), var(--ac-gold-light));
             -webkit-background-clip: text;
@@ -124,20 +154,32 @@
             letter-spacing: 1px;
         }
 
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
 
         .nav-links a {
-            color: var(--text-secondary); text-decoration: none;
-            font-weight: 500; font-size: 0.78rem;
-            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             font-family: 'Cinzel', serif;
-            transition: all 0.3s ease; position: relative;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .nav-links a::after {
-            content: ''; position: absolute;
-            bottom: -5px; left: 50%; transform: translateX(-50%);
-            width: 0; height: 1px;
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 1px;
             background: var(--ac-gold);
             transition: width 0.3s ease;
         }
@@ -145,6 +187,7 @@
         .nav-links a:hover { color: var(--ac-gold-light); }
         .nav-links a:hover::after { width: 100%; }
 
+        /* Hamburger button */
         .nav-toggle {
             display: none;
             flex-direction: column;
@@ -153,6 +196,8 @@
             background: none;
             border: none;
             padding: 0.4rem;
+            position: relative;
+            z-index: 1001; /* always above the full-screen nav overlay */
         }
 
         .nav-toggle span {
@@ -168,50 +213,81 @@
         .nav-toggle.open span:nth-child(2) { opacity: 0; }
         .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
+        /* ── Hero ── */
         .hero {
             min-height: 100vh;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; padding: 6rem 2rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 3rem;
             position: relative;
         }
 
         .hero-content { max-width: 900px; animation: fadeInUp 1s ease; }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 900; font-family: 'Cinzel', serif;
-            margin-bottom: 1.5rem; line-height: 1.1;
+            font-size: clamp(5rem, 10vw, 8rem);
+            font-weight: 900;
+            font-family: 'Cinzel', serif;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
             background: linear-gradient(135deg, #fff 0%, var(--ac-gold-light) 45%, var(--ac-gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text; letter-spacing: 3px;
+            background-clip: text;
+            letter-spacing: 3px;
         }
 
-        .hero p { font-size: 1.4rem; color: var(--text-secondary); margin-bottom: 3rem; line-height: 1.8; }
+        .hero p {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
 
-        .cta-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
+        /* ── Buttons ── */
         .btn {
-            padding: 1.2rem 3rem; border-radius: 50px;
-            font-weight: 600; text-decoration: none;
-            transition: all 0.3s ease; border: none;
-            cursor: pointer; font-size: 1.1rem;
-            position: relative; overflow: hidden;
-            display: inline-flex; align-items: center;
-            justify-content: center; gap: 0.5rem;
-            text-align: center; user-select: none;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-align: center;
+            user-select: none;
             -webkit-user-select: none;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--primary-orange), var(--dark-orange));
-            color: white; box-shadow: 0 10px 30px var(--accent-glow);
+            color: white;
+            box-shadow: 0 10px 30px var(--accent-glow);
         }
 
         .btn-primary::before {
-            content: ''; position: absolute; top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
             transition: left 0.5s ease;
         }
 
@@ -219,125 +295,206 @@
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px var(--accent-glow); }
 
         .btn-secondary {
-            background: transparent; color: var(--primary-orange);
+            background: transparent;
+            color: var(--primary-orange);
             border: 2px solid var(--primary-orange);
         }
 
-        .btn-secondary:hover { background: var(--primary-orange); color: white; transform: translateY(-3px); }
+        .btn-secondary:hover {
+            background: var(--primary-orange);
+            color: white;
+            transform: translateY(-3px);
+        }
 
         .btn-journey {
             background: linear-gradient(135deg, #1a1508, #2a2010);
             color: var(--ac-gold-light);
             border: 1px solid var(--ac-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(201,168,76,0.12);
-            font-size: 1.1rem; font-family: 'Cinzel', serif;
-            font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
-            padding: 1.4rem 3.5rem; border-radius: 3px;
-            clip-path: polygon(0 10px,10px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px));
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(201, 168, 76, 0.12);
+            font-size: 1.1rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 1.4rem 3.5rem;
+            border-radius: 3px;
+            clip-path: polygon(0 10px, 10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px));
         }
 
         .btn-journey::before {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(201,168,76,0.1), transparent);
-            opacity: 0; transition: opacity 0.5s;
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.5s;
         }
 
         .btn-journey:hover {
             background: linear-gradient(135deg, var(--ac-gold), var(--dark-orange));
-            color: #0a0806; border-color: var(--ac-gold-light);
+            color: #0a0806;
+            border-color: var(--ac-gold-light);
             transform: translateY(-4px) scale(1.04);
             box-shadow: 0 20px 50px var(--accent-glow);
+        }
+
+        /* FIX #3 — btn-journey: active/tap state on touch so text stays visible */
+        .btn-journey:active {
+            background: linear-gradient(135deg, var(--ac-gold), var(--dark-orange));
+            color: #0a0806;
+            transform: translateY(-2px) scale(1.01);
         }
 
         .btn-journey:hover::before { opacity: 1; }
 
         .btn-mirage {
             position: relative;
-            display: inline-flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 0.4rem;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
             padding: 1.8rem 5rem;
             background: linear-gradient(135deg, #120f08, #1e180e);
             color: var(--ac-gold-light);
             border: 1px solid var(--ac-gold);
-            font-family: 'Cinzel', serif; font-size: 1.1rem;
-            font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
             cursor: pointer;
-            clip-path: polygon(0 14px,14px 0,calc(100% - 14px) 0,100% 14px,100% calc(100% - 14px),calc(100% - 14px) 100%,14px 100%,0 calc(100% - 14px));
-            box-shadow: 0 0 30px rgba(201,168,76,0.1), 0 20px 50px rgba(0,0,0,0.6);
-            transition: all 0.4s ease; overflow: hidden;
+            clip-path: polygon(0 14px, 14px 0, calc(100% - 14px) 0, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0 calc(100% - 14px));
+            box-shadow: 0 0 30px rgba(201, 168, 76, 0.1), 0 20px 50px rgba(0, 0, 0, 0.6);
+            transition: all 0.4s ease;
+            overflow: hidden;
             text-decoration: none;
         }
 
         .btn-mirage .bm-sub {
-            font-size: 0.65rem; letter-spacing: 3px;
-            color: rgba(201,168,76,0.52); font-weight: 400;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: rgba(201, 168, 76, 0.52);
+            font-weight: 400;
         }
 
         .btn-mirage::before {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(201,168,76,0.1), transparent);
-            transform: translateX(-120%); transition: transform 0.6s ease;
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.1), transparent);
+            transform: translateX(-120%);
+            transition: transform 0.6s ease;
         }
 
         .btn-mirage:hover {
             background: linear-gradient(135deg, #1e1608, #2e2110);
-            border-color: var(--ac-gold-light); color: #fff;
-            box-shadow: 0 0 50px rgba(201,168,76,0.22), 0 30px 60px rgba(0,0,0,0.7);
+            border-color: var(--ac-gold-light);
+            color: #fff;
+            box-shadow: 0 0 50px rgba(201, 168, 76, 0.22), 0 30px 60px rgba(0, 0, 0, 0.7);
             transform: translateY(-5px);
         }
 
         .btn-mirage:hover::before { transform: translateX(120%); }
-        .btn-mirage:hover .bm-sub { color: rgba(201,168,76,0.72); }
 
-        /* Quest button variant — green-gold tint to stand out */
-        .btn-mirage.btn-quest {
-            border-color: rgba(201,168,76,0.9);
-            box-shadow: 0 0 40px rgba(201,168,76,0.15), 0 20px 50px rgba(0,0,0,0.6);
+        .btn-mirage:hover .bm-sub { color: rgba(201, 168, 76, 0.72); }
+
+        /* FIX #3 — btn-mirage active/tap state */
+        .btn-mirage:active {
+            background: linear-gradient(135deg, #1e1608, #2e2110);
+            color: #fff;
+            transform: translateY(-2px);
         }
+
+        .btn-mirage:active .bm-sub { color: rgba(201, 168, 76, 0.6); }
+
+        /* Quest button variant */
+        .btn-mirage.btn-quest {
+            border-color: rgba(201, 168, 76, 0.9);
+            box-shadow: 0 0 40px rgba(201, 168, 76, 0.15), 0 20px 50px rgba(0, 0, 0, 0.6);
+        }
+
         .btn-mirage.btn-quest:hover {
             background: linear-gradient(135deg, var(--ac-gold), #b8921e);
             color: #0a0806;
-            box-shadow: 0 0 60px rgba(201,168,76,0.35), 0 30px 60px rgba(0,0,0,0.7);
+            box-shadow: 0 0 60px rgba(201, 168, 76, 0.35), 0 30px 60px rgba(0, 0, 0, 0.7);
         }
 
-        section { padding: 4rem 2rem; max-width: 1400px; margin: 0 auto; }
+        /* FIX #3 — Quest btn: sub-text was gold-on-gold on hover; now dark */
+        .btn-mirage.btn-quest:hover .bm-sub { color: rgba(10, 8, 6, 0.55); }
+
+        .btn-mirage.btn-quest:active {
+            background: linear-gradient(135deg, var(--ac-gold), #b8921e);
+            color: #0a0806;
+        }
+
+        .btn-mirage.btn-quest:active .bm-sub { color: rgba(10, 8, 6, 0.55); }
+
+        /* ── Sections ── */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
         .section-title {
             font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 900; font-family: 'Cinzel', serif;
-            margin-bottom: 1rem; text-align: center;
+            font-weight: 900;
+            font-family: 'Cinzel', serif;
+            margin-bottom: 1rem;
+            text-align: center;
             background: linear-gradient(135deg, var(--ac-gold-light), var(--ac-gold), var(--ac-gold-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text; letter-spacing: 2px;
+            background-clip: text;
+            letter-spacing: 2px;
         }
 
         .section-subtitle {
-            text-align: center; color: var(--text-secondary);
-            font-size: 1.2rem; margin-bottom: 4rem;
-            max-width: 700px; margin-left: auto; margin-right: auto;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .section-divider {
-            width: 100%; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(201,168,76,0.22), transparent);
-            margin: 0 auto; max-width: 900px; position: relative;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.22), transparent);
+            margin: 0 auto;
+            max-width: 900px;
+            position: relative;
         }
 
         .section-divider::after {
-            content: '◆'; position: absolute;
-            top: 50%; left: 50%; transform: translate(-50%,-50%);
-            color: var(--ac-gold); font-size: 0.68rem;
-            background: var(--bg-dark); padding: 0 0.8rem; opacity: 0.6;
+            content: '◆';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--ac-gold);
+            font-size: 0.68rem;
+            background: var(--bg-dark);
+            padding: 0 0.8rem;
+            opacity: 0.6;
         }
 
+        /* Ornate divider */
         .ac-ornate-divider {
-            display: flex; align-items: center; justify-content: center;
-            gap: 1rem; margin: 0 auto 2.5rem; max-width: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 0 auto 2.5rem;
+            max-width: 600px;
         }
 
         .ac-ornate-divider .aod-line {
-            flex: 1; height: 1px;
+            flex: 1;
+            height: 1px;
             background: linear-gradient(90deg, transparent, var(--ac-gold-dim));
         }
 
@@ -345,58 +502,95 @@
             background: linear-gradient(90deg, var(--ac-gold-dim), transparent);
         }
 
-        .ac-ornate-divider .aod-diamond { color: var(--ac-gold); font-size: 0.6rem; opacity: 0.6; }
-
-        .ac-ornate-divider .aod-label {
-            font-family: 'Cinzel', serif; font-size: 0.66rem;
-            letter-spacing: 4px; text-transform: uppercase;
-            color: rgba(201,168,76,0.5);
+        .ac-ornate-divider .aod-diamond {
+            color: var(--ac-gold);
+            font-size: 0.6rem;
+            opacity: 0.6;
         }
 
-        .story-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 2rem; margin-top: 3rem; }
+        .ac-ornate-divider .aod-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.66rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(201, 168, 76, 0.5);
+        }
+
+        /* ── Story Grid ── */
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
 
         .story-card {
             background: linear-gradient(135deg, #1a1510, #1f1c17);
-            border-radius: 2px; padding: 2.5rem;
-            border: 1px solid rgba(201,168,76,0.12);
-            transition: all 0.4s ease; position: relative; overflow: hidden;
-            clip-path: polygon(0 8px,8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px));
+            border-radius: 2px;
+            padding: 2.5rem;
+            border: 1px solid rgba(201, 168, 76, 0.12);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 8px, 8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px));
         }
 
         .story-card::before {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(135deg, rgba(201,168,76,0.05), transparent);
-            opacity: 0; transition: opacity 0.4s;
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
         }
 
-        .story-card:hover { transform: translateY(-8px); border-color: rgba(201,168,76,0.45); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .story-card:hover { transform: translateY(-8px); border-color: rgba(201, 168, 76, 0.45); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); }
         .story-card:hover::before { opacity: 1; }
         .story-card-content { position: relative; z-index: 1; }
 
         .story-icon {
-            width: 70px; height: 70px; margin-bottom: 1.5rem; display: block;
-            fill: var(--ac-gold); filter: drop-shadow(0 0 8px rgba(201,168,76,0.4));
+            width: 70px;
+            height: 70px;
+            margin-bottom: 1.5rem;
+            display: block;
+            fill: var(--ac-gold);
+            filter: drop-shadow(0 0 8px rgba(201, 168, 76, 0.4));
         }
 
-        .story-card h3 { font-size: 1.55rem; margin-bottom: 1rem; color: var(--ac-gold-light); font-family: 'Cinzel', serif; letter-spacing: 1px; }
+        .story-card h3 {
+            font-size: 1.55rem;
+            margin-bottom: 1rem;
+            color: var(--ac-gold-light);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+        }
+
         .story-card p { color: var(--text-secondary); line-height: 1.8; }
 
+        /* ── FAQ ── */
         .faq-container { max-width: 900px; margin: 0 auto; }
 
         .faq-item {
             background: linear-gradient(135deg, #141109, #1a1710);
-            border-radius: 2px; margin-bottom: 1.5rem;
-            border: 1px solid rgba(201,168,76,0.12);
-            overflow: hidden; transition: all 0.3s;
-            clip-path: polygon(0 6px,6px 0,calc(100% - 6px) 0,100% 6px,100% calc(100% - 6px),calc(100% - 6px) 100%,6px 100%,0 calc(100% - 6px));
+            border-radius: 2px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(201, 168, 76, 0.12);
+            overflow: hidden;
+            transition: all 0.3s;
+            clip-path: polygon(0 6px, 6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px));
         }
 
-        .faq-item:hover { border-color: rgba(201,168,76,0.38); }
+        .faq-item:hover { border-color: rgba(201, 168, 76, 0.38); }
 
         .faq-question {
-            padding: 2rem; cursor: pointer;
-            display: flex; justify-content: space-between; align-items: center;
-            font-weight: 600; font-size: 1.1rem; font-family: 'Cinzel', serif;
+            padding: 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: 'Cinzel', serif;
             transition: all 0.3s;
         }
 
@@ -408,35 +602,76 @@
         .faq-item.active .faq-answer { max-height: 500px; padding: 0 2rem 2rem; }
         .faq-answer p { color: var(--text-secondary); line-height: 1.8; }
 
-        .community-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 2rem; margin-top: 3rem; }
+        /* ── Community Grid ── */
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
 
         .community-card {
             background: linear-gradient(135deg, #141109, #1f1c17);
-            border-radius: 2px; padding: 3rem 2rem; text-align: center;
-            border: 1px solid rgba(201,168,76,0.12);
-            transition: all 0.4s; position: relative; overflow: hidden;
-            display: flex; flex-direction: column;
-            clip-path: polygon(0 8px,8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px));
+            border-radius: 2px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(201, 168, 76, 0.12);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            clip-path: polygon(0 8px, 8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px));
         }
 
         .community-card::before {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(135deg, rgba(201,168,76,0.04), transparent);
-            opacity: 0; transition: opacity 0.4s;
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.04), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
         }
 
-        .community-card:hover { transform: translateY(-10px) scale(1.02); border-color: rgba(201,168,76,0.42); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+        .community-card:hover { transform: translateY(-10px) scale(1.02); border-color: rgba(201, 168, 76, 0.42); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); }
         .community-card:hover::before { opacity: 1; }
         .community-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; flex: 1; }
-        .community-icon { width: 80px; height: 80px; margin: 0 auto 1.5rem; display: block; filter: drop-shadow(0 0 15px rgba(201,168,76,0.45)); pointer-events: none; user-select: none; -webkit-user-select: none; -webkit-user-drag: none; }
-        .community-card h3 { font-size: 1.7rem; margin-bottom: 1rem; font-family: 'Cinzel', serif; color: var(--ac-gold-light); letter-spacing: 1px; }
+
+        .community-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            display: block;
+            filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.45));
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .community-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 1rem;
+            font-family: 'Cinzel', serif;
+            color: var(--ac-gold-light);
+            letter-spacing: 1px;
+        }
+
         .community-card p { color: var(--text-secondary); margin-bottom: 2rem; flex: 1; }
 
-        /* ── Team Section — Horizontal Cards ── */
-        #team { padding: 5rem 2rem; max-width: 1400px; margin: 0 auto; position: relative; }
+        /* ── Team Section ── */
+        #team {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
 
         #team::before {
-            content: ''; display: block; width: 180px; height: 1px;
+            content: '';
+            display: block;
+            width: 180px;
+            height: 1px;
             margin: 0 auto 3.5rem;
             background: linear-gradient(90deg, transparent, var(--ac-gold), transparent);
         }
@@ -449,12 +684,14 @@
         }
 
         .team-card {
-            position: relative; border-radius: 2px; padding: 2px;
-            background: linear-gradient(135deg, rgba(201,168,76,0.6), rgba(201,168,76,0.05), rgba(201,168,76,0.6));
+            position: relative;
+            border-radius: 2px;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.6), rgba(201, 168, 76, 0.05), rgba(201, 168, 76, 0.6));
             background-size: 300% 300%;
             animation: borderShift 4s ease infinite;
             transition: transform 0.4s, box-shadow 0.4s;
-            clip-path: polygon(0 10px,10px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px));
+            clip-path: polygon(0 10px, 10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px));
         }
 
         @keyframes borderShift {
@@ -463,48 +700,79 @@
             100% { background-position: 0% 50%; }
         }
 
-        .team-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 24px 50px rgba(201,168,76,0.18); }
+        .team-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 24px 50px rgba(201, 168, 76, 0.18); }
 
         .team-card-inner {
-            background: #10100a; border-radius: 1px;
+            background: #10100a;
+            border-radius: 1px;
             padding: 1.6rem 1.8rem;
-            text-align: left; height: 100%; position: relative; overflow: hidden;
-            display: flex; align-items: center; gap: 1.6rem;
+            text-align: left;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 1.6rem;
         }
 
         .team-card-inner::before {
-            content: ''; position: absolute; top: 50%; left: 56px; transform: translateY(-50%);
-            width: 160px; height: 160px;
-            background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 56px;
+            transform: translateY(-50%);
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
             pointer-events: none;
         }
 
         .team-card-inner::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
-            transition: left 0.6s; pointer-events: none;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+            transition: left 0.6s;
+            pointer-events: none;
         }
 
         .team-card:hover .team-card-inner::after { left: 150%; }
 
         .team-avatar-wrap {
-            position: relative; width: 80px; height: 80px;
+            position: relative;
+            width: 80px;
+            height: 80px;
             flex-shrink: 0;
         }
 
         .team-avatar {
-            width: 80px; height: 80px; border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
             background: linear-gradient(135deg, var(--ac-gold), #7a5c1e);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.7rem; font-weight: 800; font-family: 'Cinzel', serif;
-            color: white; position: relative; z-index: 1;
-            box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            font-weight: 800;
+            font-family: 'Cinzel', serif;
+            color: white;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2);
         }
 
         .team-avatar-wrap::before {
-            content: ''; position: absolute; inset: -5px; border-radius: 50%;
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
             background: conic-gradient(var(--ac-gold) 0deg, transparent 120deg, var(--ac-gold-light) 240deg, transparent 360deg);
-            animation: spinRing 3s linear infinite; opacity: 0.7;
+            animation: spinRing 3s linear infinite;
+            opacity: 0.7;
         }
 
         @keyframes spinRing {
@@ -512,240 +780,443 @@
             to   { transform: rotate(360deg); }
         }
 
-        /* Info wrapper — all text content next to avatar */
-        .team-info {
-            flex: 1; position: relative; z-index: 1; min-width: 0;
+        .team-info { flex: 1; position: relative; z-index: 1; min-width: 0; }
+
+        .team-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            margin-bottom: 0.35rem;
+            color: var(--text-primary);
         }
 
-        .team-card h3 { font-size: 1.1rem; font-weight: 700; font-family: 'Cinzel', serif; margin-bottom: 0.35rem; color: var(--text-primary); }
-
         .team-role {
-            display: inline-block; background: rgba(201,168,76,0.1);
-            color: var(--ac-gold-light); font-size: 0.68rem; font-weight: 600;
-            padding: 0.25rem 0.8rem; border-radius: 2px;
-            border: 1px solid rgba(201,168,76,0.3);
-            margin-bottom: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase;
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.1);
+            color: var(--ac-gold-light);
+            font-size: 0.68rem;
+            font-weight: 600;
+            padding: 0.25rem 0.8rem;
+            border-radius: 2px;
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            margin-bottom: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
             font-family: 'Cinzel', serif;
         }
 
         .team-card p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.65; }
 
         .team-number {
-            position: absolute; bottom: 0.6rem; right: 1rem;
-            font-size: 3rem; font-weight: 900; font-family: 'Cinzel', serif;
-            color: rgba(201,168,76,0.055); line-height: 1;
-            pointer-events: none; user-select: none;
+            position: absolute;
+            bottom: 0.6rem;
+            right: 1rem;
+            font-size: 3rem;
+            font-weight: 900;
+            font-family: 'Cinzel', serif;
+            color: rgba(201, 168, 76, 0.055);
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
         }
 
-        .next-page-section { padding: 3.5rem 2rem 4rem; max-width: 900px; margin: 0 auto; text-align: center; }
-        .np-eyebrow { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 5px; text-transform: uppercase; color: rgba(201,168,76,0.52); margin-bottom: 1.2rem; display: block; }
-        .np-title { font-family: 'Cinzel', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; color: var(--ac-gold-light); letter-spacing: 4px; margin-bottom: 1rem; line-height: 1.15; }
-        .np-desc { color: var(--text-secondary); font-size: 1.05rem; max-width: 560px; margin: 0 auto 3rem; line-height: 1.8; }
+        /* ── Next-Page / Gateway Sections ── */
+        .next-page-section {
+            padding: 3.5rem 2rem 4rem;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
 
-        /* Quest creator callout box */
+        .np-eyebrow {
+            font-family: 'Cinzel', serif;
+            font-size: 0.68rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: rgba(201, 168, 76, 0.52);
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .np-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            color: var(--ac-gold-light);
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            line-height: 1.15;
+        }
+
+        .np-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 560px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        /* ── Quest Creator ── */
         .quest-creator-section {
-            padding: 3.5rem 2rem 5rem; max-width: 960px; margin: 0 auto; text-align: center;
+            padding: 3.5rem 2rem 5rem;
+            max-width: 960px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .quest-feature-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 1.2rem; margin: 0 auto 3rem; max-width: 780px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin: 0 auto 3rem;
+            max-width: 780px;
         }
 
         .quest-feature-item {
-            background: rgba(201,168,76,0.04);
-            border: 1px solid rgba(201,168,76,0.14);
-            border-radius: 2px; padding: 1.2rem 1rem;
-            font-family: 'Cinzel', serif; font-size: 0.72rem;
-            letter-spacing: 1.5px; color: rgba(201,168,76,0.65);
-            text-transform: uppercase; line-height: 1.5;
-            clip-path: polygon(0 5px,5px 0,calc(100% - 5px) 0,100% 5px,100% calc(100% - 5px),calc(100% - 5px) 100%,5px 100%,0 calc(100% - 5px));
+            background: rgba(201, 168, 76, 0.04);
+            border: 1px solid rgba(201, 168, 76, 0.14);
+            border-radius: 2px;
+            padding: 1.2rem 1rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            color: rgba(201, 168, 76, 0.65);
+            text-transform: uppercase;
+            line-height: 1.5;
+            clip-path: polygon(0 5px, 5px 0, calc(100% - 5px) 0, 100% 5px, 100% calc(100% - 5px), calc(100% - 5px) 100%, 5px 100%, 0 calc(100% - 5px));
             transition: all 0.3s;
         }
 
         .quest-feature-item:hover {
-            border-color: rgba(201,168,76,0.38);
+            border-color: rgba(201, 168, 76, 0.38);
             color: var(--ac-gold-light);
-            background: rgba(201,168,76,0.08);
+            background: rgba(201, 168, 76, 0.08);
         }
 
         .quest-feature-item .qf-icon { font-size: 1.3rem; display: block; margin-bottom: 0.5rem; }
 
-        #trailer { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; text-align: center; }
+        /* ── Trailer ── */
+        #trailer {
+            padding: 4rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
 
         .trailer-label {
-            display: inline-flex; align-items: center; gap: 0.6rem;
-            background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.3);
-            border-radius: 2px; padding: 0.5rem 1.4rem;
-            font-size: 0.7rem; font-weight: 700; font-family: 'Cinzel', serif;
-            color: var(--ac-gold); letter-spacing: 4px; text-transform: uppercase;
-            margin-bottom: 1.5rem; animation: fadeInUp 0.6s ease both;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(201, 168, 76, 0.08);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 2px;
+            padding: 0.5rem 1.4rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            color: var(--ac-gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease both;
         }
 
         .trailer-label::before {
-            content: ''; display: inline-block; width: 6px; height: 6px;
-            background: var(--ac-gold); clip-path: polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--ac-gold);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
             animation: pulseDot 1.5s ease infinite;
         }
 
         @keyframes pulseDot {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.6); }
+            50%       { opacity: 0.4; transform: scale(0.6); }
         }
 
         .trailer-title {
-            font-size: clamp(2.8rem,6vw,5rem); font-weight: 900;
-            font-family: 'Cinzel', serif; letter-spacing: 5px; line-height: 1.05; margin-bottom: 1rem;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 900;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 5px;
+            line-height: 1.05;
+            margin-bottom: 1rem;
             background: linear-gradient(135deg, #fff 30%, var(--ac-gold-light));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .trailer-subtitle { color: var(--text-secondary); font-size: 1.15rem; margin-bottom: 3.5rem; }
 
         .trailer-frame-wrap {
-            position: relative; border-radius: 2px; padding: 3px;
-            background: linear-gradient(135deg, rgba(201,168,76,0.7), rgba(201,168,76,0.05) 50%, rgba(201,168,76,0.7));
-            background-size: 300% 300%; animation: borderShift 5s ease infinite;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.7), 0 0 80px rgba(201,168,76,0.1);
-            clip-path: polygon(0 12px,12px 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px));
+            position: relative;
+            border-radius: 2px;
+            padding: 3px;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.7), rgba(201, 168, 76, 0.05) 50%, rgba(201, 168, 76, 0.7));
+            background-size: 300% 300%;
+            animation: borderShift 5s ease infinite;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7), 0 0 80px rgba(201, 168, 76, 0.1);
+            clip-path: polygon(0 12px, 12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px));
         }
 
         .trailer-frame-inner {
-            overflow: hidden; background: #000;
-            position: relative; aspect-ratio: 16/9;
+            overflow: hidden;
+            background: #000;
+            position: relative;
+            aspect-ratio: 16 / 9;
             border-radius: 2px;
         }
 
-        .trailer-frame-inner iframe { width: 100%; height: 100%; position: absolute; top: 0; left: 0; border: none; display: block; }
+        .trailer-frame-inner iframe {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: none;
+            display: block;
+        }
 
         .trailer-corner { position: absolute; width: 22px; height: 22px; border-color: var(--ac-gold); border-style: solid; z-index: 2; pointer-events: none; }
-        .trailer-corner.tl { top: -2px; left: -2px; border-width: 2px 0 0 2px; }
-        .trailer-corner.tr { top: -2px; right: -2px; border-width: 2px 2px 0 0; }
-        .trailer-corner.bl { bottom: -2px; left: -2px; border-width: 0 0 2px 2px; }
-        .trailer-corner.br { bottom: -2px; right: -2px; border-width: 0 2px 2px 0; }
+        .trailer-corner.tl { top: -2px;    left: -2px;   border-width: 2px 0 0 2px; }
+        .trailer-corner.tr { top: -2px;    right: -2px;  border-width: 2px 2px 0 0; }
+        .trailer-corner.bl { bottom: -2px; left: -2px;   border-width: 0 0 2px 2px; }
+        .trailer-corner.br { bottom: -2px; right: -2px;  border-width: 0 2px 2px 0; }
 
-        footer { background: #090806; padding: 4rem 2rem 2rem; text-align: center; border-top: 1px solid rgba(201,168,76,0.12); }
+        /* ── Footer ── */
+        footer {
+            background: #090806;
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(201, 168, 76, 0.12);
+        }
+
         .footer-content { max-width: 1400px; margin: 0 auto; }
-        .footer-links { display: flex; flex-direction: row; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-bottom: 2rem; }
-        .footer-links a { color: var(--text-secondary); text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.73rem; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s; }
-        .footer-links a:hover { color: var(--ac-gold-light); }
-        .copyright { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.7rem; }
-        .developer-credit { font-size: 0.95rem; color: var(--ac-gold); font-weight: 700; font-family: 'Cinzel', serif; letter-spacing: 2px; text-shadow: 0 0 12px rgba(201,168,76,0.3); }
 
-        /* ── Shared overlay styles ── */
+        .footer-links {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.73rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover { color: var(--ac-gold-light); }
+
+        .copyright { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.7rem; }
+
+        .developer-credit {
+            font-size: 0.95rem;
+            color: var(--ac-gold);
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+            text-shadow: 0 0 12px rgba(201, 168, 76, 0.3);
+        }
+
+        /* ── Shared Overlay ── */
         .codex-overlay {
-            position: fixed; inset: 0; z-index: 9000;
-            display: flex; align-items: flex-start; justify-content: center;
-            background: rgba(5,4,2,0.97); backdrop-filter: blur(14px);
-            opacity: 0; pointer-events: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9000;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            background: rgba(5, 4, 2, 0.97);
+            backdrop-filter: blur(14px);
+            opacity: 0;
+            pointer-events: none;
             transition: opacity 0.45s ease;
-            overflow-y: auto; padding: 2rem 1.5rem;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
         }
 
         .codex-overlay.open { opacity: 1; pointer-events: all; }
 
         .codex-panel {
-            max-width: 1000px; width: 100%; position: relative;
+            max-width: 1000px;
+            width: 100%;
+            position: relative;
             padding: 3rem 3rem 4rem;
             background: linear-gradient(160deg, #0e0c07, #14110a, #0e0c07);
-            border: 1px solid rgba(201,168,76,0.35);
+            border: 1px solid rgba(201, 168, 76, 0.35);
             margin: 2rem auto;
-            transform: translateY(35px); transition: transform 0.45s ease;
-            clip-path: polygon(0 16px,16px 0,calc(100% - 16px) 0,100% 16px,100% calc(100% - 16px),calc(100% - 16px) 100%,16px 100%,0 calc(100% - 16px));
+            transform: translateY(35px);
+            transition: transform 0.45s ease;
+            clip-path: polygon(0 16px, 16px 0, calc(100% - 16px) 0, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0 calc(100% - 16px));
         }
 
         .codex-overlay.open .codex-panel { transform: translateY(0); }
 
         .codex-panel::before {
-            content: ''; position: absolute; inset: 8px;
-            border: 1px solid rgba(201,168,76,0.08); pointer-events: none;
-            clip-path: polygon(0 14px,14px 0,calc(100% - 14px) 0,100% 14px,100% calc(100% - 14px),calc(100% - 14px) 100%,14px 100%,0 calc(100% - 14px));
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 1px solid rgba(201, 168, 76, 0.08);
+            pointer-events: none;
+            clip-path: polygon(0 14px, 14px 0, calc(100% - 14px) 0, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0 calc(100% - 14px));
         }
 
         .codex-close-btn {
-            position: absolute; top: 1.4rem; right: 1.4rem;
-            width: 42px; height: 42px;
-            display: flex; align-items: center; justify-content: center;
-            background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.3);
-            color: var(--ac-gold); font-size: 1.1rem; cursor: pointer;
-            transition: all 0.3s; z-index: 10;
-            clip-path: polygon(0 5px,5px 0,calc(100% - 5px) 0,100% 5px,100% calc(100% - 5px),calc(100% - 5px) 100%,5px 100%,0 calc(100% - 5px));
+            position: absolute;
+            top: 1.4rem;
+            right: 1.4rem;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(201, 168, 76, 0.08);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            color: var(--ac-gold);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+            clip-path: polygon(0 5px, 5px 0, calc(100% - 5px) 0, 100% 5px, 100% calc(100% - 5px), calc(100% - 5px) 100%, 5px 100%, 0 calc(100% - 5px));
         }
 
-        .codex-close-btn:hover { background: rgba(201,168,76,0.2); border-color: var(--ac-gold-light); color: #fff; }
+        .codex-close-btn:hover { background: rgba(201, 168, 76, 0.2); border-color: var(--ac-gold-light); color: #fff; }
 
         .codex-header { text-align: center; margin-bottom: 2.8rem; }
 
         .codex-header-ornament { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
-        .codex-header-ornament .cho-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3)); }
-        .codex-header-ornament .cho-line.r { background: linear-gradient(90deg, rgba(201,168,76,0.3), transparent); }
+        .codex-header-ornament .cho-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.3)); }
+        .codex-header-ornament .cho-line.r { background: linear-gradient(90deg, rgba(201, 168, 76, 0.3), transparent); }
         .codex-header-ornament .cho-diamond { color: var(--ac-gold); font-size: 0.65rem; }
 
         .codex-badge {
-            display: inline-flex; align-items: center; gap: 0.6rem;
-            background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.28);
-            border-radius: 2px; padding: 0.45rem 1.4rem;
-            font-size: 0.68rem; font-weight: 600; font-family: 'Cinzel', serif;
-            color: var(--ac-gold); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 1.4rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(201, 168, 76, 0.08);
+            border: 1px solid rgba(201, 168, 76, 0.28);
+            border-radius: 2px;
+            padding: 0.45rem 1.4rem;
+            font-size: 0.68rem;
+            font-weight: 600;
+            font-family: 'Cinzel', serif;
+            color: var(--ac-gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1.4rem;
         }
 
-        .codex-badge::before { content: ''; width: 5px; height: 5px; background: var(--ac-gold); clip-path: polygon(50% 0%,100% 50%,50% 100%,0% 50%); }
+        .codex-badge::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: var(--ac-gold);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
 
-        .codex-main-title { font-family: 'Cinzel', serif; font-size: clamp(2rem,5vw,3.8rem); font-weight: 900; letter-spacing: 6px; color: var(--ac-gold-light); margin-bottom: 0.6rem; line-height: 1.1; }
-        .codex-sub-title { font-family: 'Cinzel', serif; font-size: 0.86rem; letter-spacing: 3px; color: rgba(201,168,76,0.48); text-transform: uppercase; }
+        .codex-main-title { font-family: 'Cinzel', serif; font-size: clamp(2rem, 5vw, 3.8rem); font-weight: 900; letter-spacing: 6px; color: var(--ac-gold-light); margin-bottom: 0.6rem; line-height: 1.1; }
+        .codex-sub-title  { font-family: 'Cinzel', serif; font-size: 0.86rem; letter-spacing: 3px; color: rgba(201, 168, 76, 0.48); text-transform: uppercase; }
 
         .codex-illustration {
-            border: 1px solid rgba(201,168,76,0.2); overflow: hidden;
-            margin-bottom: 2.5rem; position: relative; background: #0a0806;
-            clip-path: polygon(0 10px,10px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px));
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            position: relative;
+            background: #0a0806;
+            clip-path: polygon(0 10px, 10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px));
         }
 
-        .codex-illustration img { width: 100%; max-height: 340px; object-fit: cover; display: block; opacity: 0.82; transition: opacity 0.4s, transform 0.5s; }
+        .codex-illustration img {
+            width: 100%;
+            max-height: 340px;
+            object-fit: cover;
+            display: block;
+            opacity: 0.82;
+            transition: opacity 0.4s, transform 0.5s;
+        }
+
         .codex-illustration:hover img { opacity: 1; transform: scale(1.02); }
 
         .codex-illustration-caption {
-            position: absolute; bottom: 0; left: 0; right: 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
             padding: 0.7rem 1.4rem;
-            background: linear-gradient(to top, rgba(10,8,6,0.92), transparent);
-            font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 2px;
-            color: rgba(201,168,76,0.62); text-transform: uppercase;
+            background: linear-gradient(to top, rgba(10, 8, 6, 0.92), transparent);
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: rgba(201, 168, 76, 0.62);
+            text-transform: uppercase;
         }
 
         .codex-intro-text {
-            color: #c0b08a; line-height: 1.9; font-size: 0.98rem;
-            margin-bottom: 2.2rem; padding: 1.4rem 1.6rem;
-            background: rgba(201,168,76,0.04); border-left: 2px solid rgba(201,168,76,0.3);
+            color: #c0b08a;
+            line-height: 1.9;
+            font-size: 0.98rem;
+            margin-bottom: 2.2rem;
+            padding: 1.4rem 1.6rem;
+            background: rgba(201, 168, 76, 0.04);
+            border-left: 2px solid rgba(201, 168, 76, 0.3);
         }
 
         .codex-legend { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-        .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.74rem; font-family: 'Cinzel', serif; color: rgba(201,168,76,0.52); letter-spacing: 1px; }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.74rem; font-family: 'Cinzel', serif; color: rgba(201, 168, 76, 0.52); letter-spacing: 1px; }
         .legend-item .legend-bar { width: 18px; height: 3px; border-radius: 1px; }
 
         .codex-table-wrap { overflow-x: auto; margin-bottom: 2.5rem; }
         .codex-table-wrap::-webkit-scrollbar { height: 3px; }
-        .codex-table-wrap::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
+        .codex-table-wrap::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); }
         .codex-table-wrap::-webkit-scrollbar-thumb { background: var(--ac-gold-dim); border-radius: 2px; }
 
         .codex-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
-        .codex-table thead tr { background: rgba(201,168,76,0.09); border-bottom: 1px solid rgba(201,168,76,0.3); }
+        .codex-table thead tr { background: rgba(201, 168, 76, 0.09); border-bottom: 1px solid rgba(201, 168, 76, 0.3); }
         .codex-table thead th { padding: 1.1rem 1.4rem; text-align: left; font-family: 'Cinzel', serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--ac-gold); }
-        .codex-table tbody tr { border-bottom: 1px solid rgba(201,168,76,0.065); transition: background 0.2s; cursor: default; }
-        .codex-table tbody tr:nth-child(even) { background: rgba(201,168,76,0.02); }
-        .codex-table tbody tr:hover { background: rgba(201,168,76,0.07); }
-        .codex-table tbody tr.clan-prophet { background: rgba(201,168,76,0.06); border-left: 2px solid var(--ac-gold); }
-        .codex-table tbody tr.clan-prophet:hover { background: rgba(201,168,76,0.11); }
-        .codex-table tbody tr.clan-opponent { border-left: 2px solid rgba(255,70,40,0.4); }
-        .codex-table tbody tr.clan-companion { border-left: 2px solid rgba(80,200,100,0.35); }
+        .codex-table tbody tr { border-bottom: 1px solid rgba(201, 168, 76, 0.065); transition: background 0.2s; cursor: default; }
+        .codex-table tbody tr:nth-child(even) { background: rgba(201, 168, 76, 0.02); }
+        .codex-table tbody tr:hover { background: rgba(201, 168, 76, 0.07); }
+        .codex-table tbody tr.clan-prophet  { background: rgba(201, 168, 76, 0.06); border-left: 2px solid var(--ac-gold); }
+        .codex-table tbody tr.clan-prophet:hover { background: rgba(201, 168, 76, 0.11); }
+        .codex-table tbody tr.clan-opponent  { border-left: 2px solid rgba(255, 70, 40, 0.4); }
+        .codex-table tbody tr.clan-companion { border-left: 2px solid rgba(80, 200, 100, 0.35); }
         .codex-table td { padding: 1rem 1.4rem; color: #c8b98a; vertical-align: top; line-height: 1.55; }
         .codex-table td:first-child { font-family: 'Cinzel', serif; font-weight: 600; color: var(--ac-gold-light); font-size: 0.9rem; }
 
-        .clan-tag { display: inline-block; font-size: 0.64rem; padding: 0.1rem 0.5rem; border-radius: 2px; font-family: 'Cinzel', serif; letter-spacing: 0.7px; font-weight: 600; white-space: nowrap; }
-        .clan-tag.hollow { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.22); color: var(--ac-gold); }
-        .clan-tag.outskirts { background: rgba(140,120,70,0.08); border: 1px solid rgba(140,120,70,0.18); color: #9e8c5a; }
+        .clan-tag {
+            display: inline-block;
+            font-size: 0.64rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 2px;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.7px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
 
-        .codex-footnote { padding-top: 2rem; border-top: 1px solid rgba(201,168,76,0.1); font-size: 0.82rem; color: rgba(201,168,76,0.36); line-height: 1.7; font-style: italic; }
+        .clan-tag.hollow   { background: rgba(201, 168, 76, 0.1);    border: 1px solid rgba(201, 168, 76, 0.22); color: var(--ac-gold); }
+        .clan-tag.outskirts { background: rgba(140, 120, 70, 0.08); border: 1px solid rgba(140, 120, 70, 0.18); color: #9e8c5a; }
 
-        /* ── Developer Logs styles ── */
+        .codex-footnote {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(201, 168, 76, 0.1);
+            font-size: 0.82rem;
+            color: rgba(201, 168, 76, 0.36);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Developer Logs ── */
         .devlog-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -755,31 +1226,33 @@
 
         .devlog-card {
             background: linear-gradient(160deg, #11100a, #191610);
-            border: 1px solid rgba(201,168,76,0.18);
-            border-radius: 2px; overflow: hidden;
-            clip-path: polygon(0 8px,8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px));
+            border: 1px solid rgba(201, 168, 76, 0.18);
+            border-radius: 2px;
+            overflow: hidden;
+            clip-path: polygon(0 8px, 8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px));
             transition: all 0.35s ease;
-            display: flex; flex-direction: column;
+            display: flex;
+            flex-direction: column;
         }
 
         .devlog-card:hover {
-            border-color: rgba(201,168,76,0.55);
+            border-color: rgba(201, 168, 76, 0.55);
             transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(201,168,76,0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(201, 168, 76, 0.08);
         }
 
-        /* FIX — Devlog images: same approach as codex-illustration */
         .devlog-img-wrap {
-            position: relative; overflow: hidden;
-            border: none;
+            position: relative;
+            overflow: hidden;
             background: #0a0806;
             flex-shrink: 0;
         }
 
         .devlog-img-wrap::after {
             content: '';
-            position: absolute; inset: 0;
-            background: linear-gradient(to bottom, transparent 45%, rgba(10,8,6,0.7) 100%);
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 45%, rgba(10, 8, 6, 0.7) 100%);
             pointer-events: none;
         }
 
@@ -788,114 +1261,173 @@
             display: block;
             opacity: 0.85;
             transition: transform 0.5s ease, opacity 0.3s ease;
-            /* removed aspect-ratio constraint so image renders at natural height like codex */
             max-height: 200px;
             object-fit: cover;
         }
 
-        /* Placeholder shown when image fails to load */
         .devlog-img-wrap .devlog-img-placeholder {
             display: none;
-            width: 100%; height: 130px;
-            align-items: center; justify-content: center;
-            flex-direction: column; gap: 0.6rem;
+            width: 100%;
+            height: 130px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 0.6rem;
             background: linear-gradient(135deg, #13110b, #1a1710);
-            color: rgba(201,168,76,0.3);
-            font-family: 'Cinzel', serif; font-size: 0.65rem;
-            letter-spacing: 2px; text-transform: uppercase;
+            color: rgba(201, 168, 76, 0.3);
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .devlog-img-wrap img.img-failed { display: none; }
         .devlog-img-wrap img.img-failed ~ .devlog-img-placeholder { display: flex; }
 
-        .devlog-card:hover .devlog-img-wrap img {
-            transform: scale(1.06);
-            opacity: 1;
-        }
+        .devlog-card:hover .devlog-img-wrap img { transform: scale(1.06); opacity: 1; }
 
         .devlog-num-badge {
-            position: absolute; top: 0.8rem; left: 0.8rem; z-index: 2;
-            background: rgba(10,8,6,0.82); border: 1px solid rgba(201,168,76,0.4);
+            position: absolute;
+            top: 0.8rem;
+            left: 0.8rem;
+            z-index: 2;
+            background: rgba(10, 8, 6, 0.82);
+            border: 1px solid rgba(201, 168, 76, 0.4);
             padding: 0.25rem 0.7rem;
-            font-family: 'Cinzel', serif; font-size: 0.6rem;
-            font-weight: 700; letter-spacing: 2px;
-            color: var(--ac-gold); text-transform: uppercase;
-            clip-path: polygon(0 4px,4px 0,calc(100% - 4px) 0,100% 4px,100% calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,0 calc(100% - 4px));
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--ac-gold);
+            text-transform: uppercase;
+            clip-path: polygon(0 4px, 4px 0, calc(100% - 4px) 0, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 0 calc(100% - 4px));
         }
 
         .devlog-card-body {
             padding: 1.2rem 1.4rem 1.4rem;
-            display: flex; flex-direction: column; flex: 1;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
         .devlog-card-type {
             font-family: 'Cinzel', serif;
-            font-size: 0.58rem; letter-spacing: 3px;
-            color: rgba(201,168,76,0.45); text-transform: uppercase;
-            margin-bottom: 0.45rem; display: block;
+            font-size: 0.58rem;
+            letter-spacing: 3px;
+            color: rgba(201, 168, 76, 0.45);
+            text-transform: uppercase;
+            margin-bottom: 0.45rem;
+            display: block;
         }
 
         .devlog-card-title {
             font-family: 'Cinzel', serif;
-            font-size: 0.95rem; font-weight: 700;
-            color: var(--ac-gold-light); letter-spacing: 0.5px;
-            margin-bottom: 0.6rem; line-height: 1.35;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--ac-gold-light);
+            letter-spacing: 0.5px;
+            margin-bottom: 0.6rem;
+            line-height: 1.35;
         }
 
         .devlog-card-desc {
-            font-size: 0.82rem; color: var(--text-secondary);
-            line-height: 1.65; margin-bottom: 1.2rem; flex: 1;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 1.2rem;
+            flex: 1;
         }
 
         .devlog-open-link {
-            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
             padding: 0.75rem 1rem;
-            background: rgba(201,168,76,0.07);
-            border: 1px solid rgba(201,168,76,0.28);
+            background: rgba(201, 168, 76, 0.07);
+            border: 1px solid rgba(201, 168, 76, 0.28);
             color: var(--ac-gold-light);
             text-decoration: none;
-            font-family: 'Cinzel', serif; font-size: 0.7rem;
-            font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
             transition: all 0.3s ease;
-            clip-path: polygon(0 4px,4px 0,calc(100% - 4px) 0,100% 4px,100% calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,0 calc(100% - 4px));
+            clip-path: polygon(0 4px, 4px 0, calc(100% - 4px) 0, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 0 calc(100% - 4px));
             margin-top: auto;
         }
 
-        .devlog-open-link:hover {
-            background: rgba(201,168,76,0.18);
-            border-color: var(--ac-gold);
-            color: #fff;
-        }
+        .devlog-open-link:hover { background: rgba(201, 168, 76, 0.18); border-color: var(--ac-gold); color: #fff; }
 
         .devlog-patreon-note {
-            text-align: center; padding: 1.4rem 1.6rem;
-            background: rgba(201,168,76,0.04);
-            border: 1px solid rgba(201,168,76,0.12);
-            font-size: 0.82rem; color: rgba(201,168,76,0.48);
-            font-family: 'Cinzel', serif; letter-spacing: 1px;
-            line-height: 1.7; margin-bottom: 2rem;
-            clip-path: polygon(0 6px,6px 0,calc(100% - 6px) 0,100% 6px,100% calc(100% - 6px),calc(100% - 6px) 100%,6px 100%,0 calc(100% - 6px));
+            text-align: center;
+            padding: 1.4rem 1.6rem;
+            background: rgba(201, 168, 76, 0.04);
+            border: 1px solid rgba(201, 168, 76, 0.12);
+            font-size: 0.82rem;
+            color: rgba(201, 168, 76, 0.48);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            clip-path: polygon(0 6px, 6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px));
         }
 
         .devlog-patreon-note a {
-            color: var(--ac-gold-light); text-decoration: none;
-            border-bottom: 1px solid rgba(201,168,76,0.4);
+            color: var(--ac-gold-light);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.4);
             transition: border-color 0.3s, color 0.3s;
         }
 
         .devlog-patreon-note a:hover { color: #fff; border-color: var(--ac-gold); }
 
+        /* ── Animations ── */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        .fade-in { opacity: 0; transition: opacity 0.7s ease, transform 0.7s ease; transform: translateY(20px); }
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translateY(20px);
+        }
+
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); animation: bounce 2s infinite; transition: opacity 0.3s; }
-        .scroll-indicator span { display: block; width: 24px; height: 40px; border: 1px solid var(--ac-gold); border-radius: 12px; position: relative; }
-        .scroll-indicator span::before { content: ''; position: absolute; top: 7px; left: 50%; transform: translateX(-50%); width: 4px; height: 7px; background: var(--ac-gold); border-radius: 2px; animation: scrollDot 2s infinite; }
+        /* ── Scroll Indicator ── */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 24px;
+            height: 40px;
+            border: 1px solid var(--ac-gold);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 7px;
+            background: var(--ac-gold);
+            border-radius: 2px;
+            animation: scrollDot 2s infinite;
+        }
 
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
@@ -909,43 +1441,57 @@
             100% { opacity: 0; top: 25px; }
         }
 
-        .hero-logo-wrap { margin-bottom: 2rem; display: flex; justify-content: center; align-items: center; animation: fadeInUp 0.8s ease both; }
+        /* ── Hero Logo ── */
+        .hero-logo-wrap {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInUp 0.8s ease both;
+        }
 
         .hero-logo-img {
-            width: clamp(180px, 26vw, 400px); height: auto; object-fit: contain;
-            filter: drop-shadow(0 0 30px rgba(201,168,76,0.4)) drop-shadow(0 0 60px rgba(201,168,76,0.12));
-            border-radius: 16px; transition: filter 0.4s, transform 0.4s;
+            width: clamp(300px, 26vw, 400px);
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 30px rgba(201, 168, 76, 0.4)) drop-shadow(0 0 60px rgba(201, 168, 76, 0.12));
+            border-radius: 16px;
+            transition: filter 0.4s, transform 0.4s;
         }
 
         .hero-logo-img:hover {
-            filter: drop-shadow(0 0 50px rgba(201,168,76,0.7)) drop-shadow(0 0 100px rgba(201,168,76,0.18));
+            filter: drop-shadow(0 0 50px rgba(201, 168, 76, 0.7)) drop-shadow(0 0 100px rgba(201, 168, 76, 0.18));
             transform: scale(1.05);
         }
 
-        .nav-logo-img { height: 38px; width: auto; object-fit: contain; border-radius: 6px; margin-right: 0.6rem; filter: drop-shadow(0 0 8px rgba(201,168,76,0.35)); vertical-align: middle; transition: filter 0.3s; }
-        .nav-logo-img:hover { filter: drop-shadow(0 0 14px rgba(201,168,76,0.65)); }
-        .logo-wrap { display: flex; align-items: center; gap: 0.5rem; }
-
-        /* ── Desktop large (>1200px) — hero more compact ── */
-        @media (min-width: 1200px) {
-            .hero {
-                min-height: 96vh;
-                padding: 5rem 2rem 2.5rem;
-            }
-            .hero-logo-img {
-                width: clamp(280px, 24vw, 420px);
-            }
-            .hero h1 {
-                font-size: clamp(3.2rem, 5.5vw, 5.2rem);
-                margin-bottom: 1.2rem;
-            }
-            .hero p {
-                font-size: 1.25rem;
-                margin-bottom: 2.5rem;
-            }
+        .nav-logo-img {
+            height: 108px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 6px;
+            margin-right: 0.6rem;
+            filter: drop-shadow(0 0 8px rgba(201, 168, 76, 0.35));
+            vertical-align: middle;
+            transition: filter 0.3s;
         }
 
-        /* ── Tablet (1024px) ── */
+        .nav-logo-img:hover { filter: drop-shadow(0 0 14px rgba(201, 168, 76, 0.65)); }
+
+        .logo-wrap { display: flex; align-items: center; gap: 0.5rem; }
+
+        /* ════════════════════════════════════════════
+           RESPONSIVE BREAKPOINTS
+        ════════════════════════════════════════════ */
+
+        /* Desktop large (>1200px) */
+        @media (min-width: 1200px) {
+            .hero { min-height: 96vh; padding: 5rem 2rem 2.5rem; }
+            .hero-logo-img { width: clamp(350px, 24vw, 420px); }
+            .hero h1 { font-size: clamp(3.2rem, 5.5vw, 5.2rem); margin-bottom: 1.2rem; }
+            .hero p { font-size: 1.25rem; margin-bottom: 2.5rem; }
+        }
+
+        /* Tablet (≤1024px) */
         @media (max-width: 1024px) {
             .nav-container { padding: 0 1.5rem; }
             .hero p { font-size: 1.2rem; }
@@ -956,9 +1502,10 @@
             .quest-feature-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* ── Mobile (768px) ── */
+        /* Mobile (≤768px) */
         @media (max-width: 768px) {
 
+            /* Navbar layout */
             .nav-container {
                 flex-direction: row;
                 flex-wrap: nowrap;
@@ -966,31 +1513,42 @@
                 justify-content: space-between;
             }
 
+            /* Show hamburger */
             .nav-toggle { display: flex; }
 
+            /* FIX #4 — full-screen 100vh overlay when burger is open */
             .nav-links {
                 display: none;
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 0;
                 left: 0;
                 right: 0;
+                bottom: 0;
+                height: 100dvh;           /* covers full screen */
                 flex-direction: column;
+                justify-content: center;  /* vertically centred links */
+                align-items: center;
                 gap: 0;
-                background: rgba(10,8,6,0.97);
-                border-top: 1px solid rgba(201,168,76,0.15);
-                border-bottom: 1px solid rgba(201,168,76,0.15);
-                padding: 1rem 0;
+                background: rgba(10, 8, 6, 0.98);
+                backdrop-filter: blur(24px);
+                border-top: none;
+                border-bottom: none;
+                padding: 0;
+                z-index: 999;             /* below nav-toggle (z-index 1001) */
+                overflow-y: auto;
             }
 
             .nav-links.open { display: flex; }
 
-            .nav-links li { width: 100%; }
+            .nav-links li { width: 100%; text-align: center; }
 
             .nav-links a {
                 display: block;
-                padding: 0.85rem 2rem;
-                font-size: 0.8rem;
-                border-bottom: 1px solid rgba(201,168,76,0.06);
+                padding: 1.1rem 2rem;
+                font-size: 0.95rem;
+                letter-spacing: 3px;
+                border-bottom: 1px solid rgba(201, 168, 76, 0.07);
+                text-align: center;
             }
 
             .nav-links a::after { display: none; }
@@ -1006,10 +1564,9 @@
             .cta-buttons { flex-direction: column; align-items: center; }
             .btn { width: 100%; max-width: 360px; justify-content: center; }
 
-            .story-grid { grid-template-columns: 1fr; }
+            .story-grid     { grid-template-columns: 1fr; }
             .community-grid { grid-template-columns: 1fr; }
-            .team-grid { grid-template-columns: 1fr; gap: 1rem; }
-            .devlog-grid { grid-template-columns: 1fr; }
+            .team-grid      { grid-template-columns: 1fr; gap: 1rem; }
             .quest-feature-grid { grid-template-columns: 1fr; }
 
             .community-card, .story-card { padding: 2rem 1.5rem; }
@@ -1025,14 +1582,88 @@
 
             .trailer-title { letter-spacing: 2px; }
 
-            .codex-panel { padding: 2rem 1.5rem 3rem; }
-            .codex-main-title { font-size: 2rem; letter-spacing: 3px; }
+            /* FIX #2 — Codex: more compact on mobile */
+            .codex-overlay { padding: 0; }
+
+            .codex-panel {
+                padding: 1.8rem 1.1rem 2.5rem;
+                margin: 0;
+                border-radius: 0;
+                clip-path: none;
+                min-height: 100dvh;
+            }
+
+            .codex-panel::before { display: none; }
+
+            .codex-main-title { font-size: 1.6rem; letter-spacing: 2px; }
+            .codex-sub-title  { font-size: 0.72rem; letter-spacing: 1.5px; }
+
+            .codex-badge { font-size: 0.58rem; letter-spacing: 2.5px; padding: 0.35rem 0.9rem; }
+
+            .codex-header { margin-bottom: 1.6rem; }
+
+            .codex-illustration { margin-bottom: 1.4rem; }
+            .codex-illustration img { max-height: 160px; }
+            .codex-illustration-caption { font-size: 0.6rem; padding: 0.5rem 1rem; }
+
+            .codex-intro-text {
+                font-size: 0.82rem;
+                line-height: 1.7;
+                padding: 0.9rem 1rem;
+                margin-bottom: 1.4rem;
+            }
+
+            .codex-legend { gap: 0.8rem; margin-bottom: 1rem; }
+            .legend-item { font-size: 0.64rem; }
+
+            .codex-table { font-size: 0.7rem; }
+            .codex-table thead th { font-size: 0.55rem; padding: 0.65rem 0.7rem; letter-spacing: 1px; }
+            .codex-table td { padding: 0.6rem 0.7rem; line-height: 1.4; }
+            .codex-table td:first-child { font-size: 0.75rem; }
+            .clan-tag { font-size: 0.55rem; padding: 0.08rem 0.4rem; white-space: normal; }
+
+            .codex-footnote { font-size: 0.72rem; padding-top: 1.4rem; }
+
+            .codex-close-btn { top: 1rem; right: 1rem; width: 36px; height: 36px; font-size: 1rem; }
+
+            /* FIX #5 — Devlog cards: horizontal layout (image left, text right) on mobile */
+            .devlog-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .devlog-card {
+                flex-direction: row;
+                align-items: stretch;
+                min-height: 120px;
+            }
+
+            .devlog-img-wrap {
+                width: 110px;
+                flex-shrink: 0;
+                max-height: none;
+            }
+
+            .devlog-img-wrap img {
+                max-height: none;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+
+            .devlog-img-wrap .devlog-img-placeholder { height: 100%; }
+
+            .devlog-num-badge { top: 0.5rem; left: 0.5rem; font-size: 0.52rem; padding: 0.18rem 0.5rem; }
+
+            .devlog-card-body { padding: 0.9rem 1rem; }
+            .devlog-card-title { font-size: 0.82rem; }
+            .devlog-card-desc  { font-size: 0.73rem; line-height: 1.55; margin-bottom: 0.8rem; }
+            .devlog-open-link  { font-size: 0.62rem; padding: 0.6rem 0.8rem; letter-spacing: 1px; }
 
             .btn-mirage { padding: 1.4rem 2.5rem; font-size: 0.95rem; }
 
             #team::before { margin-bottom: 3rem; }
 
-            /* Team horizontal cards stay but more compact on mobile */
             .team-card-inner { padding: 1.3rem 1.4rem; gap: 1.2rem; }
             .team-avatar-wrap { width: 68px; height: 68px; }
             .team-avatar { width: 68px; height: 68px; font-size: 1.45rem; }
@@ -1041,11 +1672,11 @@
             .team-card p { font-size: 0.82rem; }
         }
 
-        /* ── Small phones (480px) ── */
+        /* Small phones (≤480px) */
         @media (max-width: 480px) {
-            .hero h1 { font-size: 1.9rem; letter-spacing: 0.5px; }
-            .hero p { font-size: 1rem; }
-            .section-title { font-size: 1.8rem; }
+            .hero h1  { font-size: 1.9rem; letter-spacing: 0.5px; }
+            .hero p   { font-size: 1rem; }
+            .section-title    { font-size: 1.8rem; }
             .section-subtitle { font-size: 1rem; }
             .community-icon { width: 65px; height: 65px; }
 
@@ -1060,24 +1691,19 @@
 
             .btn-journey { font-size: 1rem; padding: 1.2rem 2rem; }
             .logo { font-size: 1.4rem; }
-            .nav-links { gap: 0; }
-            .nav-links a { font-size: 0.78rem; }
+            .nav-links a { font-size: 0.85rem; }
             .footer-links { gap: 1rem; font-size: 0.72rem; }
             .hero-logo-img { display: block; margin: 0 auto; width: 280px; }
             .nav-logo-img { height: 26px; }
             .trailer-title { font-size: 2rem; letter-spacing: 1px; }
-            .codex-table { font-size: 0.78rem; }
-            .codex-table thead th { font-size: 0.6rem; padding: 0.8rem 0.7rem; }
-            .codex-table td { padding: 0.75rem 0.7rem; }
-            .devlog-grid { grid-template-columns: 1fr; }
-            .quest-feature-grid { grid-template-columns: 1fr; }
+            .devlog-img-wrap { width: 90px; }
         }
 
-        /* ── Tiny phones (360px) ── */
+        /* Tiny phones (≤360px) */
         @media (max-width: 360px) {
             .hero h1 { font-size: 1.7rem; }
             .section-title { font-size: 1.5rem; }
-            .nav-links a { font-size: 0.72rem; }
+            .nav-links a { font-size: 0.8rem; }
         }
 
         /* Disable hover transforms on touch-only devices */
@@ -1087,7 +1713,7 @@
             .team-card:hover { transform: none; }
         }
 
-        /* ── Phones in landscape ── */
+        /* Phones in landscape */
         @media (max-height: 500px) and (orientation: landscape) {
 
             nav { padding: 0.55rem 0; }
@@ -1097,57 +1723,38 @@
             .logo { font-size: 1.25rem; }
 
             .nav-links {
-                max-height: calc(100vh - 50px);
+                max-height: 100dvh;
                 overflow-y: auto;
+                justify-content: flex-start;
+                padding-top: 3.5rem;
             }
 
-            .hero {
-                min-height: 100svh;
-                padding: 5.5rem 2rem 2rem;
-                align-items: flex-start;
-            }
-
+            .hero { min-height: 100svh; padding: 5.5rem 2rem 2rem; align-items: flex-start; }
             .hero-content { max-width: 700px; }
-
             .hero-logo-wrap { margin-bottom: 0.8rem; }
             .hero-logo-img { width: clamp(120px, 22vw, 220px); }
-
             .hero h1 { font-size: clamp(1.6rem, 5vw, 2.6rem); margin-bottom: 0.7rem; letter-spacing: 1px; }
-            .hero p { font-size: 0.95rem; margin-bottom: 1.4rem; line-height: 1.6; }
+            .hero p  { font-size: 0.95rem; margin-bottom: 1.4rem; line-height: 1.6; }
 
-            .cta-buttons {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.9rem;
-            }
-
+            .cta-buttons { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 0.9rem; }
             .btn { width: auto; max-width: none; }
-
             .btn-journey { padding: 0.85rem 1.8rem; font-size: 0.82rem; letter-spacing: 2px; }
 
             .scroll-indicator { display: none; }
 
-            section,
-            #team,
-            #trailer { padding: 3rem 1.5rem; }
-
-            .section-title { font-size: clamp(1.6rem, 4vw, 2.4rem); margin-bottom: 0.6rem; }
+            section, #team, #trailer { padding: 3rem 1.5rem; }
+            .section-title    { font-size: clamp(1.6rem, 4vw, 2.4rem); margin-bottom: 0.6rem; }
             .section-subtitle { font-size: 0.95rem; margin-bottom: 2rem; }
 
-            .story-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+            .story-grid     { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
             .community-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
-            .devlog-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            .devlog-grid    { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
             .quest-feature-grid { grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
 
-            .story-card,
-            .community-card { padding: 1.4rem 1.2rem; }
-
+            .story-card, .community-card { padding: 1.4rem 1.2rem; }
             .story-icon { width: 48px; height: 48px; margin-bottom: 0.8rem; }
             .story-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-            .story-card p,
-            .community-card p { font-size: 0.88rem; line-height: 1.6; }
-
+            .story-card p, .community-card p { font-size: 0.88rem; line-height: 1.6; }
             .community-icon { width: 52px; height: 52px; margin-bottom: 0.8rem; }
             .community-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 
@@ -1159,7 +1766,6 @@
             .team-role { font-size: 0.56rem; padding: 0.15rem 0.5rem; margin-bottom: 0.4rem; }
             .team-card p { font-size: 0.75rem; line-height: 1.5; }
             .team-number { font-size: 2rem; }
-
             #team::before { margin-bottom: 2rem; }
             #team { padding: 3rem 1.5rem; }
 
@@ -1168,12 +1774,12 @@
             .faq-item.active .faq-answer { padding: 0 1.2rem 1.2rem; }
             .faq-item { margin-bottom: 0.9rem; }
 
-            .trailer-title { font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: 2px; margin-bottom: 0.5rem; }
+            .trailer-title    { font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: 2px; margin-bottom: 0.5rem; }
             .trailer-subtitle { font-size: 0.9rem; margin-bottom: 1.8rem; }
 
             .next-page-section { padding: 3rem 1.5rem; }
             .np-title { font-size: clamp(1.5rem, 3.5vw, 2rem); }
-            .np-desc { font-size: 0.9rem; margin-bottom: 1.8rem; }
+            .np-desc  { font-size: 0.9rem; margin-bottom: 1.8rem; }
             .btn-mirage { padding: 1rem 2rem; font-size: 0.85rem; }
 
             .quest-creator-section { padding: 2.5rem 1.5rem 3.5rem; }
@@ -1187,6 +1793,11 @@
             .codex-table thead th { font-size: 0.58rem; padding: 0.7rem 0.8rem; }
             .codex-table td { padding: 0.65rem 0.8rem; }
 
+            /* Devlog horizontal reverts to normal column layout in landscape */
+            .devlog-card { flex-direction: column; }
+            .devlog-img-wrap { width: 100%; max-height: 130px; }
+            .devlog-img-wrap img { max-height: 130px; height: auto; }
+
             footer { padding: 2.5rem 1.5rem 1.5rem; }
             .footer-links { gap: 0.9rem; }
             .footer-links a { font-size: 0.66rem; }
@@ -1194,7 +1805,7 @@
             .developer-credit { font-size: 0.82rem; }
         }
 
-        /* ── Tablets in landscape ── */
+        /* Tablets in landscape */
         @media (min-height: 500px) and (max-height: 820px) and (orientation: landscape) and (max-width: 1180px) {
 
             nav { padding: 0.8rem 0; }
@@ -1202,23 +1813,20 @@
 
             .hero { padding: 7rem 2rem 3rem; min-height: 100svh; }
             .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; }
-            .hero p { font-size: 1rem; margin-bottom: 2rem; }
-            .hero-logo-img { width: clamp(150px, 24vw, 280px); }
+            .hero p  { font-size: 1rem; margin-bottom: 2rem; }
+            .hero-logo-img { width: clamp(200px, 24vw, 280px); }
 
             .cta-buttons { flex-direction: row; flex-wrap: wrap; justify-content: center; }
             .btn { width: auto; max-width: none; }
             .btn-journey { padding: 1rem 2.2rem; font-size: 0.9rem; }
 
-            section,
-            #team,
-            #trailer { padding: 4rem 2rem; }
-
-            .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+            section, #team, #trailer { padding: 4rem 2rem; }
+            .section-title    { font-size: clamp(1.8rem, 4vw, 2.8rem); }
             .section-subtitle { font-size: 1rem; margin-bottom: 2.5rem; }
 
-            .story-grid { grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+            .story-grid     { grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
             .community-grid { grid-template-columns: repeat(2, 1fr); gap: 1.4rem; }
-            .devlog-grid { grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+            .devlog-grid    { grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
             .quest-feature-grid { grid-template-columns: repeat(3, 1fr); }
 
             .story-card { padding: 1.8rem 1.4rem; }
@@ -1233,10 +1841,9 @@
             .team-card-inner { padding: 1.4rem 1.5rem; gap: 1.3rem; }
             .team-avatar { width: 68px; height: 68px; font-size: 1.45rem; }
             .team-avatar-wrap { width: 68px; height: 68px; }
-
             #team::before { margin-bottom: 3rem; }
 
-            .trailer-title { font-size: clamp(2rem, 4.5vw, 3.5rem); }
+            .trailer-title    { font-size: clamp(2rem, 4.5vw, 3.5rem); }
             .trailer-subtitle { font-size: 1rem; margin-bottom: 2.5rem; }
 
             .next-page-section { padding: 3.5rem 2rem 4rem; }
@@ -1246,76 +1853,99 @@
 </head>
 <body>
 
-    <!-- Background slideshow images -->
+    <!-- Background slideshow -->
     <div class="bg-slideshow">
-        <div class="bg-slide" style="background-image:url('https://files.catbox.moe/hzl17x.png')"></div>
-        <div class="bg-slide" style="background-image:url('https://files.catbox.moe/ewccee.png')"></div>
-        <div class="bg-slide" style="background-image:url('https://files.catbox.moe/eecnei.png')"></div>
-        <div class="bg-slide" style="background-image:url('https://files.catbox.moe/01b0ls.png')"></div>
+        <div class="bg-slide" style="background-image: url('https://files.catbox.moe/hzl17x.png')"></div>
+        <div class="bg-slide" style="background-image: url('https://files.catbox.moe/ewccee.png')"></div>
+        <div class="bg-slide" style="background-image: url('https://files.catbox.moe/eecnei.png')"></div>
+        <div class="bg-slide" style="background-image: url('https://files.catbox.moe/01b0ls.png')"></div>
     </div>
 
     <div class="bg-night-overlay"></div>
     <div class="gradient-bg"></div>
 
-    <!-- Navbar -->
+    <!-- ══════════════════════════════════════════
+         NAVBAR
+    ══════════════════════════════════════════ -->
     <nav id="navbar">
         <div class="nav-container">
+
             <div class="logo-wrap">
-                <img referrerpolicy="no-referrer"
-                     src="https://files.catbox.moe/1zb08m.jpg"
-                     alt="The Last Message Logo"
-                     class="nav-logo-img"
-                     onerror="this.src='https://i.imgur.com/bs8skllh.jpg';this.onerror=null;">
+                <img
+                    referrerpolicy="no-referrer"
+                    src="https://files.catbox.moe/1zb08m.jpg"
+                    alt="The Last Message Logo"
+                    class="nav-logo-img"
+                    onerror="this.src='https://i.imgur.com/bs8skllh.jpg'; this.onerror=null;"
+                >
                 <div class="logo">The Last Message</div>
             </div>
 
-            <!-- Hamburger button — only shows on mobile -->
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+            <!-- Hamburger — mobile only -->
+            <button
+                class="nav-toggle"
+                id="navToggle"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+            >
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
 
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="nav-link-item">Home</a></li>
-                <li><a href="#trailer" class="nav-link-item">Trailer</a></li>
-                <li><a href="#story" class="nav-link-item">Story</a></li>
-                <li><a href="#faq" class="nav-link-item">FAQ</a></li>
+                <li><a href="#home"      class="nav-link-item">Home</a></li>
+                <li><a href="#trailer"   class="nav-link-item">Trailer</a></li>
+                <li><a href="#story"     class="nav-link-item">Story</a></li>
+                <li><a href="#faq"       class="nav-link-item">FAQ</a></li>
                 <li><a href="#community" class="nav-link-item">Community</a></li>
-                <li><a href="#team" class="nav-link-item">Team</a></li>
-                <li><a href="#" onclick="openCodex();closeNav();return false;">Codex</a></li>
-                <li><a href="#" onclick="openDevlogs();closeNav();return false;">Dev Logs</a></li>
+                <li><a href="#team"      class="nav-link-item">Team</a></li>
+                <li><a href="#" onclick="openCodex();  closeNav(); return false;">Codex</a></li>
+                <li><a href="#" onclick="openDevlogs(); closeNav(); return false;">Dev Logs</a></li>
             </ul>
+
         </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
     <section id="home" class="hero">
         <div class="hero-content">
+
             <div class="hero-logo-wrap">
-                <img referrerpolicy="no-referrer"
-                     src="https://files.catbox.moe/1zb08m.jpg"
-                     alt="The Last Message"
-                     class="hero-logo-img"
-                     onerror="this.src='https://i.imgur.com/bs8skllh.jpg';this.onerror=null;">
+                <img
+                    referrerpolicy="no-referrer"
+                    src="https://files.catbox.moe/1zb08m.jpg"
+                    alt="The Last Message"
+                    class="hero-logo-img"
+                    onerror="this.src='https://i.imgur.com/bs8skllh.jpg'; this.onerror=null;"
+                >
             </div>
+
             <h1>The Last Message</h1>
+
             <p>Journey through history and experience the profound story of Prophet Muhammad (peace be upon him). Immerse yourself in an epic narrative that changed the world forever.</p>
+
             <div class="cta-buttons">
-                <a href="#story" class="btn btn-journey">Start Your Journey</a>
+                <a href="#story"     class="btn btn-journey">Start Your Journey</a>
                 <a href="#community" class="btn btn-journey">Join Our Community</a>
             </div>
+
         </div>
         <div class="scroll-indicator"><span></span></div>
     </section>
 
     <div class="section-divider"></div>
 
-    <!-- Trailer -->
+    <!-- ══════════════════════════════════════════
+         TRAILER
+    ══════════════════════════════════════════ -->
     <section id="trailer">
         <div class="trailer-label">Official</div>
         <h2 class="trailer-title">TRAILER</h2>
         <p class="trailer-subtitle">Watch the official trailer for The Last Message</p>
+
         <div class="trailer-frame-wrap">
             <span class="trailer-corner tl"></span>
             <span class="trailer-corner tr"></span>
@@ -1328,18 +1958,23 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="no-referrer-when-downgrade"
                     loading="lazy"
-                    allowfullscreen></iframe>
+                    allowfullscreen
+                ></iframe>
             </div>
         </div>
     </section>
 
     <div class="section-divider"></div>
 
-    <!-- Story -->
+    <!-- ══════════════════════════════════════════
+         STORY
+    ══════════════════════════════════════════ -->
     <section id="story">
         <h2 class="section-title">The Journey</h2>
         <p class="section-subtitle">Experience an authentic and respectful retelling of one of history's most impactful stories</p>
+
         <div class="story-grid">
+
             <div class="story-card fade-in">
                 <div class="story-card-content">
                     <svg class="story-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -1350,6 +1985,7 @@
                     <p>Begin your journey in 7th century Arabia, witnessing the birth of a message that would transform humanity. Experience the historical authenticity and cultural richness of the time.</p>
                 </div>
             </div>
+
             <div class="story-card fade-in">
                 <div class="story-card-content">
                     <svg class="story-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -1362,6 +1998,7 @@
                     <p>Follow the profound moments of revelation and the challenges faced in spreading the message of peace, justice, and monotheism to a world in need of guidance.</p>
                 </div>
             </div>
+
             <div class="story-card fade-in">
                 <div class="story-card-content">
                     <svg class="story-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -1372,6 +2009,7 @@
                     <p>Navigate through the hardships, persecutions, and ultimate victories that shaped the course of history and established principles of compassion and unity.</p>
                 </div>
             </div>
+
             <div class="story-card fade-in">
                 <div class="story-card-content">
                     <svg class="story-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -1382,14 +2020,19 @@
                     <p>Understand the lasting impact of teachings that emphasize mercy, knowledge, and social justice. Discover how these principles continue to inspire millions today.</p>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- ══════════════════════════════════════════
+         FAQ
+    ══════════════════════════════════════════ -->
     <section id="faq">
         <h2 class="section-title">Frequently Asked Questions</h2>
         <p class="section-subtitle">Everything you need to know about The Last Message</p>
+
         <div class="faq-container">
+
             <div class="faq-item">
                 <div class="faq-question">
                     <span>What is The Last Message about?</span>
@@ -1399,6 +2042,7 @@
                     <p>The Last Message is an interactive experience Game that tells the story of Prophet Muhammad (peace be upon him) with historical accuracy and deep respect. It combines education with engaging gameplay to create an immersive journey through one of history's most significant narratives.</p>
                 </div>
             </div>
+
             <div class="faq-item">
                 <div class="faq-question">
                     <span>Is this game historically accurate?</span>
@@ -1408,6 +2052,7 @@
                     <p>Yes, we've consulted with Islamic scholars and historians to ensure authenticity and respectful representation of events. Every detail has been carefully researched and verified to provide an accurate portrayal of the historical narrative.</p>
                 </div>
             </div>
+
             <div class="faq-item">
                 <div class="faq-question">
                     <span>What platforms will it be available on?</span>
@@ -1417,6 +2062,7 @@
                     <p>The Last Message will be available on PC. We're also working on a mobile version to make the experience accessible to as many people as possible.</p>
                 </div>
             </div>
+
             <div class="faq-item">
                 <div class="faq-question">
                     <span>How can I support the development?</span>
@@ -1426,6 +2072,7 @@
                     <p>Join our community on Discord, subscribe to our YouTube channel for updates, and spread the word! Your support and feedback help us create the best experience possible.</p>
                 </div>
             </div>
+
             <div class="faq-item">
                 <div class="faq-question">
                     <span>When will the game be released?</span>
@@ -1435,14 +2082,20 @@
                     <p>We're currently in active development and will announce the release date soon. Follow us on our social channels and join our Discord for the latest updates and exclusive previews.</p>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <!-- Community -->
+    <!-- ══════════════════════════════════════════
+         COMMUNITY
+    ══════════════════════════════════════════ -->
     <section id="community">
         <h2 class="section-title">Join Our Community</h2>
         <p class="section-subtitle">Connect with fellow enthusiasts and stay updated on our journey</p>
+
         <div class="community-grid">
+
+            <!-- Discord -->
             <div class="community-card fade-in">
                 <div class="community-content">
                     <svg class="community-icon" viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg">
@@ -1453,6 +2106,8 @@
                     <a href="https://discord.gg/J5Bp77Zwpu" class="btn btn-journey" target="_blank" rel="noopener noreferrer">Join Discord</a>
                 </div>
             </div>
+
+            <!-- YouTube -->
             <div class="community-card fade-in">
                 <div class="community-content">
                     <svg class="community-icon" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
@@ -1463,6 +2118,8 @@
                     <a href="https://youtube.com/@thelastmessageofficial?si=FLIZfyOntpuDK5oW" class="btn btn-journey" target="_blank" rel="noopener noreferrer">Subscribe Now</a>
                 </div>
             </div>
+
+            <!-- TikTok -->
             <div class="community-card fade-in">
                 <div class="community-content">
                     <svg class="community-icon" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
@@ -1473,27 +2130,37 @@
                     <a href="https://www.tiktok.com/@thelastmessageofficial" class="btn btn-journey" target="_blank" rel="noopener noreferrer">Follow TikTok</a>
                 </div>
             </div>
+
+            <!-- Patreon -->
             <div class="community-card fade-in">
                 <div class="community-content">
-                    <img src="https://static.vecteezy.com/system/resources/previews/065/386/612/non_2x/patreon-white-icon-logo-app-transparent-background-premium-social-media-design-for-digital-download-free-png.png"
-                         alt="Patreon Logo" class="community-icon" draggable="false" oncontextmenu="return false;"
-                         style="width:100px;height:100px;object-fit:contain;filter:brightness(0) saturate(100%) invert(74%) sepia(28%) saturate(900%) hue-rotate(2deg) brightness(96%) contrast(88%);pointer-events:none;user-select:none;-webkit-user-select:none;-webkit-user-drag:none;"/>
+                    <img
+                        src="https://static.vecteezy.com/system/resources/previews/065/386/612/non_2x/patreon-white-icon-logo-app-transparent-background-premium-social-media-design-for-digital-download-free-png.png"
+                        alt="Patreon Logo"
+                        class="community-icon"
+                        draggable="false"
+                        oncontextmenu="return false;"
+                        style="width:100px; height:100px; object-fit:contain; filter:brightness(0) saturate(100%) invert(74%) sepia(28%) saturate(900%) hue-rotate(2deg) brightness(96%) contrast(88%); pointer-events:none; user-select:none; -webkit-user-select:none; -webkit-user-drag:none;"
+                    />
                     <h3>Patreon</h3>
                     <p>Support the development of The Last Message and get exclusive behind&#8209;the&#8209;scenes access, early previews, and special rewards.</p>
                     <a href="https://www.patreon.com/TheLastMessage?utm_campaign=creatorshare_creator" class="btn btn-journey" target="_blank" rel="noopener noreferrer">Support on Patreon</a>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <!-- Team -->
+    <!-- ══════════════════════════════════════════
+         TEAM
+    ══════════════════════════════════════════ -->
     <section id="team">
         <h2 class="section-title">Who Works at the Game?</h2>
         <p class="section-subtitle">The passionate team crafting every detail of The Last Message</p>
 
         <div class="team-grid">
 
-            <!-- 01 — Hedy -->
+            <!-- 01 Hedy -->
             <div class="team-card fade-in">
                 <div class="team-card-inner">
                     <span class="team-number">01</span>
@@ -1506,7 +2173,7 @@
                 </div>
             </div>
 
-            <!-- 02 — NSYCode -->
+            <!-- 02 NSYCode -->
             <div class="team-card fade-in">
                 <div class="team-card-inner">
                     <span class="team-number">02</span>
@@ -1519,7 +2186,7 @@
                 </div>
             </div>
 
-            <!-- 03 — Zafar -->
+            <!-- 03 Zafar -->
             <div class="team-card fade-in">
                 <div class="team-card-inner">
                     <span class="team-number">03</span>
@@ -1532,7 +2199,7 @@
                 </div>
             </div>
 
-            <!-- 04 — yeswayswagg -->
+            <!-- 04 yeswayswagg -->
             <div class="team-card fade-in">
                 <div class="team-card-inner">
                     <span class="team-number">04</span>
@@ -1545,7 +2212,7 @@
                 </div>
             </div>
 
-            <!-- 05 — Amjad -->
+            <!-- 05 Amjad -->
             <div class="team-card fade-in">
                 <div class="team-card-inner">
                     <span class="team-number">05</span>
@@ -1558,7 +2225,7 @@
                 </div>
             </div>
 
-            <!-- 06 — Stranger -->
+            <!-- 06 Stranger -->
             <div class="team-card fade-in">
                 <div class="team-card-inner">
                     <span class="team-number">06</span>
@@ -1571,7 +2238,7 @@
                 </div>
             </div>
 
-            <!-- 07 — Alen.Akhi -->
+            <!-- 07 Alen.Akhi -->
             <div class="team-card fade-in">
                 <div class="team-card-inner">
                     <span class="team-number">07</span>
@@ -1586,24 +2253,32 @@
 
         </div>
 
-        <div class="fade-in" style="text-align:center;margin-top:3.5rem;">
-            <p style="font-size:1.6rem;font-weight:800;font-family:'Cinzel',serif;color:var(--ac-gold-light);letter-spacing:1px;margin-bottom:0.6rem;">& Many More...</p>
-            <p style="color:var(--text-secondary);font-size:1.05rem;max-width:560px;margin:0 auto 1.4rem;line-height:1.7;">
+        <div class="fade-in" style="text-align: center; margin-top: 3.5rem;">
+            <p style="font-size: 1.6rem; font-weight: 800; font-family: 'Cinzel', serif; color: var(--ac-gold-light); letter-spacing: 1px; margin-bottom: 0.6rem;">
+                &amp; Many More...
+            </p>
+            <p style="color: var(--text-secondary); font-size: 1.05rem; max-width: 560px; margin: 0 auto 1.4rem; line-height: 1.7;">
                 There are a lot more incredible people working behind the scenes to make this project a reality.
             </p>
-            <p style="color:var(--text-secondary);font-size:1rem;">
+            <p style="color: var(--text-secondary); font-size: 1rem;">
                 Want to be part of the team? Come say hi →
-                <a href="https://discord.gg/J5Bp77Zwpu" target="_blank" rel="noopener noreferrer"
-                   style="color:var(--ac-gold-light);font-weight:700;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);padding-bottom:1px;transition:border-color 0.3s;"
+                <a href="https://discord.gg/J5Bp77Zwpu"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   style="color: var(--ac-gold-light); font-weight: 700; text-decoration: none; border-bottom: 1px solid rgba(201,168,76,0.4); padding-bottom: 1px; transition: border-color 0.3s;"
                    onmouseover="this.style.borderColor='var(--ac-gold)'"
-                   onmouseout="this.style.borderColor='rgba(201,168,76,0.4)'">Join our Discord Server</a>
+                   onmouseout="this.style.borderColor='rgba(201,168,76,0.4)'"
+                >Join our Discord Server</a>
             </p>
         </div>
+
     </section>
 
     <div class="section-divider"></div>
 
-    <!-- Codex gateway -->
+    <!-- ══════════════════════════════════════════
+         CODEX GATEWAY
+    ══════════════════════════════════════════ -->
     <div class="next-page-section fade-in">
         <div class="ac-ornate-divider">
             <span class="aod-line"></span>
@@ -1623,8 +2298,10 @@
 
     <div class="section-divider"></div>
 
-    <!-- Developer Logs gateway -->
-    <div class="next-page-section fade-in" style="padding-top:2.5rem;">
+    <!-- ══════════════════════════════════════════
+         DEVELOPER LOGS GATEWAY
+    ══════════════════════════════════════════ -->
+    <div class="next-page-section fade-in" style="padding-top: 2.5rem;">
         <div class="ac-ornate-divider">
             <span class="aod-line"></span>
             <span class="aod-diamond">◆</span>
@@ -1643,8 +2320,10 @@
 
     <div class="section-divider"></div>
 
-    <!-- Quest Creator Section -->
-    <div class="quest-creator-section next-page-section fade-in" style="padding-top:2.5rem; max-width:960px;">
+    <!-- ══════════════════════════════════════════
+         QUEST CREATOR GATEWAY
+    ══════════════════════════════════════════ -->
+    <div class="quest-creator-section next-page-section fade-in" style="padding-top: 2.5rem; max-width: 960px;">
         <div class="ac-ornate-divider">
             <span class="aod-line"></span>
             <span class="aod-diamond">◆</span>
@@ -1657,17 +2336,15 @@
         <p class="np-desc">
             Want to leave your mark on The Last Message? Design your own quests and submit them to the team — your creation could become part of the official game experience. Open to everyone in the community.
         </p>
-
-        <!-- i deleted them it looks way better lol -->
-        
-
         <a href="https://questcreator.nsycoding.com" class="btn-mirage btn-quest" target="_blank" rel="noopener noreferrer">
             <span>Create a Quest</span>
             <span class="bm-sub">Open Quest Creator Tool</span>
         </a>
     </div>
 
-    <!-- Footer -->
+    <!-- ══════════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════════ -->
     <footer>
         <div class="footer-content">
             <div class="footer-links">
@@ -1677,16 +2354,18 @@
                 <a href="#faq">FAQ</a>
                 <a href="#community">Community</a>
                 <a href="#team">Team</a>
-                <a href="#" onclick="openCodex();return false;">Codex</a>
-                <a href="#" onclick="openDevlogs();return false;">Dev Logs</a>
+                <a href="#" onclick="openCodex();  return false;">Codex</a>
+                <a href="#" onclick="openDevlogs(); return false;">Dev Logs</a>
                 <a href="https://questcreator.nsycoding.com" target="_blank" rel="noopener noreferrer">Quest Creator</a>
             </div>
-            <p class="copyright">2026 The Last Message. All rights reserved. Made with respect and dedication.</p>
+            <p class="copyright">© 2026 The Last Message. All rights reserved. Made with respect and dedication.</p>
             <p class="developer-credit">Developed by Alen.Akhi</p>
         </div>
     </footer>
 
-    <!-- Codex overlay -->
+    <!-- ══════════════════════════════════════════
+         CODEX OVERLAY
+    ══════════════════════════════════════════ -->
     <div id="codexOverlay" class="codex-overlay" role="dialog" aria-modal="true" aria-label="Historical Codex">
         <div class="codex-panel">
 
@@ -1703,7 +2382,7 @@
                 <div class="codex-badge">Codex Entry — Volume I</div>
                 <h2 class="codex-main-title">ARABIAN TRIBES</h2>
                 <p class="codex-sub-title">The Clans of Quraysh — 7th Century Arabia</p>
-                <div class="codex-header-ornament" style="margin-top:1.2rem;">
+                <div class="codex-header-ornament" style="margin-top: 1.2rem;">
                     <span class="cho-line"></span>
                     <span class="cho-diamond">◆</span>
                     <span class="cho-diamond">◆</span>
@@ -1712,23 +2391,24 @@
                 </div>
             </div>
 
-            <!-- Codex illustration -->
             <div class="codex-illustration">
-                <img referrerpolicy="no-referrer"
-                     src="https://files.catbox.moe/u5oeyg.png"
-                     alt="Historical illustration — 7th century Arabia"
-                     onerror="this.closest('.codex-illustration').style.display='none';">
+                <img
+                    referrerpolicy="no-referrer"
+                    src="https://files.catbox.moe/u5oeyg.png"
+                    alt="Historical illustration — 7th century Arabia"
+                    onerror="this.closest('.codex-illustration').style.display='none';"
+                >
                 <div class="codex-illustration-caption">Mecca — 7th Century Arabia</div>
             </div>
 
             <p class="codex-intro-text">
-                The <strong style="color:var(--ac-gold-light);">Quraysh</strong> were the dominant tribe of Mecca at the time of the Prophet Muhammad ﷺ, divided into two groups: the <em>Quraysh of the Hollow</em> (al-Biṭāḥ), dwelling near the Ka'bah, and the <em>Quraysh of the Outskirts</em> (al-Ẓawāhir). The Prophet ﷺ himself descended from the Banī Hāshim clan — Quraysh of the Hollow.
+                The <strong style="color: var(--ac-gold-light);">Quraysh</strong> were the dominant tribe of Mecca at the time of the Prophet Muhammad ﷺ, divided into two groups: the <em>Quraysh of the Hollow</em> (al-Biṭāḥ), dwelling near the Ka'bah, and the <em>Quraysh of the Outskirts</em> (al-Ẓawāhir). The Prophet ﷺ himself descended from the Banī Hāshim clan — Quraysh of the Hollow.
             </p>
 
             <div class="codex-legend">
-                <div class="legend-item"><div class="legend-bar" style="background:var(--ac-gold);"></div><span>Prophet's Clan</span></div>
-                <div class="legend-item"><div class="legend-bar" style="background:rgba(255,70,40,0.7);"></div><span>Notable Opponent</span></div>
-                <div class="legend-item"><div class="legend-bar" style="background:rgba(80,200,100,0.6);"></div><span>Notable Companion</span></div>
+                <div class="legend-item"><div class="legend-bar" style="background: var(--ac-gold);"></div><span>Prophet's Clan</span></div>
+                <div class="legend-item"><div class="legend-bar" style="background: rgba(255,70,40,0.7);"></div><span>Notable Opponent</span></div>
+                <div class="legend-item"><div class="legend-bar" style="background: rgba(80,200,100,0.6);"></div><span>Notable Companion</span></div>
             </div>
 
             <div class="codex-table-wrap">
@@ -1742,7 +2422,7 @@
                     </thead>
                     <tbody>
                         <tr class="clan-prophet">
-                            <td>Banī Hāshim<br><span style="font-size:0.67rem;color:var(--ac-gold);font-family:'Cinzel',serif;letter-spacing:0.7px;">★ Prophet's Clan</span></td>
+                            <td>Banī Hāshim<br><span style="font-size: 0.67rem; color: var(--ac-gold); font-family: 'Cinzel',serif; letter-spacing: 0.7px;">★ Prophet's Clan</span></td>
                             <td><span class="clan-tag hollow">Quraysh of the Hollow</span></td>
                             <td>Abū Ṭālib ibn ʿAbd al-Muṭṭalib</td>
                         </tr>
@@ -1764,7 +2444,7 @@
                         <tr>
                             <td>Banī Sahm</td>
                             <td><span class="clan-tag outskirts">Quraysh of the Outskirts</span></td>
-                            <td style="color:rgba(201,168,76,0.38);font-style:italic;">(Not clearly documented)</td>
+                            <td style="color: rgba(201,168,76,0.38); font-style: italic;">(Not clearly documented)</td>
                         </tr>
                         <tr>
                             <td>Banī ʿAbd al-Dār</td>
@@ -1774,32 +2454,32 @@
                         <tr>
                             <td>Banī ʿAdī</td>
                             <td><span class="clan-tag outskirts">Quraysh of the Outskirts</span></td>
-                            <td style="color:rgba(201,168,76,0.38);font-style:italic;">(Not clearly documented)</td>
+                            <td style="color: rgba(201,168,76,0.38); font-style: italic;">(Not clearly documented)</td>
                         </tr>
                         <tr>
                             <td>Banī ʿĀmir</td>
                             <td><span class="clan-tag outskirts">Quraysh of the Outskirts</span></td>
-                            <td style="color:rgba(201,168,76,0.38);font-style:italic;">(Not clearly documented)</td>
+                            <td style="color: rgba(201,168,76,0.38); font-style: italic;">(Not clearly documented)</td>
                         </tr>
                         <tr class="clan-companion">
                             <td>Banī Zuhrah</td>
                             <td><span class="clan-tag hollow">Quraysh of the Hollow</span></td>
-                            <td>Saʿd ibn Abī Waqqāṣ<br><span style="font-size:0.66rem;color:rgba(80,200,100,0.7);font-style:italic;">Notable Companion of the Prophet ﷺ</span></td>
+                            <td>Saʿd ibn Abī Waqqāṣ<br><span style="font-size: 0.66rem; color: rgba(80,200,100,0.7); font-style: italic;">Notable Companion of the Prophet ﷺ</span></td>
                         </tr>
                         <tr>
                             <td>Banī Asad</td>
                             <td><span class="clan-tag hollow">Quraysh of the Hollow</span></td>
-                            <td style="color:rgba(201,168,76,0.38);font-style:italic;">(Not clearly documented)</td>
+                            <td style="color: rgba(201,168,76,0.38); font-style: italic;">(Not clearly documented)</td>
                         </tr>
                         <tr class="clan-opponent">
                             <td>Banī Makhzūm</td>
                             <td><span class="clan-tag hollow">Quraysh of the Hollow</span></td>
-                            <td>ʿAmr ibn Hishām <em>(Abū Jahl)</em><br><span style="font-size:0.66rem;color:rgba(255,70,40,0.65);font-style:italic;">Chief opponent of the Prophet ﷺ</span></td>
+                            <td>ʿAmr ibn Hishām <em>(Abū Jahl)</em><br><span style="font-size: 0.66rem; color: rgba(255,70,40,0.65); font-style: italic;">Chief opponent of the Prophet ﷺ</span></td>
                         </tr>
                         <tr>
                             <td>Banī al-Ḥārith</td>
                             <td><span class="clan-tag outskirts">Quraysh of the Outskirts</span></td>
-                            <td style="color:rgba(201,168,76,0.38);font-style:italic;">(Not clearly documented)</td>
+                            <td style="color: rgba(201,168,76,0.38); font-style: italic;">(Not clearly documented)</td>
                         </tr>
                         <tr>
                             <td>Banī Jumah</td>
@@ -1809,7 +2489,7 @@
                         <tr class="clan-companion">
                             <td>Banī Taym</td>
                             <td><span class="clan-tag hollow">Quraysh of the Hollow</span></td>
-                            <td>Abū Bakr aṣ-Ṣiddīq<br><span style="font-size:0.66rem;color:rgba(80,200,100,0.7);font-style:italic;">Closest Companion &amp; First Caliph</span></td>
+                            <td>Abū Bakr aṣ-Ṣiddīq<br><span style="font-size: 0.66rem; color: rgba(80,200,100,0.7); font-style: italic;">Closest Companion &amp; First Caliph</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1822,139 +2502,95 @@
         </div>
     </div>
 
-    <!-- Developer Logs overlay -->
+<!-- DEVELOPER LOGS OVERLAY finally it works :) —-->
     <div id="devlogsOverlay" class="codex-overlay" role="dialog" aria-modal="true" aria-label="Developer Logs">
-        <div class="codex-panel">
-
-            <button class="codex-close-btn" onclick="closeDevlogs()" aria-label="Close Developer Logs">✕</button>
-
-            <div class="codex-header">
-                <div class="codex-header-ornament">
-                    <span class="cho-line"></span>
-                    <span class="cho-diamond">◆</span>
-                    <span class="cho-diamond">◆</span>
-                    <span class="cho-diamond">◆</span>
-                    <span class="cho-line r"></span>
-                </div>
-                <div class="codex-badge">Behind the Scenes — Progress Reports</div>
-                <h2 class="codex-main-title">DEVELOPER LOGS</h2>
-                <p class="codex-sub-title">Updates from the Team — The Last Message</p>
-                <div class="codex-header-ornament" style="margin-top:1.2rem;">
-                    <span class="cho-line"></span>
-                    <span class="cho-diamond">◆</span>
-                    <span class="cho-diamond">◆</span>
-                    <span class="cho-diamond">◆</span>
-                    <span class="cho-line r"></span>
-                </div>
-            </div>
-
-            <p class="codex-intro-text">
-                Follow the ongoing journey of building <strong style="color:var(--ac-gold-light);">The Last Message</strong>. These developer logs document real milestones, progress updates, and notes straight from the development team — posted on Patreon.
-            </p>
-
-            <!-- 3 devlog cards — FIX: removed loading="lazy" (images inside hidden overlay never trigger lazy loading) -->
-            <div class="devlog-grid">
-
-                <!-- Log 01 -->
-                <div class="devlog-card">
-                    <div class="devlog-img-wrap">
-                        <span class="devlog-num-badge">Log #01</span>
-                        <img src="https://files.catbox.moe/sek4x7.png"
-                             alt="Devlog — Massive Update"
-                             referrerpolicy="no-referrer"
-                             onerror="this.classList.add('img-failed');">
-                        <div class="devlog-img-placeholder">
-                            <svg width="32" height="32" viewBox="0 0 64 64" fill="rgba(201,168,76,0.25)"><path d="M32 2L6 18v18c0 16 10 24 26 26 16-2 26-10 26-26V18L32 2z"/></svg>
-                            <span>Log #01</span>
-                        </div>
-                    </div>
-                    <div class="devlog-card-body">
-                        <span class="devlog-card-type">Devlog</span>
-                        <div class="devlog-card-title">Massive Update</div>
-                        <p class="devlog-card-desc">A significant milestone in The Last Message development — covering major new features, environments, and systems added to the game.</p>
-                        <a href="https://www.patreon.com/posts/devlog-massive-153731274?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
-                           class="devlog-open-link"
-                           target="_blank" rel="noopener noreferrer">
-                            Click to Open on Patreon
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Log 02 -->
-                <div class="devlog-card">
-                    <div class="devlog-img-wrap">
-                        <span class="devlog-num-badge">Log #02</span>
-                        <img src="https://files.catbox.moe/gyirfh.png"
-                             alt="Devlog — Weekly Update"
-                             referrerpolicy="no-referrer"
-                             onerror="this.classList.add('img-failed');">
-                        <div class="devlog-img-placeholder">
-                            <svg width="32" height="32" viewBox="0 0 64 64" fill="rgba(201,168,76,0.25)"><path d="M32 2L6 18v18c0 16 10 24 26 26 16-2 26-10 26-26V18L32 2z"/></svg>
-                            <span>Log #02</span>
-                        </div>
-                    </div>
-                    <div class="devlog-card-body">
-                        <span class="devlog-card-type">Weekly Devlog</span>
-                        <div class="devlog-card-title">Weekly Update</div>
-                        <p class="devlog-card-desc">A weekly progress report from the team — tracking what was built, refined, and improved during that week of active development.</p>
-                        <a href="https://www.patreon.com/posts/devlog-weekly-148532621?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
-                           class="devlog-open-link"
-                           target="_blank" rel="noopener noreferrer">
-                            Click to Open on Patreon
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Log 03 -->
-                <div class="devlog-card">
-                    <div class="devlog-img-wrap">
-                        <span class="devlog-num-badge">Log #03</span>
-                        <img src="https://files.catbox.moe/6etgmn.png"
-                             alt="Dev Note — Alpha"
-                             referrerpolicy="no-referrer"
-                             onerror="this.classList.add('img-failed');">
-                        <div class="devlog-img-placeholder">
-                            <svg width="32" height="32" viewBox="0 0 64 64" fill="rgba(201,168,76,0.25)"><path d="M32 2L6 18v18c0 16 10 24 26 26 16-2 26-10 26-26V18L32 2z"/></svg>
-                            <span>Log #03</span>
-                        </div>
-                    </div>
-                    <div class="devlog-card-body">
-                        <span class="devlog-card-type">Dev Note</span>
-                        <div class="devlog-card-title">Alpha Dev Note</div>
-                        <p class="devlog-card-desc">An important developer note regarding the Alpha phase — sharing insights on the current state of the game and the road ahead.</p>
-                        <a href="https://www.patreon.com/posts/dev-note-alpha-152999843?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
-                           class="devlog-open-link"
-                           target="_blank" rel="noopener noreferrer">
-                            Click to Open on Patreon
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="devlog-patreon-note">
-                All developer logs are published on our
-                <a href="https://www.patreon.com/TheLastMessage" target="_blank" rel="noopener noreferrer">Patreon page</a>.
-                Support the project to unlock exclusive early access to updates, behind-the-scenes content, and more.
-            </div>
-
-            <div class="codex-footnote">
-                <p>◆ Logs reflect ongoing development milestones. Content and timelines are subject to change as the project evolves. Follow our community channels for the latest news.</p>
-            </div>
-
+      <div class="codex-panel" style="max-width:900px; margin:0 auto; padding:16px; background:transparent;">
+    
+        <button class="codex-close-btn" onclick="closeDevlogs()" aria-label="Close Developer Logs" style="position:absolute; top:12px; right:12px;">✕</button>
+    
+        <div class="codex-header" style="text-align:center; margin-bottom:20px;">
+          <div class="codex-header-ornament">
+            <span class="cho-line"></span>
+            <span class="cho-diamond">◆</span>
+            <span class="cho-diamond">◆</span>
+            <span class="cho-diamond">◆</span>
+            <span class="cho-line r"></span>
+          </div>
+          <div class="codex-badge" style="margin:8px 0;">Behind the Scenes — Progress Reports</div>
+          <h2 class="codex-main-title" style="margin:4px 0;">DEVELOPER LOGS</h2>
+          <p class="codex-sub-title" style="margin:4px 0;">Updates from the Team — The Last Message</p>
         </div>
+    
+        <p class="codex-intro-text" style="margin-bottom:16px; line-height:1.5;">
+          Follow the ongoing journey of building <strong style="color: var(--ac-gold-light);">The Last Message</strong>. These developer logs document real milestones, progress updates, and notes straight from the development team — posted on Patreon.
+        </p>
+    
+        <div class="devlog-grid" style="display:flex; flex-direction:column; gap:18px;">
+    
+          <!-- Log 01 -->
+          <div class="devlog-card" style="display:flex; flex-direction:column; gap:8px; border-radius:10px; overflow:hidden;">
+            <div class="devlog-img-wrap" style="width:100%; height:auto; position:relative;">
+              <img src="https://files.catbox.moe/sek4x7.png" alt="Devlog — Massive Update"
+                   style="width:100%; height:auto; object-fit:cover; display:block; border-radius:10px;" />
+              <span class="devlog-num-badge" style="position:absolute; top:6px; left:6px; background:rgba(0,0,0,0.6); color:#f5d77c; padding:0.25rem 0.5rem; border-radius:999px; font-size:0.75rem; font-weight:700;">Log #01</span>
+            </div>
+            <div class="devlog-card-body" style="display:flex; flex-direction:column; justify-content:center; padding:8px;">
+              <span class="devlog-card-type" style="font-size:0.85rem; opacity:0.85;">Devlog</span>
+              <div class="devlog-card-title" style="font-size:1rem; font-weight:600; margin:2px 0;">Massive Update</div>
+              <p class="devlog-card-desc" style="font-size:0.88rem; line-height:1.4; margin:4px 0;">A significant milestone in The Last Message development — covering major new features, environments, and systems added to the game.</p>
+              <a href="https://www.patreon.com/posts/devlog-massive-153731274?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                 class="devlog-open-link" target="_blank" rel="noopener noreferrer" style="font-size:0.88rem; color:var(--ac-gold-light); text-decoration:none;">Click to Open on Patreon</a>
+            </div>
+          </div>
+    
+          <!-- Log 02 -->
+          <div class="devlog-card" style="display:flex; flex-direction:column; gap:8px; border-radius:10px; overflow:hidden;">
+            <div class="devlog-img-wrap" style="width:100%; height:auto; position:relative;">
+              <img src="https://files.catbox.moe/gyirfh.png" alt="Devlog — Weekly Update"
+                   style="width:100%; height:auto; object-fit:cover; display:block; border-radius:10px;" />
+              <span class="devlog-num-badge" style="position:absolute; top:6px; left:6px; background:rgba(0,0,0,0.6); color:#f5d77c; padding:0.25rem 0.5rem; border-radius:999px; font-size:0.75rem; font-weight:700;">Log #02</span>
+            </div>
+            <div class="devlog-card-body" style="display:flex; flex-direction:column; justify-content:center; padding:8px;">
+              <span class="devlog-card-type" style="font-size:0.85rem; opacity:0.85;">Weekly Devlog</span>
+              <div class="devlog-card-title" style="font-size:1rem; font-weight:600; margin:2px 0;">Weekly Update</div>
+              <p class="devlog-card-desc" style="font-size:0.88rem; line-height:1.4; margin:4px 0;">A weekly progress report from the team — tracking what was built, refined, and improved during that week of active development.</p>
+              <a href="https://www.patreon.com/posts/devlog-weekly-148532621?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                 class="devlog-open-link" target="_blank" rel="noopener noreferrer" style="font-size:0.88rem; color:var(--ac-gold-light); text-decoration:none;">Click to Open on Patreon</a>
+            </div>
+          </div>
+    
+          <!-- Log 03 -->
+          <div class="devlog-card" style="display:flex; flex-direction:column; gap:8px; border-radius:10px; overflow:hidden;">
+            <div class="devlog-img-wrap" style="width:100%; height:auto; position:relative;">
+              <img src="https://files.catbox.moe/6etgmn.png" alt="Dev Note — Alpha"
+                   style="width:100%; height:auto; object-fit:cover; display:block; border-radius:10px;" />
+              <span class="devlog-num-badge" style="position:absolute; top:6px; left:6px; background:rgba(0,0,0,0.6); color:#f5d77c; padding:0.25rem 0.5rem; border-radius:999px; font-size:0.75rem; font-weight:700;">Log #03</span>
+            </div>
+            <div class="devlog-card-body" style="display:flex; flex-direction:column; justify-content:center; padding:8px;">
+              <span class="devlog-card-type" style="font-size:0.85rem; opacity:0.85;">Dev Note</span>
+              <div class="devlog-card-title" style="font-size:1rem; font-weight:600; margin:2px 0;">Alpha Dev Note</div>
+              <p class="devlog-card-desc" style="font-size:0.88rem; line-height:1.4; margin:4px 0;">An important developer note regarding the Alpha phase — sharing insights on the current state of the game and the road ahead.</p>
+              <a href="https://www.patreon.com/posts/dev-note-alpha-152999843?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+                 class="devlog-open-link" target="_blank" rel="noopener noreferrer" style="font-size:0.88rem; color:var(--ac-gold-light); text-decoration:none;">Click to Open on Patreon</a>
+            </div>
+          </div>
+    
+        </div>
+      </div>
     </div>
 
+    <!-- ══════════════════════════════════════════
+         JAVASCRIPT
+    ══════════════════════════════════════════ -->
     <script>
 
-        // shrink the navbar a little when you scroll past the top
+        // Shrink navbar on scroll
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-
-        // hamburger menu toggle for mobile
+        // ── Hamburger menu ──────────────────────
         const navToggle = document.getElementById('navToggle');
         const navLinks  = document.getElementById('navLinks');
 
@@ -1962,26 +2598,28 @@
             navLinks.classList.remove('open');
             navToggle.classList.remove('open');
             navToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
         }
 
         navToggle.addEventListener('click', () => {
             const isOpen = navLinks.classList.toggle('open');
             navToggle.classList.toggle('open', isOpen);
             navToggle.setAttribute('aria-expanded', String(isOpen));
+            // lock body scroll while menu is open
+            document.body.style.overflow = isOpen ? 'hidden' : '';
         });
 
-        // close mobile nav when any nav link is clicked
+        // Close nav when any nav link is clicked
         document.querySelectorAll('.nav-link-item').forEach(link => {
             link.addEventListener('click', closeNav);
         });
 
-        // close mobile nav if user taps outside of it
+        // Close nav when tapping outside
         document.addEventListener('click', (e) => {
             if (!navbar.contains(e.target)) closeNav();
         });
 
-
-        // FAQ accordion
+        // ── FAQ accordion ───────────────────────
         document.querySelectorAll('.faq-item').forEach(item => {
             item.querySelector('.faq-question').addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
@@ -1990,8 +2628,7 @@
             });
         });
 
-
-        // fade-in elements as they enter the viewport
+        // ── Fade-in on scroll ───────────────────
         const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -2003,8 +2640,7 @@
 
         document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
-
-        // smooth anchor scrolling for all hash links
+        // ── Smooth anchor scrolling ─────────────
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
@@ -2016,21 +2652,18 @@
             });
         });
 
-
-        // hero content fades out gently as user scrolls down
+        // ── Hero parallax fade ──────────────────
         window.addEventListener('scroll', () => {
             const hero = document.querySelector('.hero-content');
             if (hero) hero.style.opacity = Math.max(0, 1 - window.pageYOffset / 600);
 
-            const scrollIndicator = document.querySelector('.scroll-indicator');
-            if (scrollIndicator) scrollIndicator.style.opacity = window.scrollY > 100 ? '0' : '1';
+            const indicator = document.querySelector('.scroll-indicator');
+            if (indicator) indicator.style.opacity = window.scrollY > 100 ? '0' : '1';
         });
 
-
-        // subtle gold mouse trail — desktop only, not on touch screens
+        // ── Gold mouse trail (desktop only) ─────
         document.addEventListener('mousemove', (e) => {
             if (window.innerWidth <= 768) return;
-
             const dot = document.createElement('div');
             dot.style.cssText = `
                 position: fixed;
@@ -2049,8 +2682,7 @@
             setTimeout(() => dot.remove(), 520);
         });
 
-
-        // body starts at opacity:0 in CSS; fade it in cleanly after load
+        // ── Fade body in on load ─────────────────
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.body.style.transition = 'opacity 0.5s ease';
@@ -2058,8 +2690,7 @@
             }, 80);
         });
 
-
-        // background slideshow — scroll-driven, no timers
+        // ── Background slideshow (scroll-driven) ─
         (function () {
 
             const slides   = Array.from(document.querySelectorAll('.bg-slide'));
@@ -2077,7 +2708,6 @@
             function slideForScroll() {
                 const trigger = window.scrollY + window.innerHeight * 0.3;
                 let idx = 0;
-
                 offsets.forEach((top, i) => {
                     if (trigger >= top) {
                         idx = Math.min(
@@ -2086,7 +2716,6 @@
                         );
                     }
                 });
-
                 return idx;
             }
 
@@ -2097,7 +2726,7 @@
                 slides.forEach((slide, i) => slide.classList.toggle('active', i === next));
             }
 
-            // preload all slide images so they're ready before needed
+            // Preload all slide images
             slides.forEach(slide => {
                 const raw = slide.style.backgroundImage;
                 if (!raw || raw === 'none') return;
@@ -2107,18 +2736,17 @@
                 img.src = url;
             });
 
-            // activate the first slide right away
+            // Activate first slide immediately
             slides[0].classList.add('active');
             lastActive = 0;
 
             window.addEventListener('scroll', updateSlides, { passive: true });
             window.addEventListener('resize', () => { buildOffsets(); updateSlides(); });
-            window.addEventListener('load', () => { buildOffsets(); updateSlides(); });
+            window.addEventListener('load',   () => { buildOffsets(); updateSlides(); });
 
         })();
 
-
-        // codex overlay open / close
+        // ── Codex overlay ────────────────────────
         function openCodex() {
             const overlay = document.getElementById('codexOverlay');
             overlay.classList.add('open');
@@ -2131,20 +2759,18 @@
             document.body.style.overflow = '';
         }
 
-        // tap the dark backdrop to close the codex
         document.getElementById('codexOverlay').addEventListener('click', function (e) {
             if (e.target === this) closeCodex();
         });
 
-
-        // developer logs overlay open / close
+        // ── Developer Logs overlay ───────────────
         function openDevlogs() {
             const overlay = document.getElementById('devlogsOverlay');
             overlay.classList.add('open');
             overlay.scrollTop = 0;
             document.body.style.overflow = 'hidden';
 
-            // FIX: trigger devlog images to load now that overlay is visible
+            // Trigger any lazily-deferred images
             overlay.querySelectorAll('img[data-src]').forEach(img => {
                 img.src = img.dataset.src;
                 delete img.dataset.src;
@@ -2156,13 +2782,11 @@
             document.body.style.overflow = '';
         }
 
-        // tap the dark backdrop to close devlogs
         document.getElementById('devlogsOverlay').addEventListener('click', function (e) {
             if (e.target === this) closeDevlogs();
         });
 
-
-        // or just esc lol
+        // ── ESC closes any open overlay ──────────
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 closeCodex();
