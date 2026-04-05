@@ -39,9 +39,11 @@
             --ac-gold-dim:     rgba(201, 168, 76, 0.35);
         }
 
+        /* FIX 5: Prevent left/right horizontal scroll glitch */
         html {
             scroll-behavior: smooth;
             overscroll-behavior-y: none;
+            overflow-x: hidden;
         }
 
         body {
@@ -53,6 +55,8 @@
             opacity: 0;
             overscroll-behavior-y: none;
             touch-action: pan-x pan-y;
+            /* FIX 6: prevent any child from creating extra scroll space */
+            max-width: 100%;
         }
 
         /* Background Slideshow */
@@ -93,6 +97,8 @@
             inset: 0;
             z-index: -1;
             background: linear-gradient(135deg, rgba(10,8,6,0.55) 0%, rgba(26,10,0,0.45) 100%);
+            /* FIX 6: contain the rotating child so it never creates extra scrollable space */
+            overflow: hidden;
         }
 
         .gradient-bg::before {
@@ -117,6 +123,7 @@
             top: 0;
             width: 100%;
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             background: rgba(10,8,6,0.9);
             border-bottom: 1px solid rgba(201,168,76,0.15);
             z-index: 1000;
@@ -1015,6 +1022,8 @@
             padding: 3rem 2rem 2rem;
             text-align: center;
             border-top: 1px solid rgba(201,168,76,0.12);
+            /* FIX 6: ensure footer is the true end, no margin below */
+            margin-bottom: 0;
         }
 
         .footer-content { max-width: 1400px; margin: 0 auto; }
@@ -1060,6 +1069,7 @@
             justify-content: center;
             background: rgba(5,4,2,0.97);
             backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.45s ease;
@@ -1499,7 +1509,9 @@
                 align-items: center;
                 gap: 0;
                 background: rgba(10,8,6,0.98);
-                backdrop-filter: blur(24px);
+                /* FIX 2/3/4: remove backdrop-filter on mobile nav menu to prevent Safari crash on zoom */
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
                 padding: 0;
                 z-index: 999;
                 overflow-y: auto;
@@ -1548,7 +1560,14 @@
 
             .trailer-title { letter-spacing: 2px; }
 
-            .codex-overlay { padding: 0; }
+            /* FIX 1 & 2/3/4: Mobile overlay — remove backdrop-filter to prevent Safari crash on zoom,
+               constrain sizes so content fits naturally on small screens */
+            .codex-overlay {
+                padding: 0;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                background: rgba(5,4,2,0.99);
+            }
             .codex-panel {
                 padding: 1.6rem 1rem 2.2rem;
                 margin: 0;
@@ -1562,6 +1581,7 @@
             .codex-badge { font-size: 0.56rem; letter-spacing: 2.5px; padding: 0.3rem 0.85rem; }
             .codex-header { margin-bottom: 1.4rem; }
             .codex-illustration { margin-bottom: 1.2rem; }
+            /* FIX 1: Constrain illustration/devlog images on mobile so they don't appear huge */
             .codex-illustration img { max-height: 150px; }
             .codex-illustration-caption { font-size: 0.58rem; padding: 0.45rem 0.9rem; }
             .codex-intro-text { font-size: 0.8rem; line-height: 1.7; padding: 0.85rem 0.95rem; margin-bottom: 1.2rem; }
@@ -1575,6 +1595,7 @@
             .codex-footnote { font-size: 0.7rem; padding-top: 1.2rem; }
             .codex-close-btn { top: 0.9rem; right: 0.9rem; width: 34px; height: 34px; font-size: 0.95rem; }
 
+            /* FIX 1: Devlog overlay images on mobile — natural column layout, capped height */
             .devlog-grid { grid-template-columns: 1fr; gap: 0.9rem; }
             .devlog-card { flex-direction: row; align-items: stretch; min-height: 110px; }
             .devlog-img-wrap { width: 100px; flex-shrink: 0; max-height: none; }
@@ -1585,6 +1606,22 @@
             .devlog-card-title { font-size: 0.78rem; }
             .devlog-card-desc  { font-size: 0.7rem; line-height: 1.5; margin-bottom: 0.7rem; }
             .devlog-open-link  { font-size: 0.6rem; padding: 0.55rem 0.7rem; letter-spacing: 1px; }
+
+            /* FIX 1: Devlog overlay panel inline-style overrides for mobile */
+            #devlogsOverlay .devlog-img-wrap img {
+                max-height: 110px !important;
+                height: 100% !important;
+                object-fit: cover !important;
+            }
+            #devlogsOverlay .devlog-card {
+                flex-direction: row !important;
+                border-radius: 4px !important;
+            }
+            #devlogsOverlay .devlog-img-wrap {
+                width: 100px !important;
+                height: auto !important;
+                border-radius: 0 !important;
+            }
 
             .btn-mirage { padding: 1.2rem 2.2rem; font-size: 0.88rem; }
 
@@ -2363,7 +2400,7 @@
                 <div class="devlog-card" style="display:flex;flex-direction:column;gap:8px;border-radius:10px;overflow:hidden;">
                     <div class="devlog-img-wrap" style="width:100%;height:auto;position:relative;">
                         <img src="https://files.catbox.moe/sek4x7.png" alt="Devlog — Massive Update" loading="lazy"
-                             style="width:100%;height:auto;object-fit:cover;display:block;border-radius:10px;">
+                             style="width:100%;height:auto;max-height:220px;object-fit:cover;display:block;border-radius:10px;">
                         <span class="devlog-num-badge" style="position:absolute;top:6px;left:6px;background:rgba(0,0,0,0.6);color:#f5d77c;padding:0.25rem 0.5rem;border-radius:999px;font-size:0.75rem;font-weight:700;">Log #01</span>
                     </div>
                     <div class="devlog-card-body" style="display:flex;flex-direction:column;justify-content:center;padding:8px;">
@@ -2380,7 +2417,7 @@
                 <div class="devlog-card" style="display:flex;flex-direction:column;gap:8px;border-radius:10px;overflow:hidden;">
                     <div class="devlog-img-wrap" style="width:100%;height:auto;position:relative;">
                         <img src="https://files.catbox.moe/gyirfh.png" alt="Devlog — Weekly Update" loading="lazy"
-                             style="width:100%;height:auto;object-fit:cover;display:block;border-radius:10px;">
+                             style="width:100%;height:auto;max-height:220px;object-fit:cover;display:block;border-radius:10px;">
                         <span class="devlog-num-badge" style="position:absolute;top:6px;left:6px;background:rgba(0,0,0,0.6);color:#f5d77c;padding:0.25rem 0.5rem;border-radius:999px;font-size:0.75rem;font-weight:700;">Log #02</span>
                     </div>
                     <div class="devlog-card-body" style="display:flex;flex-direction:column;justify-content:center;padding:8px;">
@@ -2397,7 +2434,7 @@
                 <div class="devlog-card" style="display:flex;flex-direction:column;gap:8px;border-radius:10px;overflow:hidden;">
                     <div class="devlog-img-wrap" style="width:100%;height:auto;position:relative;">
                         <img src="https://files.catbox.moe/6etgmn.png" alt="Dev Note — Alpha" loading="lazy"
-                             style="width:100%;height:auto;object-fit:cover;display:block;border-radius:10px;">
+                             style="width:100%;height:auto;max-height:220px;object-fit:cover;display:block;border-radius:10px;">
                         <span class="devlog-num-badge" style="position:absolute;top:6px;left:6px;background:rgba(0,0,0,0.6);color:#f5d77c;padding:0.25rem 0.5rem;border-radius:999px;font-size:0.75rem;font-weight:700;">Log #03</span>
                     </div>
                     <div class="devlog-card-body" style="display:flex;flex-direction:column;justify-content:center;padding:8px;">
@@ -2414,13 +2451,19 @@
     </div>
 
     <script>
-        // Reveal body on load — also handles BFcache restore (fixes blank page after zoom)
+        // FIX 2/3/4: Robust body reveal — handles zoom, BFcache, visibility changes, orientation changes
         function revealBody() {
             document.body.style.transition = 'opacity 0.5s ease';
             document.body.style.opacity = '1';
         }
         window.addEventListener('load', function() { setTimeout(revealBody, 80); });
         window.addEventListener('pageshow', function(e) { if (e.persisted) revealBody(); });
+        // FIX 3: If user zooms before load fires, visibility change or focus will rescue the page
+        document.addEventListener('visibilitychange', function() { if (!document.hidden) revealBody(); });
+        window.addEventListener('focus', revealBody);
+        window.addEventListener('orientationchange', function() { setTimeout(revealBody, 150); });
+        // FIX 3: Hard fallback — if nothing else fires within 2.5s, force reveal
+        setTimeout(revealBody, 2500);
 
         // Shrink navbar on scroll
         var navbar = document.getElementById('navbar');
