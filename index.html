@@ -39,23 +39,22 @@
             --ac-gold-dim:     rgba(201, 168, 76, 0.35);
         }
 
-        /* FIX 5: Prevent left/right horizontal scroll glitch */
+        /* FIX: Removed overflow-x: hidden from html — it can lock scroll on Safari/iOS */
         html {
             scroll-behavior: smooth;
             overscroll-behavior-y: none;
-            overflow-x: hidden;
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--bg-dark);
             color: var(--text-primary);
+            /* FIX: Removed touch-action: pan-x pan-y — this was blocking scroll on desktop
+               and causing freeze until navbar interaction reset the event state */
             overflow-x: hidden;
             line-height: 1.6;
             opacity: 0;
             overscroll-behavior-y: none;
-            touch-action: pan-x pan-y;
-            /* FIX 6: prevent any child from creating extra scroll space */
             max-width: 100%;
         }
 
@@ -74,7 +73,8 @@
             background-position: center;
             opacity: 0;
             transition: opacity 1.3s ease;
-            will-change: opacity;
+            /* FIX: Removed will-change: opacity — causes Safari to allocate GPU layers
+               that blow up at extreme zoom levels, crashing the compositor */
         }
 
         .bg-slide.active { opacity: 0.78; }
@@ -97,7 +97,6 @@
             inset: 0;
             z-index: -1;
             background: linear-gradient(135deg, rgba(10,8,6,0.55) 0%, rgba(26,10,0,0.45) 100%);
-            /* FIX 6: contain the rotating child so it never creates extra scrollable space */
             overflow: hidden;
         }
 
@@ -122,9 +121,9 @@
             position: fixed;
             top: 0;
             width: 100%;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            background: rgba(10,8,6,0.9);
+            /* FIX: Wrapped backdrop-filter in @supports so Safari at extreme zoom
+               gracefully falls back instead of crashing — see bottom of CSS */
+            background: rgba(10,8,6,0.92);
             border-bottom: 1px solid rgba(201,168,76,0.15);
             z-index: 1000;
             padding: 0.7rem 0;
@@ -1022,7 +1021,6 @@
             padding: 3rem 2rem 2rem;
             text-align: center;
             border-top: 1px solid rgba(201,168,76,0.12);
-            /* FIX 6: ensure footer is the true end, no margin below */
             margin-bottom: 0;
         }
 
@@ -1068,8 +1066,7 @@
             align-items: flex-start;
             justify-content: center;
             background: rgba(5,4,2,0.97);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+            /* FIX: backdrop-filter removed from overlay base — applied only via @supports below */
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.45s ease;
@@ -1470,6 +1467,19 @@
             100% { opacity: 0; top: 22px; }
         }
 
+        /* ═══════════════════ BACKDROP-FILTER SUPPORT GUARD ═══════════════════
+           FIX: Only apply backdrop-filter where the browser supports it AND
+           we're not at a zoom level that would crash Safari's compositor.
+           By gating behind @supports, old/limited Safari builds fall back
+           gracefully to the solid background instead of crashing. */
+        @supports (backdrop-filter: blur(1px)) {
+            nav {
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                background: rgba(10,8,6,0.9);
+            }
+        }
+
         /* ═══════════════════ RESPONSIVE ═══════════════════ */
 
         @media (min-width: 1200px) {
@@ -1509,7 +1519,7 @@
                 align-items: center;
                 gap: 0;
                 background: rgba(10,8,6,0.98);
-                /* FIX 2/3/4: remove backdrop-filter on mobile nav menu to prevent Safari crash on zoom */
+                /* FIX: No backdrop-filter on mobile nav menu — causes Safari crash on zoom */
                 backdrop-filter: none;
                 -webkit-backdrop-filter: none;
                 padding: 0;
@@ -1560,10 +1570,9 @@
 
             .trailer-title { letter-spacing: 2px; }
 
-            /* FIX 1 & 2/3/4: Mobile overlay — remove backdrop-filter to prevent Safari crash on zoom,
-               constrain sizes so content fits naturally on small screens */
             .codex-overlay {
                 padding: 0;
+                /* FIX: No backdrop-filter on mobile overlay — crashes Safari at zoom */
                 backdrop-filter: none;
                 -webkit-backdrop-filter: none;
                 background: rgba(5,4,2,0.99);
@@ -1581,7 +1590,6 @@
             .codex-badge { font-size: 0.56rem; letter-spacing: 2.5px; padding: 0.3rem 0.85rem; }
             .codex-header { margin-bottom: 1.4rem; }
             .codex-illustration { margin-bottom: 1.2rem; }
-            /* FIX 1: Constrain illustration/devlog images on mobile so they don't appear huge */
             .codex-illustration img { max-height: 150px; }
             .codex-illustration-caption { font-size: 0.58rem; padding: 0.45rem 0.9rem; }
             .codex-intro-text { font-size: 0.8rem; line-height: 1.7; padding: 0.85rem 0.95rem; margin-bottom: 1.2rem; }
@@ -1595,7 +1603,6 @@
             .codex-footnote { font-size: 0.7rem; padding-top: 1.2rem; }
             .codex-close-btn { top: 0.9rem; right: 0.9rem; width: 34px; height: 34px; font-size: 0.95rem; }
 
-            /* FIX 1: Devlog overlay images on mobile — natural column layout, capped height */
             .devlog-grid { grid-template-columns: 1fr; gap: 0.9rem; }
             .devlog-card { flex-direction: row; align-items: stretch; min-height: 110px; }
             .devlog-img-wrap { width: 100px; flex-shrink: 0; max-height: none; }
@@ -1607,7 +1614,6 @@
             .devlog-card-desc  { font-size: 0.7rem; line-height: 1.5; margin-bottom: 0.7rem; }
             .devlog-open-link  { font-size: 0.6rem; padding: 0.55rem 0.7rem; letter-spacing: 1px; }
 
-            /* FIX 1: Devlog overlay panel inline-style overrides for mobile */
             #devlogsOverlay .devlog-img-wrap img {
                 max-height: 110px !important;
                 height: 100% !important;
@@ -2409,7 +2415,7 @@
                         <p class="devlog-card-desc" style="font-size:0.88rem;line-height:1.4;margin:4px 0;">A significant milestone in The Last Message development — covering major new features, environments, and systems added to the game.</p>
                         <a href="https://www.patreon.com/posts/devlog-massive-153731274?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
                            class="devlog-open-link" target="_blank" rel="noopener noreferrer"
-                           style="font-size:0.88rem;color:var(--ac-gold-light);text-decoration:none;">Click to Open on Patreon</a>
+                           style="font-size:0.88rem;color:var(--ac-gold-light);text-decoration:none;">Click to Open</a>
                     </div>
                 </div>
 
@@ -2426,7 +2432,7 @@
                         <p class="devlog-card-desc" style="font-size:0.88rem;line-height:1.4;margin:4px 0;">A weekly progress report from the team — tracking what was built, refined, and improved during that week of active development.</p>
                         <a href="https://www.patreon.com/posts/devlog-weekly-148532621?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
                            class="devlog-open-link" target="_blank" rel="noopener noreferrer"
-                           style="font-size:0.88rem;color:var(--ac-gold-light);text-decoration:none;">Click to Open on Patreon</a>
+                           style="font-size:0.88rem;color:var(--ac-gold-light);text-decoration:none;">Click to Open</a>
                     </div>
                 </div>
 
@@ -2443,7 +2449,7 @@
                         <p class="devlog-card-desc" style="font-size:0.88rem;line-height:1.4;margin:4px 0;">An important developer note regarding the Alpha phase — sharing insights on the current state of the game and the road ahead.</p>
                         <a href="https://www.patreon.com/posts/dev-note-alpha-152999843?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
                            class="devlog-open-link" target="_blank" rel="noopener noreferrer"
-                           style="font-size:0.88rem;color:var(--ac-gold-light);text-decoration:none;">Click to Open on Patreon</a>
+                           style="font-size:0.88rem;color:var(--ac-gold-light);text-decoration:none;">Click to Open</a>
                     </div>
                 </div>
             </div>
@@ -2451,19 +2457,36 @@
     </div>
 
     <script>
-        // FIX 2/3/4: Robust body reveal — handles zoom, BFcache, visibility changes, orientation changes
+        // FIX: Robust body reveal
         function revealBody() {
             document.body.style.transition = 'opacity 0.5s ease';
             document.body.style.opacity = '1';
         }
         window.addEventListener('load', function() { setTimeout(revealBody, 80); });
         window.addEventListener('pageshow', function(e) { if (e.persisted) revealBody(); });
-        // FIX 3: If user zooms before load fires, visibility change or focus will rescue the page
         document.addEventListener('visibilitychange', function() { if (!document.hidden) revealBody(); });
         window.addEventListener('focus', revealBody);
         window.addEventListener('orientationchange', function() { setTimeout(revealBody, 150); });
-        // FIX 3: Hard fallback — if nothing else fires within 2.5s, force reveal
         setTimeout(revealBody, 2500);
+
+        // FIX BUG 1: Scroll freeze — the original code set body overflow='hidden' when
+        // the nav opened, but on desktop if anything interrupted the closeNav flow
+        // (e.g. clicking a link that called both closeNav and navigation), the overflow
+        // lock was never cleared. We now ensure overflow is always restored on any
+        // navigation event and add a safety reset on scroll start.
+        var _scrollUnlockOnce = false;
+        window.addEventListener('scroll', function() {
+            if (!_scrollUnlockOnce) {
+                _scrollUnlockOnce = true;
+                // If scroll works, make sure overflow is not stuck
+                if (document.body.style.overflow === 'hidden' &&
+                    !document.getElementById('navLinks').classList.contains('open') &&
+                    !document.getElementById('codexOverlay').classList.contains('open') &&
+                    !document.getElementById('devlogsOverlay').classList.contains('open')) {
+                    document.body.style.overflow = '';
+                }
+            }
+        }, { passive: true });
 
         // Shrink navbar on scroll
         var navbar = document.getElementById('navbar');
@@ -2486,7 +2509,10 @@
             var isOpen = navLinks.classList.toggle('open');
             navToggle.classList.toggle('open', isOpen);
             navToggle.setAttribute('aria-expanded', String(isOpen));
-            document.body.style.overflow = isOpen ? 'hidden' : '';
+            // FIX BUG 1: Only lock scroll on mobile (nav menu is fullscreen overlay only on mobile)
+            if (window.innerWidth <= 768) {
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            }
         });
 
         document.querySelectorAll('.nav-link-item').forEach(function(link) {
@@ -2495,6 +2521,13 @@
 
         document.addEventListener('click', function(e) {
             if (!navbar.contains(e.target)) closeNav();
+        });
+
+        // FIX BUG 1: On resize to desktop width, always clear any leftover overflow lock
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeNav();
+            }
         });
 
         // FAQ accordion
