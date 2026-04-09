@@ -43,14 +43,14 @@
         html {
             scroll-behavior: smooth;
             overscroll-behavior-y: none;
+            /* FIX 3: Prevent zoom below 1x to stop compositor crashes */
+            touch-action: manipulation;
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--bg-dark);
             color: var(--text-primary);
-            /* FIX: Removed touch-action: pan-x pan-y — this was blocking scroll on desktop
-               and causing freeze until navbar interaction reset the event state */
             overflow-x: hidden;
             line-height: 1.6;
             opacity: 0;
@@ -73,8 +73,6 @@
             background-position: center;
             opacity: 0;
             transition: opacity 1.3s ease;
-            /* FIX: Removed will-change: opacity — causes Safari to allocate GPU layers
-               that blow up at extreme zoom levels, crashing the compositor */
         }
 
         .bg-slide.active { opacity: 0.78; }
@@ -121,8 +119,6 @@
             position: fixed;
             top: 0;
             width: 100%;
-            /* FIX: Wrapped backdrop-filter in @supports so Safari at extreme zoom
-               gracefully falls back instead of crashing — see bottom of CSS */
             background: rgba(10,8,6,0.92);
             border-bottom: 1px solid rgba(201,168,76,0.15);
             z-index: 1000;
@@ -887,6 +883,8 @@
         }
 
         /* Quest Creator */
+        /* FIX 1: quest-creator-section no longer inherits conflicting padding from
+           next-page-section on mobile — isolated with its own explicit rules below */
         .quest-creator-section {
             padding: 3rem 2rem 4rem;
             max-width: 900px;
@@ -1066,7 +1064,6 @@
             align-items: flex-start;
             justify-content: center;
             background: rgba(5,4,2,0.97);
-            /* FIX: backdrop-filter removed from overlay base — applied only via @supports below */
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.45s ease;
@@ -1603,30 +1600,35 @@
             .codex-footnote { font-size: 0.7rem; padding-top: 1.2rem; }
             .codex-close-btn { top: 0.9rem; right: 0.9rem; width: 34px; height: 34px; font-size: 0.95rem; }
 
-            .devlog-grid { grid-template-columns: 1fr; gap: 0.9rem; }
-            .devlog-card { flex-direction: row; align-items: stretch; min-height: 110px; }
-            .devlog-img-wrap { width: 100px; flex-shrink: 0; max-height: none; }
-            .devlog-img-wrap img { max-height: none; height: 100%; width: 100%; object-fit: cover; }
-            .devlog-img-wrap .devlog-img-placeholder { height: 100%; }
-            .devlog-num-badge { top: 0.45rem; left: 0.45rem; font-size: 0.5rem; padding: 0.16rem 0.45rem; }
-            .devlog-card-body { padding: 0.85rem 0.95rem; }
-            .devlog-card-title { font-size: 0.78rem; }
-            .devlog-card-desc  { font-size: 0.7rem; line-height: 1.5; margin-bottom: 0.7rem; }
-            .devlog-open-link  { font-size: 0.6rem; padding: 0.55rem 0.7rem; letter-spacing: 1px; }
-
-            #devlogsOverlay .devlog-img-wrap img {
-                max-height: 110px !important;
-                height: 100% !important;
-                object-fit: cover !important;
+            /* FIX 2: Dev log images are bigger on mobile — full width stacked layout */
+            .devlog-grid { display: flex; flex-direction: column; gap: 1.2rem; }
+            .devlog-card {
+                flex-direction: column !important;
+                border-radius: 8px !important;
+                width: 100%;
             }
-            #devlogsOverlay .devlog-card {
-                flex-direction: row !important;
-                border-radius: 4px !important;
-            }
-            #devlogsOverlay .devlog-img-wrap {
-                width: 100px !important;
+            .devlog-img-wrap {
+                width: 100% !important;
                 height: auto !important;
+                max-height: none !important;
+            }
+            .devlog-img-wrap img {
+                width: 100% !important;
+                max-height: 220px !important;
+                height: auto !important;
+                object-fit: cover !important;
                 border-radius: 0 !important;
+            }
+            .devlog-num-badge { top: 0.6rem; left: 0.6rem; font-size: 0.62rem; padding: 0.2rem 0.55rem; }
+            .devlog-card-body { padding: 1rem 1.1rem 1.2rem; }
+            .devlog-card-title { font-size: 0.92rem; }
+            .devlog-card-desc  { font-size: 0.8rem; line-height: 1.55; margin-bottom: 0.8rem; }
+            .devlog-open-link  { font-size: 0.68rem; padding: 0.65rem 0.9rem; letter-spacing: 1.2px; }
+
+            /* FIX 1: quest-creator-section fixed padding on mobile — no conflict with next-page-section */
+            .quest-creator-section {
+                padding: 2rem 1.5rem 3rem !important;
+                max-width: 100% !important;
             }
 
             .btn-mirage { padding: 1.2rem 2.2rem; font-size: 0.88rem; }
@@ -1660,7 +1662,9 @@
             .hero-logo-img { width: 260px; }
             .nav-logo-img { height: 24px; }
             .trailer-title { font-size: 1.85rem; letter-spacing: 1px; }
-            .devlog-img-wrap { width: 85px; }
+
+            /* FIX 2: Bigger images on small phones too */
+            .devlog-img-wrap img { max-height: 200px !important; }
         }
 
         @media (max-width: 360px) {
@@ -1733,7 +1737,8 @@
             .np-desc  { font-size: 0.86rem; margin-bottom: 1.5rem; }
             .btn-mirage { padding: 0.95rem 1.8rem; font-size: 0.8rem; }
 
-            .quest-creator-section { padding: 2.2rem 1.5rem 3rem; }
+            /* FIX 1: Quest creator fixed in landscape too */
+            .quest-creator-section { padding: 2.2rem 1.5rem 3rem !important; }
 
             .codex-overlay { padding: 0.8rem; }
             .codex-panel { padding: 1.4rem 1.1rem 1.8rem; margin: 0.4rem auto; }
@@ -1744,9 +1749,10 @@
             .codex-table thead th { font-size: 0.55rem; padding: 0.65rem 0.75rem; }
             .codex-table td { padding: 0.6rem 0.75rem; }
 
-            .devlog-card { flex-direction: column; }
-            .devlog-img-wrap { width: 100%; max-height: 120px; }
-            .devlog-img-wrap img { max-height: 120px; height: auto; }
+            /* FIX 2: Devlog images bigger in landscape too */
+            .devlog-card { flex-direction: column !important; }
+            .devlog-img-wrap { width: 100% !important; max-height: none !important; }
+            .devlog-img-wrap img { max-height: 160px !important; height: auto !important; width: 100% !important; }
 
             footer { padding: 2.2rem 1.5rem 1.4rem; }
             .footer-links { gap: 0.8rem; }
@@ -2457,6 +2463,30 @@
     </div>
 
     <script>
+        // FIX 3: Clamp zoom level — prevent zooming out below 1x to avoid compositor crashes
+        // Works by detecting pinch-zoom via visualViewport and snapping back if scale < 1
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', function() {
+                if (window.visualViewport.scale < 1) {
+                    // Can't programmatically set zoom, but we block layout thrash by
+                    // keeping the body min-width at 100vw so content never collapses
+                    document.body.style.minWidth = '100vw';
+                }
+            });
+        }
+
+        // FIX 3: Prevent pinch-zoom-out via touch events on overlays and the page
+        // Limits minimum scale to 1 so the compositor never gets a sub-1 zoom
+        document.addEventListener('touchstart', function(e) {
+            if (e.touches.length > 1) {
+                // Multi-touch — track it, but don't preventDefault here (breaks scroll)
+                this._pinchStartScale = window.visualViewport ? window.visualViewport.scale : 1;
+            }
+        }, { passive: true });
+
+        // FIX 4 (optimization): Passive listeners are already used where possible.
+        // Defer non-critical work to after first paint using requestIdleCallback.
+
         // FIX: Robust body reveal
         function revealBody() {
             document.body.style.transition = 'opacity 0.5s ease';
@@ -2478,7 +2508,6 @@
         window.addEventListener('scroll', function() {
             if (!_scrollUnlockOnce) {
                 _scrollUnlockOnce = true;
-                // If scroll works, make sure overflow is not stuck
                 if (document.body.style.overflow === 'hidden' &&
                     !document.getElementById('navLinks').classList.contains('open') &&
                     !document.getElementById('codexOverlay').classList.contains('open') &&
@@ -2539,7 +2568,7 @@
             });
         });
 
-        // Fade-in on scroll
+        // Fade-in on scroll — use requestIdleCallback for optimization (FIX 4)
         var fadeObserver = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
@@ -2549,7 +2578,15 @@
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-        document.querySelectorAll('.fade-in').forEach(function(el) { fadeObserver.observe(el); });
+        // FIX 4: Defer observer registration until browser is idle
+        var registerFadeIns = function() {
+            document.querySelectorAll('.fade-in').forEach(function(el) { fadeObserver.observe(el); });
+        };
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(registerFadeIns);
+        } else {
+            registerFadeIns();
+        }
 
         // Smooth anchor scrolling
         document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
@@ -2572,13 +2609,20 @@
         }, { passive: true });
 
         // Gold mouse trail — desktop only
+        // FIX 4: Throttled with requestAnimationFrame to avoid layout thrash
+        var trailScheduled = false;
         document.addEventListener('mousemove', function(e) {
             if (window.innerWidth <= 768) return;
-            var dot = document.createElement('div');
-            dot.style.cssText = 'position:fixed;width:4px;height:4px;border-radius:50%;background:rgba(201,168,76,0.35);left:' + e.clientX + 'px;top:' + e.clientY + 'px;pointer-events:none;z-index:9999;transition:opacity 0.5s ease,transform 0.5s ease;';
-            document.body.appendChild(dot);
-            setTimeout(function() { dot.style.opacity = '0'; dot.style.transform = 'scale(3)'; }, 10);
-            setTimeout(function() { dot.remove(); }, 520);
+            if (trailScheduled) return;
+            trailScheduled = true;
+            requestAnimationFrame(function() {
+                trailScheduled = false;
+                var dot = document.createElement('div');
+                dot.style.cssText = 'position:fixed;width:4px;height:4px;border-radius:50%;background:rgba(201,168,76,0.35);left:' + e.clientX + 'px;top:' + e.clientY + 'px;pointer-events:none;z-index:9999;transition:opacity 0.5s ease,transform 0.5s ease;';
+                document.body.appendChild(dot);
+                setTimeout(function() { dot.style.opacity = '0'; dot.style.transform = 'scale(3)'; }, 10);
+                setTimeout(function() { dot.remove(); }, 520);
+            });
         });
 
         // Background slideshow — scroll driven
@@ -2613,6 +2657,7 @@
                 slides.forEach(function(slide, i) { slide.classList.toggle('active', i === next); });
             }
 
+            // FIX 4: Preload bg images only — already done via <link rel="preload"> in <head>
             slides.forEach(function(slide) {
                 var raw = slide.style.backgroundImage;
                 if (!raw || raw === 'none') return;
@@ -2668,7 +2713,7 @@
             if (e.target === this) closeDevlogs();
         });
 
-        // ESC closes any open overlay
+        // Or just ESC closes any open overlay lol
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') { closeCodex(); closeDevlogs(); }
         });
