@@ -1,0 +1,23 @@
+{
+  "name": "The Last Message Website",
+  "short_name": "The Last Message",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "description": "Last Message App",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://files.catbox.moe/lepobq.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://files.catbox.moe/lepobq.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
