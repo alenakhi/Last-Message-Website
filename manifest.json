@@ -1,12 +1,12 @@
 {
-  "name": "The Last Message Website",
-  "short_name": "The Last Message Website",
+  "name": "The Last Message App",
+  "short_name": "The Last Message",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#000000",
+  "background_color": "#1f0909",
   "theme_color": "#000000",
-  "description": "Last Message App",
+  "description": "The Last Message App",
   "orientation": "portrait",
   "icons": [
     {
