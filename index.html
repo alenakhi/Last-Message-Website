@@ -2934,6 +2934,9 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') { closeCodex(); closeDevlogs(); }
         });
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./serviceworker.js");
+}
     </script>
 </body>
 </html>
