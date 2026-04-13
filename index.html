@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
     <title>The Last Message - Journey Through History</title>
 
+    <link rel="icon" href="https://files.catbox.moe/1zb08m.jpg" type="image/jpeg">
+
     <link rel="dns-prefetch" href="https://files.catbox.moe">
     <link rel="preconnect" href="https://files.catbox.moe" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,6 +16,7 @@
     <link rel="preload" as="image" href="https://files.catbox.moe/ewccee.png">
     <link rel="preload" as="image" href="https://files.catbox.moe/eecnei.png">
     <link rel="preload" as="image" href="https://files.catbox.moe/01b0ls.png">
+    <link rel="preload" as="image" href="https://files.catbox.moe/qusswx.png">
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -706,7 +709,7 @@
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.2rem;
             margin-top: 2.5rem;
         }
@@ -1024,7 +1027,9 @@
         .alpha-inner {
             position: relative;
             padding: 3rem 2.5rem 3.5rem;
-            background: linear-gradient(160deg, #0d0b06, #181410, #0d0b06);
+            background:
+                linear-gradient(160deg, rgba(13,11,6,0.62), rgba(24,20,16,0.58), rgba(13,11,6,0.62)),
+                url('https://files.catbox.moe/qusswx.png') center / cover no-repeat;
             border: 1px solid rgba(201,168,76,0.3);
             clip-path: polygon(0 16px, 16px 0, calc(100% - 16px) 0, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0 calc(100% - 16px));
             overflow: hidden;
@@ -1607,7 +1612,6 @@
             }
         }
 
-        /* zoom-crash guard — disables expensive compositing at extreme zoom */
         body.zoom-extreme nav {
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
@@ -1629,13 +1633,20 @@
             .hero-logo-img { width: clamp(420px, 38vw, 580px); }
             .hero h1 { font-size: clamp(2.8rem, 4.5vw, 4.5rem); margin-bottom: 1rem; }
             .hero p  { font-size: 1.1rem; margin-bottom: 1.8rem; }
+            .team-grid { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+            .team-card-inner { padding: 1.2rem 1.2rem; gap: 1rem; }
+            .team-avatar-wrap { width: 62px; height: 62px; }
+            .team-avatar { width: 62px; height: 62px; font-size: 1.35rem; }
+            .team-card h3 { font-size: 0.95rem; }
+            .team-role { font-size: 0.6rem; }
+            .team-card p { font-size: 0.79rem; }
         }
 
         @media (max-width: 1024px) {
             .nav-container { padding: 0 1.5rem; }
             .hero p { font-size: 1rem; }
             .story-grid { grid-template-columns: repeat(2, 1fr); }
-            .team-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
             .community-grid { grid-template-columns: repeat(2, 1fr); }
             .devlog-grid { grid-template-columns: repeat(2, 1fr); }
             .quest-feature-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1782,7 +1793,11 @@
             .team-card p { font-size: 0.8rem; }
 
             .alpha-access-wrap { padding: 3rem 1.5rem 4rem; }
-            .alpha-inner { padding: 2rem 1.5rem 2.5rem; clip-path: none; }
+            .alpha-inner {
+                padding: 2rem 1.5rem 2.5rem;
+                clip-path: none;
+                background-position: center top;
+            }
             .alpha-steps { gap: 1.2rem; }
             .alpha-step-label { font-size: 0.65rem; }
         }
@@ -2017,6 +2032,7 @@
             <div class="cta-buttons">
                 <a href="#story"     class="btn btn-journey">Start Your Journey</a>
                 <a href="#community" class="btn btn-journey">Join Our Community</a>
+                <a href="#alpha"     class="btn btn-journey">Try the Alpha Version</a>
             </div>
         </div>
         <div class="scroll-indicator"><span></span></div>
@@ -2395,7 +2411,7 @@
     <div class="section-divider"></div>
 
     <!-- ALPHA ACCESS -->
-    <div class="alpha-access-wrap fade-in">
+    <div id="alpha" class="alpha-access-wrap fade-in">
         <div class="ac-ornate-divider">
             <span class="aod-line"></span>
             <span class="aod-diamond">◆</span>
