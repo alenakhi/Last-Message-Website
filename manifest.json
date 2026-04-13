@@ -1,6 +1,6 @@
 {
   "name": "The Last Message Website",
-  "short_name": "The Last Message",
+  "short_name": "The Last Message Website",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
