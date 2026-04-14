@@ -7,6 +7,8 @@
 
     <link rel="icon" href="https://files.catbox.moe/1zb08m.jpg" type="image/jpeg">
 
+    <link rel="apple-touch-icon" href="./icons/icon-192.png">
+
     <link rel="dns-prefetch" href="https://files.catbox.moe">
     <link rel="preconnect" href="https://files.catbox.moe" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -3209,6 +3211,14 @@
                 if (popup) popup.classList.add('show');
             }, 3200);
         })();
+        <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./serviceworker.js")
+          .then(() => console.log("SW registered"))
+          .catch(err => console.log("SW failed", err));
+      });
+    
     </script>
 </body>
 </html>
