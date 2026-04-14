@@ -7,16 +7,6 @@
 
     <link rel="icon" href="https://files.catbox.moe/1zb08m.jpg" type="image/jpeg">
 
-   <!-- PWA MANIFEST -->
-  <link rel="manifest" href="./manifest.json">
-
-  <!-- iOS ICON (IMPORTANT FIX) -->
-  <link rel="apple-touch-icon" href="https://files.catbox.moe/lepobq.png">
-
-  <!-- THEME COLOR -->
-  <meta name="theme-color" content="#000000">
-
-    
     <link rel="dns-prefetch" href="https://files.catbox.moe">
     <link rel="preconnect" href="https://files.catbox.moe" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,6 +40,9 @@
             --ac-gold:         #c9a84c;
             --ac-gold-light:   #e8c97e;
             --ac-gold-dim:     rgba(201, 168, 76, 0.35);
+            --ac-green:        #1e6b42;
+            --ac-green-light:  #2d9a5f;
+            --ac-green-dim:    rgba(30, 107, 66, 0.3);
         }
 
         html {
@@ -88,7 +81,7 @@
             will-change: opacity;
         }
 
-        .bg-slide.active { opacity: 0.78; }
+        .bg-slide.active { opacity: 0.88; }
 
         .bg-night-overlay {
             position: fixed;
@@ -97,10 +90,10 @@
             overflow: hidden;
             background:
                 linear-gradient(to bottom,
-                    rgba(10,8,6,0.85) 0%,
-                    rgba(10,8,6,0.52) 40%,
-                    rgba(10,8,6,0.58) 70%,
-                    rgba(10,8,6,0.9) 100%),
+                    rgba(10,8,6,0.75) 0%,
+                    rgba(10,8,6,0.42) 40%,
+                    rgba(10,8,6,0.48) 70%,
+                    rgba(10,8,6,0.84) 100%),
                 radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.04) 0%, transparent 60%);
         }
 
@@ -246,7 +239,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 5.5rem 2rem 2rem;
+            padding: 5rem 2rem 4.5rem;
             position: relative;
         }
 
@@ -288,7 +281,7 @@
         }
 
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--text-secondary);
             margin-bottom: 2rem;
             line-height: 1.8;
@@ -476,13 +469,13 @@
 
         /* Sections */
         section {
-            padding: 3rem 2rem;
+            padding: 2.5rem 2rem;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .section-title {
-            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-size: clamp(1.8rem, 4vw, 3rem);
             font-weight: 900;
             font-family: 'Cinzel', serif;
             margin-bottom: 0.8rem;
@@ -497,8 +490,8 @@
         .section-subtitle {
             text-align: center;
             color: var(--text-secondary);
-            font-size: 1.05rem;
-            margin-bottom: 3rem;
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
             max-width: 680px;
             margin-left: auto;
             margin-right: auto;
@@ -507,7 +500,7 @@
         .section-divider {
             width: 100%;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(201,168,76,0.22), transparent);
+            background: linear-gradient(90deg, transparent, rgba(30,107,66,0.38), transparent);
             margin: 0 auto;
             max-width: 900px;
             position: relative;
@@ -519,11 +512,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: var(--ac-gold);
+            color: var(--ac-green-light);
             font-size: 0.68rem;
             background: var(--bg-dark);
             padding: 0 0.8rem;
-            opacity: 0.6;
+            opacity: 0.65;
         }
 
         /* Ornate divider */
@@ -539,21 +532,21 @@
         .ac-ornate-divider .aod-line {
             flex: 1;
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--ac-gold-dim));
+            background: linear-gradient(90deg, transparent, var(--ac-green-dim));
         }
 
         .ac-ornate-divider .aod-line.right {
-            background: linear-gradient(90deg, var(--ac-gold-dim), transparent);
+            background: linear-gradient(90deg, var(--ac-green-dim), transparent);
         }
 
-        .ac-ornate-divider .aod-diamond { color: var(--ac-gold); font-size: 0.6rem; opacity: 0.6; }
+        .ac-ornate-divider .aod-diamond { color: var(--ac-green-light); font-size: 0.6rem; opacity: 0.65; }
 
         .ac-ornate-divider .aod-label {
             font-family: 'Cinzel', serif;
             font-size: 0.64rem;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: rgba(201,168,76,0.5);
+            color: rgba(45,154,95,0.55);
         }
 
         /* Story Grid */
@@ -700,9 +693,9 @@
 
         .community-card p { color: var(--text-secondary); margin-bottom: 1.6rem; flex: 1; font-size: 0.9rem; }
 
-        /* Team Section */
+        /* ──────────── TEAM SECTION ──────────── */
         #team {
-            padding: 4rem 2rem;
+            padding: 3rem 2rem;
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
@@ -717,154 +710,227 @@
             background: linear-gradient(90deg, transparent, var(--ac-gold), transparent);
         }
 
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.2rem;
-            margin-top: 2.5rem;
-        }
-
-        .team-card {
-            position: relative;
-            border-radius: 2px;
-            padding: 2px;
-            background: linear-gradient(135deg, rgba(201,168,76,0.6), rgba(201,168,76,0.05), rgba(201,168,76,0.6));
-            background-size: 300% 300%;
-            animation: borderShift 4s ease infinite;
-            transition: transform 0.4s, box-shadow 0.4s;
-            clip-path: polygon(0 10px, 10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px));
-        }
-
-        @keyframes borderShift {
-            0%   { background-position: 0% 50%; }
-            50%  { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .team-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 20px 44px rgba(201,168,76,0.18); }
-
-        .team-card-inner {
-            background: #10100a;
-            border-radius: 1px;
-            padding: 1.4rem 1.6rem;
-            text-align: left;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
+        /* Lead card */
+        .team-lead-card {
             display: flex;
             align-items: center;
-            gap: 1.4rem;
-        }
-
-        .team-card-inner::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 56px;
-            transform: translateY(-50%);
-            width: 140px;
-            height: 140px;
-            background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .team-card-inner::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
-            transition: left 0.6s;
-            pointer-events: none;
-        }
-
-        .team-card:hover .team-card-inner::after { left: 150%; }
-
-        .team-avatar-wrap {
+            gap: 2.5rem;
+            background: linear-gradient(135deg, #131109, #1e1a12);
+            border: 1px solid rgba(201,168,76,0.35);
+            padding: 2.4rem;
+            margin-bottom: 2.5rem;
             position: relative;
-            width: 76px;
-            height: 76px;
-            flex-shrink: 0;
+            overflow: hidden;
+            clip-path: polygon(0 12px, 12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px));
         }
 
-        .team-avatar {
-            width: 76px;
-            height: 76px;
+        .team-lead-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--ac-gold), transparent);
+            pointer-events: none;
+        }
+
+        .team-lead-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.05) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .team-lead-avatar-wrap {
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .team-lead-avatar {
+            width: 88px;
+            height: 88px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--ac-gold), #7a5c1e);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
-            font-weight: 800;
+            font-size: 2.2rem;
+            font-weight: 900;
             font-family: 'Cinzel', serif;
             color: white;
+            border: 2px solid rgba(201,168,76,0.5);
+            box-shadow: 0 0 30px rgba(201,168,76,0.22), 0 0 60px rgba(201,168,76,0.07);
+        }
+
+        .team-lead-content {
+            flex: 1;
             position: relative;
             z-index: 1;
-            box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
         }
 
-        .team-avatar-wrap::before {
+        .team-lead-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(201,168,76,0.1);
+            border: 1px solid rgba(201,168,76,0.35);
+            padding: 0.28rem 0.9rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--ac-gold);
+            text-transform: uppercase;
+            margin-bottom: 0.7rem;
+            clip-path: polygon(0 4px, 4px 0, calc(100% - 4px) 0, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 0 calc(100% - 4px));
+        }
+
+        .team-lead-badge::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: var(--ac-gold);
+            border-radius: 50%;
+            animation: pulseDot 1.5s ease infinite;
+            flex-shrink: 0;
+        }
+
+        .team-lead-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.9rem;
+            font-weight: 900;
+            color: var(--ac-gold-light);
+            letter-spacing: 3px;
+            margin-bottom: 0.8rem;
+            line-height: 1;
+        }
+
+        .team-lead-desc {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        /* Contributors label */
+        .team-contrib-label {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .team-contrib-label .tcl-line {
+            flex: 1;
+            height: 1px;
+            background: rgba(201,168,76,0.18);
+        }
+
+        .team-contrib-label .tcl-text {
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            letter-spacing: 4.5px;
+            text-transform: uppercase;
+            color: rgba(201,168,76,0.48);
+            white-space: nowrap;
+        }
+
+        /* Contributors grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.1rem;
+            align-items: stretch;
+        }
+
+        .team-card {
+            background: linear-gradient(160deg, #111009, #1a1710);
+            border: 1px solid rgba(201,168,76,0.13);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 8px, 8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px));
+        }
+
+        .team-card::before {
             content: '';
             position: absolute;
-            inset: -5px;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(201,168,76,0.04), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .team-card:hover {
+            border-color: rgba(201,168,76,0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+        }
+
+        .team-card:hover::before { opacity: 1; }
+
+        .team-card-top {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .team-card-avatar {
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
-            background: conic-gradient(var(--ac-gold) 0deg, transparent 120deg, var(--ac-gold-light) 240deg, transparent 360deg);
-            animation: spinRing 3s linear infinite;
-            opacity: 0.7;
-            will-change: transform;
-        }
-
-        @keyframes spinRing {
-            from { transform: rotate(0deg); }
-            to   { transform: rotate(360deg); }
-        }
-
-        .team-info { flex: 1; position: relative; z-index: 1; min-width: 0; }
-
-        .team-card h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
+            background: linear-gradient(135deg, rgba(201,168,76,0.65), rgba(100,70,15,0.85));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            font-weight: 900;
             font-family: 'Cinzel', serif;
-            margin-bottom: 0.3rem;
-            color: var(--text-primary);
+            color: white;
+            border: 1px solid rgba(201,168,76,0.3);
+            flex-shrink: 0;
+        }
+
+        .team-card-name {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--ac-gold-light);
+            letter-spacing: 0.5px;
+            margin: 0 0 0.3rem;
+            line-height: 1.2;
         }
 
         .team-role {
             display: inline-block;
-            background: rgba(201,168,76,0.1);
-            color: var(--ac-gold-light);
-            font-size: 0.65rem;
-            font-weight: 600;
-            padding: 0.2rem 0.7rem;
-            border-radius: 2px;
-            border: 1px solid rgba(201,168,76,0.3);
-            margin-bottom: 0.6rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+            background: rgba(201,168,76,0.07);
+            border: 1px solid rgba(201,168,76,0.2);
+            color: rgba(201,168,76,0.75);
+            font-size: 0.58rem;
+            padding: 0.14rem 0.55rem;
             font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            clip-path: polygon(0 3px, 3px 0, calc(100% - 3px) 0, 100% 3px, 100% calc(100% - 3px), calc(100% - 3px) 100%, 3px 100%, 0 calc(100% - 3px));
         }
 
-        .team-card p { color: var(--text-secondary); font-size: 0.83rem; line-height: 1.6; }
-
-        .team-number {
-            position: absolute;
-            bottom: 0.5rem;
-            right: 0.9rem;
-            font-size: 2.6rem;
-            font-weight: 900;
-            font-family: 'Cinzel', serif;
-            color: rgba(201,168,76,0.055);
-            line-height: 1;
-            pointer-events: none;
-            user-select: none;
+        .team-card p {
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            line-height: 1.65;
+            flex: 1;
         }
 
         /* Next-Page / Gateway Sections */
         .next-page-section {
-            padding: 3rem 2rem 3.5rem;
+            padding: 2.5rem 2rem 3rem;
             max-width: 860px;
             margin: 0 auto;
             text-align: center;
@@ -899,7 +965,7 @@
         }
 
         .quest-creator-section {
-            padding: 3rem 2rem 4rem;
+            padding: 2.5rem 2rem 3.5rem;
             max-width: 900px;
             margin: 0 auto;
             text-align: center;
@@ -938,7 +1004,7 @@
 
         /* Trailer */
         #trailer {
-            padding: 3.5rem 2rem;
+            padding: 3rem 2rem;
             max-width: 1050px;
             margin: 0 auto;
             text-align: center;
@@ -1003,6 +1069,12 @@
             clip-path: polygon(0 12px, 12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px));
         }
 
+        @keyframes borderShift {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .trailer-frame-inner {
             overflow: hidden;
             background: #000;
@@ -1028,7 +1100,7 @@
 
         /* Alpha Access Section */
         .alpha-access-wrap {
-            padding: 4rem 2rem 5rem;
+            padding: 3.5rem 2rem 4.5rem;
             max-width: 860px;
             margin: 0 auto;
             text-align: center;
@@ -1038,8 +1110,8 @@
             position: relative;
             padding: 3rem 2.5rem 3.5rem;
             background:
-                linear-gradient(160deg, rgba(13,11,6,0.62), rgba(24,20,16,0.58), rgba(13,11,6,0.62)),
-                url('https://files.catbox.moe/qusswx.png') center / cover no-repeat;
+                linear-gradient(160deg, rgba(10,8,6,0.78), rgba(18,14,10,0.72), rgba(10,8,6,0.78)),
+                url('https://files.catbox.moe/1zb08m.jpg') center / cover no-repeat;
             border: 1px solid rgba(201,168,76,0.3);
             clip-path: polygon(0 16px, 16px 0, calc(100% - 16px) 0, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0 calc(100% - 16px));
             overflow: hidden;
@@ -1573,7 +1645,7 @@
         /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
-            bottom: 1.8rem;
+            bottom: 0.6rem;
             left: 50%;
             transform: translateX(-50%);
             animation: bounce 2s infinite;
@@ -1614,6 +1686,148 @@
             100% { opacity: 0; top: 22px; }
         }
 
+        /* Add to Home Screen Popup */
+        .hs-popup {
+            position: fixed;
+            bottom: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 2rem);
+            max-width: 350px;
+            z-index: 99999;
+            background: linear-gradient(160deg, #0d0b07, #19160e);
+            border: 1px solid rgba(201,168,76,0.45);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 -8px 60px rgba(0,0,0,0.85), 0 0 40px rgba(201,168,76,0.1);
+            transition: bottom 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hs-popup.show { bottom: 1.2rem; }
+
+        .hs-popup-top-bar {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--ac-gold), transparent);
+        }
+
+        .hs-popup-inner {
+            padding: 1.4rem 1.5rem 1.5rem;
+        }
+
+        .hs-close {
+            position: absolute;
+            top: 0.9rem;
+            right: 0.9rem;
+            width: 28px;
+            height: 28px;
+            background: rgba(201,168,76,0.08);
+            border: 1px solid rgba(201,168,76,0.25);
+            border-radius: 50%;
+            color: rgba(201,168,76,0.7);
+            font-size: 0.72rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            line-height: 1;
+        }
+
+        .hs-close:hover { background: rgba(201,168,76,0.2); color: #fff; }
+
+        .hs-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .hs-logo {
+            width: 58px;
+            height: 58px;
+            border-radius: 13px;
+            border: 1px solid rgba(201,168,76,0.4);
+            object-fit: cover;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.5), 0 0 18px rgba(201,168,76,0.15);
+            flex-shrink: 0;
+        }
+
+        .hs-header-text { flex: 1; min-width: 0; }
+
+        .hs-app-name {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--ac-gold-light);
+            letter-spacing: 1.5px;
+            margin-bottom: 0.2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .hs-app-sub {
+            font-size: 0.7rem;
+            color: rgba(201,168,76,0.48);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+            font-size: 0.62rem;
+        }
+
+        .hs-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            font-weight: 900;
+            color: var(--ac-gold-light);
+            letter-spacing: 1.5px;
+            margin-bottom: 0.4rem;
+        }
+
+        .hs-desc {
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            line-height: 1.6;
+            margin-bottom: 0.9rem;
+        }
+
+        .hs-steps {
+            background: rgba(201,168,76,0.04);
+            border: 1px solid rgba(201,168,76,0.13);
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.9rem;
+            font-size: 0.76rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+        }
+
+        .hs-steps strong {
+            color: var(--ac-gold);
+            font-weight: 600;
+        }
+
+        .hs-dismiss-btn {
+            width: 100%;
+            padding: 0.7rem;
+            background: transparent;
+            border: 1px solid rgba(201,168,76,0.2);
+            border-radius: 8px;
+            color: rgba(201,168,76,0.5);
+            font-family: 'Cinzel', serif;
+            font-size: 0.68rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .hs-dismiss-btn:hover {
+            background: rgba(201,168,76,0.06);
+            color: var(--ac-gold);
+            border-color: rgba(201,168,76,0.35);
+        }
+
         @supports (backdrop-filter: blur(1px)) {
             nav {
                 backdrop-filter: blur(20px);
@@ -1632,31 +1846,21 @@
             animation: none !important;
         }
 
-        body.zoom-extreme .team-avatar-wrap::before {
-            animation: none !important;
-        }
-
         /* ═══════════════════ RESPONSIVE ═══════════════════ */
 
         @media (min-width: 1200px) {
-            .hero { min-height: 95vh; padding: 4.5rem 2rem 2rem; }
+            .hero { min-height: 95vh; padding: 4.5rem 2rem 4rem; }
             .hero-logo-img { width: clamp(420px, 38vw, 580px); }
             .hero h1 { font-size: clamp(2.8rem, 4.5vw, 4.5rem); margin-bottom: 1rem; }
             .hero p  { font-size: 1.1rem; margin-bottom: 1.8rem; }
             .team-grid { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-            .team-card-inner { padding: 1.2rem 1.2rem; gap: 1rem; }
-            .team-avatar-wrap { width: 62px; height: 62px; }
-            .team-avatar { width: 62px; height: 62px; font-size: 1.35rem; }
-            .team-card h3 { font-size: 0.95rem; }
-            .team-role { font-size: 0.6rem; }
-            .team-card p { font-size: 0.79rem; }
         }
 
         @media (max-width: 1024px) {
             .nav-container { padding: 0 1.5rem; }
             .hero p { font-size: 1rem; }
             .story-grid { grid-template-columns: repeat(2, 1fr); }
-            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .team-grid { grid-template-columns: repeat(3, 1fr); }
             .community-grid { grid-template-columns: repeat(2, 1fr); }
             .devlog-grid { grid-template-columns: repeat(2, 1fr); }
             .quest-feature-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1710,14 +1914,18 @@
             .hero p  { font-size: 1rem; }
             .hero-logo-img { width: clamp(240px, 70vw, 340px); }
 
-            section, #team, #trailer { padding: 3rem 1.5rem; }
+            section, #team, #trailer { padding: 2.5rem 1.5rem; }
 
             .cta-buttons { flex-direction: column; align-items: center; }
             .btn { width: 100%; max-width: 340px; justify-content: center; }
 
             .story-grid, .community-grid { grid-template-columns: 1fr; }
-            .team-grid { grid-template-columns: 1fr; gap: 0.9rem; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
             .quest-feature-grid { grid-template-columns: 1fr; }
+
+            .team-lead-card { flex-direction: column; text-align: center; gap: 1.4rem; padding: 1.8rem 1.5rem; }
+            .team-lead-desc { text-align: left; }
+            .team-contrib-label .tcl-line { display: none; }
 
             .community-card, .story-card { padding: 1.8rem 1.4rem; }
 
@@ -1795,12 +2003,6 @@
             .btn-mirage { padding: 1.2rem 2.2rem; font-size: 0.88rem; }
 
             #team::before { margin-bottom: 2.5rem; }
-            .team-card-inner { padding: 1.2rem 1.3rem; gap: 1.1rem; }
-            .team-avatar-wrap { width: 64px; height: 64px; }
-            .team-avatar { width: 64px; height: 64px; font-size: 1.35rem; }
-            .team-card h3 { font-size: 0.95rem; }
-            .team-role { font-size: 0.6rem; padding: 0.18rem 0.6rem; }
-            .team-card p { font-size: 0.8rem; }
 
             .alpha-access-wrap { padding: 3rem 1.5rem 4rem; }
             .alpha-inner {
@@ -1812,19 +2014,19 @@
             .alpha-step-label { font-size: 0.65rem; }
         }
 
+        @media (max-width: 640px) {
+            .team-lead-card { padding: 1.6rem 1.2rem; }
+            .team-lead-avatar { width: 72px; height: 72px; font-size: 1.8rem; }
+            .team-lead-name { font-size: 1.5rem; }
+        }
+
         @media (max-width: 480px) {
             .hero h1  { font-size: 1.75rem; letter-spacing: 0.5px; }
             .hero p   { font-size: 0.95rem; }
             .section-title    { font-size: 1.7rem; }
             .section-subtitle { font-size: 0.95rem; }
             .community-icon { width: 60px; height: 60px; }
-            .team-card-inner { padding: 1rem 1.1rem; gap: 0.9rem; }
-            .team-avatar { width: 56px; height: 56px; font-size: 1.15rem; }
-            .team-avatar-wrap { width: 56px; height: 56px; }
-            .team-card h3 { font-size: 0.9rem; }
-            .team-role { font-size: 0.58rem; }
-            .team-card p { font-size: 0.78rem; line-height: 1.5; }
-            .team-number { font-size: 1.8rem; }
+            .team-grid { grid-template-columns: 1fr; }
             .btn-journey { font-size: 0.88rem; padding: 1rem 1.8rem; }
             .logo { font-size: 1.25rem; }
             .nav-links a { font-size: 0.82rem; }
@@ -1885,14 +2087,14 @@
             .community-icon { width: 48px; height: 48px; margin-bottom: 0.7rem; }
             .community-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
 
+            .team-lead-card { flex-direction: column; gap: 1rem; padding: 1.4rem 1.2rem; }
+            .team-lead-avatar { width: 60px; height: 60px; font-size: 1.4rem; }
+            .team-lead-name { font-size: 1.3rem; }
             .team-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
-            .team-card-inner { padding: 1rem; gap: 0.8rem; }
-            .team-avatar { width: 48px; height: 48px; font-size: 1rem; }
-            .team-avatar-wrap { width: 48px; height: 48px; }
-            .team-card h3 { font-size: 0.82rem; }
-            .team-role { font-size: 0.54rem; padding: 0.12rem 0.45rem; margin-bottom: 0.35rem; }
-            .team-card p { font-size: 0.72rem; line-height: 1.45; }
-            .team-number { font-size: 1.8rem; }
+            .team-card { padding: 1.1rem; }
+            .team-card-avatar { width: 38px; height: 38px; font-size: 0.95rem; }
+            .team-card-name { font-size: 0.82rem; }
+            .team-card p { font-size: 0.74rem; line-height: 1.5; }
             #team::before { margin-bottom: 1.8rem; }
             #team { padding: 2.5rem 1.5rem; }
 
@@ -1946,7 +2148,7 @@
             .cta-buttons { flex-direction: row; flex-wrap: wrap; justify-content: center; }
             .btn { width: auto; max-width: none; }
             .btn-journey { padding: 0.9rem 2rem; font-size: 0.85rem; }
-            section, #team, #trailer { padding: 3.5rem 2rem; }
+            section, #team, #trailer { padding: 3rem 2rem; }
             .section-title { font-size: clamp(1.6rem, 4vw, 2.6rem); }
             .section-subtitle { font-size: 0.96rem; margin-bottom: 2.2rem; }
             .story-grid { grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
@@ -1959,10 +2161,8 @@
             .community-card { padding: 1.8rem 1.4rem; }
             .community-icon { width: 55px; height: 55px; }
             .community-card h3 { font-size: 1.2rem; }
-            .team-grid { grid-template-columns: repeat(2, 1fr); gap: 1.1rem; }
-            .team-card-inner { padding: 1.3rem 1.4rem; gap: 1.2rem; }
-            .team-avatar { width: 64px; height: 64px; font-size: 1.35rem; }
-            .team-avatar-wrap { width: 64px; height: 64px; }
+            .team-lead-card { flex-direction: row; gap: 2rem; }
+            .team-grid { grid-template-columns: repeat(3, 1fr); gap: 0.9rem; }
             #team::before { margin-bottom: 2.5rem; }
             .trailer-title { font-size: clamp(1.8rem, 4.5vw, 3.2rem); }
             .trailer-subtitle { font-size: 0.96rem; margin-bottom: 2.2rem; }
@@ -1971,8 +2171,7 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .gradient-bg::before,
-            .team-avatar-wrap::before { animation: none; }
+            .gradient-bg::before { animation: none; }
             .bg-slide { transition: none; }
             .fade-in { transition: none; }
         }
@@ -2250,89 +2449,102 @@
         <h2 class="section-title">Who Works at the Game?</h2>
         <p class="section-subtitle">The passionate team crafting every detail of The Last Message</p>
 
+        <!-- Lead Developer -->
+        <div class="team-lead-card fade-in">
+            <div class="team-lead-avatar-wrap">
+                <div class="team-lead-avatar">H</div>
+            </div>
+            <div class="team-lead-content">
+                <div class="team-lead-badge">Lead Developer</div>
+                <h3 class="team-lead-name">Hedy</h3>
+                <p class="team-lead-desc">Lead developer responsible for building the entire game, including gameplay systems, mechanics, and story design. I would like to sincerely thank all the contributors who helped make this project possible.</p>
+            </div>
+        </div>
+
+        <!-- Contributors Label -->
+        <div class="team-contrib-label fade-in">
+            <span class="tcl-line"></span>
+            <span class="tcl-text">Project Contributors</span>
+            <span class="tcl-line"></span>
+        </div>
+
+        <!-- Contributors Grid -->
         <div class="team-grid">
             <div class="team-card fade-in">
-                <div class="team-card-inner">
-                    <span class="team-number">01</span>
-                    <div class="team-avatar-wrap"><div class="team-avatar">H</div></div>
-                    <div class="team-info">
-                        <h3>Hedy</h3>
-                        <span class="team-role">Lead Developer</span>
-                        <p>Leads the development and vision of The Last Message, bringing the story to life through code and design.</p>
+                <div class="team-card-top">
+                    <div class="team-card-avatar">Z</div>
+                    <div>
+                        <h4 class="team-card-name">Zafar</h4>
+                        <span class="team-role">Discord Admin</span>
                     </div>
                 </div>
+                <p>Discord admin who contributed to art, voice acting, server management, and assisted with various in-game tasks.</p>
             </div>
 
             <div class="team-card fade-in">
-                <div class="team-card-inner">
-                    <span class="team-number">02</span>
-                    <div class="team-avatar-wrap"><div class="team-avatar">N</div></div>
-                    <div class="team-info">
-                        <h3>NSYCode</h3>
+                <div class="team-card-top">
+                    <div class="team-card-avatar">S</div>
+                    <div>
+                        <h4 class="team-card-name">Stranger</h4>
+                        <span class="team-role">3D Contributor</span>
+                    </div>
+                </div>
+                <p>Contributed by creating 3D models and helping with different aspects of the game.</p>
+            </div>
+
+            <div class="team-card fade-in">
+                <div class="team-card-top">
+                    <div class="team-card-avatar">N</div>
+                    <div>
+                        <h4 class="team-card-name">NsyCode</h4>
                         <span class="team-role">Developer</span>
-                        <p>Helps Hedy with development of the game, contributing code and technical expertise to bring The Last Message to life.</p>
                     </div>
                 </div>
+                <p>Developer who assisted with coding, bug fixing, and created the game launcher.</p>
             </div>
 
             <div class="team-card fade-in">
-                <div class="team-card-inner">
-                    <span class="team-number">03</span>
-                    <div class="team-avatar-wrap"><div class="team-avatar">Z</div></div>
-                    <div class="team-info">
-                        <h3>Zafar</h3>
-                        <span class="team-role">Contributor Admin</span>
-                        <p>Supports the project as a Contributor Admin, helping manage and grow The Last Message community and project.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="team-card fade-in">
-                <div class="team-card-inner">
-                    <span class="team-number">04</span>
-                    <div class="team-avatar-wrap"><div class="team-avatar">Y</div></div>
-                    <div class="team-info">
-                        <h3>yeswayswagg</h3>
-                        <span class="team-role">Moderator</span>
-                        <p>A dedicated and helpful member who serves as both a moderator and contributor. He has played an important role in supporting the community, helping others, and making sure everything ran smoothly.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="team-card fade-in">
-                <div class="team-card-inner">
-                    <span class="team-number">05</span>
-                    <div class="team-avatar-wrap"><div class="team-avatar">A</div></div>
-                    <div class="team-info">
-                        <h3>Amjad</h3>
+                <div class="team-card-top">
+                    <div class="team-card-avatar">A</div>
+                    <div>
+                        <h4 class="team-card-name">Amjad</h4>
                         <span class="team-role">3D Artist</span>
-                        <p>Created a large portion of the 3D models used in the game, contributing significantly to its visual world and environment.</p>
                     </div>
                 </div>
+                <p>Contributed to 3D modeling and helped fix various issues.</p>
             </div>
 
             <div class="team-card fade-in">
-                <div class="team-card-inner">
-                    <span class="team-number">06</span>
-                    <div class="team-avatar-wrap"><div class="team-avatar">S</div></div>
-                    <div class="team-info">
-                        <h3>Stranger</h3>
-                        <span class="team-role">Contributor Team Lead</span>
-                        <p>Guided the team and supported the project, playing a key leadership role in keeping contributors aligned and pushing the project forward.</p>
+                <div class="team-card-top">
+                    <div class="team-card-avatar">E</div>
+                    <div>
+                        <h4 class="team-card-name">Envity</h4>
+                        <span class="team-role">Bot Developer</span>
                     </div>
                 </div>
+                <p>Developed and managed Discord bots to support the community.</p>
             </div>
 
             <div class="team-card fade-in">
-                <div class="team-card-inner">
-                    <span class="team-number">07</span>
-                    <div class="team-avatar-wrap"><div class="team-avatar">A</div></div>
-                    <div class="team-info">
-                        <h3>Alen.Akhi</h3>
+                <div class="team-card-top">
+                    <div class="team-card-avatar">Y</div>
+                    <div>
+                        <h4 class="team-card-name">yeswayswagg</h4>
+                        <span class="team-role">Moderator</span>
+                    </div>
+                </div>
+                <p>Discord moderator who helps manage the server and supports the project.</p>
+            </div>
+
+            <div class="team-card fade-in">
+                <div class="team-card-top">
+                    <div class="team-card-avatar">A</div>
+                    <div>
+                        <h4 class="team-card-name">alen.akhi</h4>
                         <span class="team-role">Web Developer</span>
-                        <p>Supports the project by coding this website and contributing to future improvements.</p>
                     </div>
                 </div>
+                <p>Developer who created this website.</p>
             </div>
         </div>
 
@@ -2689,9 +2901,31 @@
         </div>
     </div>
 
+    <!-- ADD TO HOME SCREEN POPUP -->
+    <div id="hsPopup" class="hs-popup" role="dialog" aria-label="Add to Home Screen">
+        <div class="hs-popup-top-bar"></div>
+        <div class="hs-popup-inner">
+            <button class="hs-close" onclick="dismissHsPopup()" aria-label="Dismiss">✕</button>
+            <div class="hs-header">
+                <img src="https://files.catbox.moe/1zb08m.jpg"
+                     alt="The Last Message"
+                     class="hs-logo"
+                     loading="eager"
+                     decoding="async">
+                <div class="hs-header-text">
+                    <div class="hs-app-name">The Last Message</div>
+                    <div class="hs-app-sub">https://last-message-website.pages.dev</div>
+                </div>
+            </div>
+            <h3 class="hs-title">Add to Home Screen</h3>
+            <p class="hs-desc" id="hsDesc">Install this app for the best experience — quick access right from your home screen.</p>
+            <div class="hs-steps" id="hsSteps"></div>
+            <button class="hs-dismiss-btn" onclick="dismissHsPopup()">Maybe Later</button>
+        </div>
+    </div>
+
     <script>
-        // zoom guard — watches visualViewport scale and disables heavy compositing layers
-        // when zoom gets extreme to prevent Safari compositor crashes
+        // zoom guard
         (function() {
             var vv = window.visualViewport;
             if (!vv) return;
@@ -2713,7 +2947,7 @@
             });
         })();
 
-        // body reveal — handles all the edge cases where opacity can get stuck
+        // body reveal
         function revealBody() {
             document.body.style.transition = 'opacity 0.5s ease';
             document.body.style.opacity = '1';
@@ -2725,7 +2959,7 @@
         window.addEventListener('orientationchange', function() { setTimeout(revealBody, 150); });
         setTimeout(revealBody, 2500);
 
-        // safety unlock — clears any leftover overflow:hidden if overlays are all closed
+        // safety unlock
         window.addEventListener('scroll', function() {
             var navOpen     = document.getElementById('navLinks').classList.contains('open');
             var codexOpen   = document.getElementById('codexOverlay').classList.contains('open');
@@ -2930,11 +3164,51 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') { closeCodex(); closeDevlogs(); }
         });
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("./serviceworker.js")
-    .then(reg => console.log("SW registered:", reg))
-    .catch(err => console.log("SW failed:", err));
-}
+
+        // add to home screen popup
+        function dismissHsPopup() {
+            var popup = document.getElementById('hsPopup');
+            if (popup) popup.classList.remove('show');
+            try { localStorage.setItem('tlm_hs_dismissed', '1'); } catch(e) {}
+        }
+
+        (function() {
+            var ua = navigator.userAgent;
+            var platform = null;
+            if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) platform = 'ios';
+            else if (/Android/.test(ua)) platform = 'android';
+
+            if (!platform) return;
+            try { if (localStorage.getItem('tlm_hs_dismissed')) return; } catch(e) {}
+            if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) return;
+            if (window.navigator.standalone === true) return;
+
+            var popup   = document.getElementById('hsPopup');
+            var stepsEl = document.getElementById('hsSteps');
+            var descEl  = document.getElementById('hsDesc');
+
+            if (!popup) return;
+
+            if (platform === 'ios') {
+                if (descEl) descEl.textContent = 'Install The Last Message for fast, easy access right from your home screen.';
+                if (stepsEl) stepsEl.innerHTML =
+                    '<strong>How to install on iOS:</strong><br>' +
+                    '1. Tap the <strong>Share ↑</strong> button in Safari<br>' +
+                    '2. Scroll down and tap <strong>"Add to Home Screen"</strong><br>' +
+                    '3. Tap <strong>Add</strong> to confirm';
+            } else {
+                if (descEl) descEl.textContent = 'Install The Last Message for fast, easy access right from your home screen.';
+                if (stepsEl) stepsEl.innerHTML =
+                    '<strong>How to install on Android:</strong><br>' +
+                    '1. Tap the <strong>⋮ Menu</strong> in Chrome<br>' +
+                    '2. Tap <strong>"Add to Home screen"</strong><br>' +
+                    '3. Tap <strong>Add</strong> to confirm';
+            }
+
+            setTimeout(function() {
+                if (popup) popup.classList.add('show');
+            }, 3200);
+        })();
     </script>
 </body>
 </html>
